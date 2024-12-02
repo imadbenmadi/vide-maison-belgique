@@ -13,12 +13,10 @@ const ensureDirectoryExists = (dirPath) => {
 
 const initializeDirectories = () => {
     const directories = [
-        "public/Blog_Pics",
-        "public/Event_Pics",
-        "public/ProfilePics",
-        "public/Malads_Files",
-        // "public/Summaries",
-        // "public/Summaries_Pictures",
+        "public/about_page_images",
+        "public/main_page_images",
+        "public/phrases_images",
+        "public/services_images",
     ];
 
     directories.forEach((dir) => {
