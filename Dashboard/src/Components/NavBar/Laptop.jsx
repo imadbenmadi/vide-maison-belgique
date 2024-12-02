@@ -16,6 +16,7 @@ import { MdOutlineAddCircleOutline } from "react-icons/md";
 import LaptopNavItem from "./laptop_nav_item";
 import { FaRegEdit } from "react-icons/fa";
 import { MdOutlineWork } from "react-icons/md";
+import { MdContacts } from "react-icons/md";
 
 function Laptop() {
     const Navigate = useNavigate();
@@ -52,51 +53,49 @@ function Laptop() {
         setLogoutClicked(false);
     };
     return (
-        <div className="flex flex-col gap-8 text-sm text-gray_v pl-8 py-4">
+        <div className="flex flex-col gap-4 text-sm text-gray_v pl-8 py-4">
             <div className=" flex flex-col items-center justify-center text-gray_v">
                 <img src={Logo} alt="Logo" className="w-16 " />
                 {/* <div className="text-sm text-white font-semibold">Admin Panel</div> */}
             </div>
+            <div className=" flex flex-col gap-2  mt-6  ">
+                <LaptopNavItem
+                    Link="Home"
+                    name="Home"
+                    Active_nav={Active_nav}
+                    Icon={GoHome}
+                />
+            </div>
             <div>
-                <div className=" flex flex-col gap-2  my-6  ">
+                <div className=" font-semibold pb-4  flex gap-2 items-center ">
+                    <FaRegEdit className=" text-lg" />
+                    Edit Content
+                </div>{" "}
+                <div className=" flex flex-col gap-1 pl-2  ">
                     <LaptopNavItem
-                        Link="Home"
-                        name="Home"
+                        Link="Edit_Main"
+                        name="Main Section"
                         Active_nav={Active_nav}
-                        Icon={GoHome}
+                        Icon={null}
                     />
-                </div>
-                <div>
-                    <div className=" font-semibold pb-4  flex gap-2 items-center ">
-                        <FaRegEdit className=" text-lg" />
-                        Edit Content
-                    </div>{" "}
-                    <div className=" flex flex-col gap-1 pl-2  ">
-                        <LaptopNavItem
-                            Link="Edit_Main"
-                            name="Main Section"
-                            Active_nav={Active_nav}
-                            Icon={null}
-                        />
-                        <LaptopNavItem
-                            Link="Edit_About"
-                            name="About Section"
-                            Active_nav={Active_nav}
-                            Icon={null}
-                        />
-                        <LaptopNavItem
-                            Link="Edit_Services"
-                            name="Services Section"
-                            Active_nav={Active_nav}
-                            Icon={null}
-                        />
-                        <LaptopNavItem
-                            Link="Edit_FAQ"
-                            name="FAQ Section"
-                            Active_nav={Active_nav}
-                            Icon={null}
-                        />
-                    </div>
+                    <LaptopNavItem
+                        Link="Edit_About"
+                        name="About Section"
+                        Active_nav={Active_nav}
+                        Icon={null}
+                    />
+                    <LaptopNavItem
+                        Link="Edit_Services"
+                        name="Services Section"
+                        Active_nav={Active_nav}
+                        Icon={null}
+                    />
+                    <LaptopNavItem
+                        Link="Edit_FAQ"
+                        name="FAQ Section"
+                        Active_nav={Active_nav}
+                        Icon={null}
+                    />
                 </div>
             </div>
             <div>
@@ -109,13 +108,24 @@ function Laptop() {
                     />
                 </div>{" "}
             </div>
+
             <div>
-                <div className=" font-semibold pb-4   flex gap-2 items-center ">
+                <div className=" font-semibold   flex gap-2 items-center ">
                     <LaptopNavItem
                         Link="Contact"
                         name="Contact Messages"
                         Active_nav={Active_nav}
                         Icon={RiContactsLine}
+                    />
+                </div>{" "}
+            </div>
+            <div>
+                <div className=" font-semibold pb-6   flex gap-2 items-center ">
+                    <LaptopNavItem
+                        Link="Contact_informations"
+                        name="Contact Informations"
+                        Active_nav={Active_nav}
+                        Icon={MdContacts}
                     />
                 </div>{" "}
             </div>

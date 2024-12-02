@@ -11,6 +11,7 @@ import { RiContactsLine } from "react-icons/ri";
 import { FaRegEdit } from "react-icons/fa";
 import { MdOutlineWork } from "react-icons/md";
 import Item from "./Item";
+import { MdContacts } from "react-icons/md";
 function Mobile_Nav_Items({ MobileNav_Open, Toogle_Menu_Bar }) {
     const Navigate = useNavigate();
     const { set_Auth } = useAppContext();
@@ -50,51 +51,50 @@ function Mobile_Nav_Items({ MobileNav_Open, Toogle_Menu_Bar }) {
                     MobileNav_Open ? "translate-x-[0vw]" : "translate-x-[200vh]"
                 } absolute transition-transform duration-300 select-none w-[100vw] z-50 text-black_text bg-white`}
             >
-                <div className="flex flex-col gap-8 text-sm text-black_text pl-8 py-4 h-screen overflow-auto">
+                <div className="flex flex-col gap-4 text-sm text-black_text pl-8 py-4 h-screen overflow-auto">
+                    <div className="flex flex-col gap-2  mt-6">
+                        <Item
+                            Link="Home"
+                            name="Home"
+                            Active_nav={Active_nav}
+                            Icon={GoHome}
+                            onClick={Toogle_Menu_Bar}
+                        />
+                    </div>
+
                     <div>
-                        <div className="flex flex-col gap-2 my-6">
+                        <div className="font-semibold pb-4 flex gap-2 items-center">
+                            <FaRegEdit className="text-lg" /> Edit Content
+                        </div>
+                        <div className="flex flex-col gap-2 pl-2">
                             <Item
-                                Link="Home"
-                                name="Home"
+                                Link="Edit_Main"
+                                name="Main Section"
                                 Active_nav={Active_nav}
-                                Icon={GoHome}
+                                Icon={null}
                                 onClick={Toogle_Menu_Bar}
                             />
-                        </div>
-                        <div>
-                            <div className="font-semibold pb-4 flex gap-2 items-center">
-                                <FaRegEdit className="text-lg" /> Edit Content
-                            </div>
-                            <div className="flex flex-col gap-2 pl-2">
-                                <Item
-                                    Link="Edit_Main"
-                                    name="Main Section"
-                                    Active_nav={Active_nav}
-                                    Icon={null}
-                                    onClick={Toogle_Menu_Bar}
-                                />
-                                <Item
-                                    Link="Edit_About"
-                                    name="About Section"
-                                    Active_nav={Active_nav}
-                                    Icon={null}
-                                    onClick={Toogle_Menu_Bar}
-                                />
-                                <Item
-                                    Link="Edit_Services"
-                                    name="Services Section"
-                                    Active_nav={Active_nav}
-                                    Icon={null}
-                                    onClick={Toogle_Menu_Bar}
-                                />
-                                <Item
-                                    Link="Edit_FAQ"
-                                    name="FAQ Section"
-                                    Active_nav={Active_nav}
-                                    Icon={null}
-                                    onClick={Toogle_Menu_Bar}
-                                />
-                            </div>
+                            <Item
+                                Link="Edit_About"
+                                name="About Section"
+                                Active_nav={Active_nav}
+                                Icon={null}
+                                onClick={Toogle_Menu_Bar}
+                            />
+                            <Item
+                                Link="Edit_Services"
+                                name="Services Section"
+                                Active_nav={Active_nav}
+                                Icon={null}
+                                onClick={Toogle_Menu_Bar}
+                            />
+                            <Item
+                                Link="Edit_FAQ"
+                                name="FAQ Section"
+                                Active_nav={Active_nav}
+                                Icon={null}
+                                onClick={Toogle_Menu_Bar}
+                            />
                         </div>
                     </div>
                     <div>
@@ -109,7 +109,7 @@ function Mobile_Nav_Items({ MobileNav_Open, Toogle_Menu_Bar }) {
                         </div>
                     </div>
                     <div>
-                        <div className="font-semibold pb-4 flex gap-2 items-center">
+                        <div className="font-semibold  flex gap-2 items-center">
                             <Item
                                 Link="Contact"
                                 name="Contact Messages"
@@ -119,6 +119,18 @@ function Mobile_Nav_Items({ MobileNav_Open, Toogle_Menu_Bar }) {
                             />
                         </div>
                     </div>
+                    <div>
+                        <div className="font-semibold pb-4 flex gap-2 items-center">
+                            <Item
+                                Link="Contact_informations"
+                                name="Contact informations"
+                                Active_nav={Active_nav}
+                                Icon={MdContacts}
+                                onClick={Toogle_Menu_Bar}
+                            />
+                        </div>
+                    </div>
+
                     <div className="pb-20">
                         {LogoutClicked ? (
                             <div className="w-full">

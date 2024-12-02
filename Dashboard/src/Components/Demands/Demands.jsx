@@ -66,7 +66,7 @@ function Demands() {
             <div className=" py-6 px-4">
                 <div className=" text-xl font-semibold text-yallow_v">
                     {" "}
-                    Demands Demands
+                    
                 </div>
 
                 {!Demands || Demands?.length == 0 ? (
