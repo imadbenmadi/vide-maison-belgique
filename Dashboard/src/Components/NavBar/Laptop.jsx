@@ -110,7 +110,7 @@ function Laptop() {
                 </div>{" "}
             </div>
             <div>
-                <div className=" font-semibold pb-4  flex gap-2 items-center ">
+                <div className=" font-semibold pb-4   flex gap-2 items-center ">
                     <LaptopNavItem
                         Link="Contact"
                         name="Contact Messages"

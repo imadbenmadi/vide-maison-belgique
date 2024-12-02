@@ -51,13 +51,6 @@ function Mobile_Nav_Items({ MobileNav_Open, Toogle_Menu_Bar }) {
                 } absolute transition-transform duration-300 select-none w-[100vw] z-50 text-black_text bg-white`}
             >
                 <div className="flex flex-col gap-8 text-sm text-black_text pl-8 py-4 h-screen overflow-auto">
-                    <div className="flex flex-col items-center justify-center">
-                        <img
-                            src={"../../../public/Logo.png"}
-                            alt="Logo"
-                            className="w-16"
-                        />
-                    </div>
                     <div>
                         <div className="flex flex-col gap-2 my-6">
                             <Link
@@ -67,7 +60,7 @@ function Mobile_Nav_Items({ MobileNav_Open, Toogle_Menu_Bar }) {
                                     Active_nav === "Home"
                                         ? "bg-yallow_v text-white px-4"
                                         : "bg-white hover:text-yallow_v"
-                                } transition-all duration-150 cursor-pointer py-1 w-[150px] rounded-full`}
+                                } transition-all duration-150 cursor-pointer py-1 w-[150px] rounded-full flex gap-2`}
                             >
                                 <GoHome className="text-lg" /> Home
                             </Link>
@@ -106,7 +99,7 @@ function Mobile_Nav_Items({ MobileNav_Open, Toogle_Menu_Bar }) {
                                         Active_nav === "Edit_FAQ"
                                             ? "bg-yallow_v text-white px-4"
                                             : "bg-white hover:text-yallow_v"
-                                    } transition-all duration-150 cursor-pointer py-1 w-[150px] rounded-full`}
+                                    } transition-all  duration-150 cursor-pointer py-1 w-[150px] rounded-full`}
                                 >
                                     FAQ
                                 </Link>
@@ -133,7 +126,7 @@ function Mobile_Nav_Items({ MobileNav_Open, Toogle_Menu_Bar }) {
                                     Active_nav === "Demands"
                                         ? "bg-yallow_v text-white px-4"
                                         : "bg-white hover:text-yallow_v"
-                                } transition-all duration-150 cursor-pointer py-1 w-[150px] rounded-full`}
+                                } transition-all duration-150 cursor-pointer py-1 w-[150px] rounded-full flex gap-2`}
                             >
                                 <MdOutlineWork className="text-lg" /> Demands
                             </Link>
@@ -148,7 +141,7 @@ function Mobile_Nav_Items({ MobileNav_Open, Toogle_Menu_Bar }) {
                                     Active_nav === "Contact"
                                         ? "bg-yallow_v text-white px-4"
                                         : "bg-white hover:text-yallow_v"
-                                } transition-all duration-150 cursor-pointer py-1 w-[150px] rounded-full`}
+                                } transition-all duration-150 cursor-pointer py-1  w-fit rounded-full flex gap-2`}
                             >
                                 <RiContactsLine className="text-lg" /> Contact
                                 Messages
