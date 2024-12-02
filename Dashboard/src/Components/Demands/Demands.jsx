@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import axios from "axios";
 import Card from "./Card";
-import { BiMessage } from "react-icons/bi";
+import { BiDemand } from "react-icons/bi";
 
 function Demands() {
     const Navigate = useNavigate();
@@ -25,7 +25,7 @@ function Demands() {
                     }
                 );
                 if (response.status == 200) {
-                    const Demands = response.data.Demands;
+                    const Demands = response.data.demands;
                     setDemands(Demands);
                 } else if (response.status == 401) {
                     Swal.fire(
@@ -84,18 +84,19 @@ function Demands() {
                                         {Demands?.length}
                                     </div>
                                     <div className=" shrink-0 text-yallow_v border border-gray_white px-2 py-1 flex items-center justify-center rounded-lg shadow-lg">
-                                        <BiMessage className=" shrink-0 text-2xl" />
+                                        <BiDemand className=" shrink-0 text-2xl" />
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         {Demands &&
+                            Demands.length > 0 &&
                             Demands?.map((demand) => {
                                 return (
                                     <Card
                                         key={demand.id}
-                                        Message={demand}
+                                        Demand={demand}
                                         setDemands={setDemands}
                                         Demands={Demands}
                                         // handle_Delete_demand={handle_Delete_demand}

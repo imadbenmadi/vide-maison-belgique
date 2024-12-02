@@ -7,29 +7,29 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { FiUser } from "react-icons/fi";
 import { MdOutlineMailOutline } from "react-icons/md";
+import { MdCategory } from "react-icons/md";
 
-function Card({ Message, Messages, setMessages }) {
+function Card({ Demand, Demands, setDemands }) {
     const [deleteLoading, setDeleteLoading] = useState(false);
-    const [add_to_home_Loading, setadd_to_home_Loading] = useState(false);
     const [show_more, setShow_more] = useState(false);
     const Toogle_Show_More = () => {
         setShow_more(!show_more);
     };
-    const handle_Delete_Message = async () => {
+    const handle_Delete_Demand = async () => {
         setDeleteLoading(true);
         try {
             const response = await axios.delete(
-                `http://localhost:3000/Admin/Contact/${Message?.id}`,
+                `http://localhost:3000/Admin/Demands/${Demand?.id}`,
                 {
                     withCredentials: true,
                     validateStatus: () => true,
                 }
             );
             if (response.status === 200) {
-                const newMessages = Messages.filter(
-                    (item) => item?.id !== Message?.id
+                const newDemands = Demands.filter(
+                    (item) => item?.id !== Demand?.id
                 );
-                setMessages(newMessages);
+                setDemands(newDemands);
                 Swal.fire("نجاح", "تم حذف الرسالة بنجاح", "success");
             } else if (response.status === 401) {
                 Swal.fire(
@@ -49,7 +49,7 @@ function Card({ Message, Messages, setMessages }) {
     return (
         // <div></div>
         <div
-            key={Message?.id}
+            key={Demand?.id}
             className="flex flex-col md;flex-row justify-between py-4 px-7  border-2 
                          border-yallow_v rounded-lg  mt-6 text-gray_v"
         >
@@ -57,23 +57,27 @@ function Card({ Message, Messages, setMessages }) {
                 <div className="flex flex-col gap-4  text-gray_v font-semibold text-sm ">
                     <div className=" flex items-center gap-2">
                         <FiUser className=" text-xl" />
-                        {Message?.firstName + " " + Message?.lastName}
+                        {Demand?.firstName + " " + Demand?.lastName}
                     </div>
                     <div className=" flex items-center gap-2 ">
                         <MdOutlineMailOutline className=" text-xl" />
 
                         <a
-                            href={`mailto:${Message?.email}`}
+                            href={`mailto:${Demand?.email}`}
                             className="text-yallow_v"
                         >
-                            {Message?.email}
+                            {Demand?.email}
                         </a>
+                    </div>
+                    <div className=" flex items-center gap-2 ">
+                        <MdCategory className=" text-xl" />
+                        <div className="text-yallow_v">{Demand?.type}</div>
                     </div>
                 </div>
                 <div className=" font-semibold text-gray_v py-6 md:px-4 break-all">
                     {show_more ? (
                         <div className=" flex flex-col ">
-                            {Message?.message}
+                            {Demand?.message}
                             <span
                                 onClick={Toogle_Show_More}
                                 className=" text-yallow_v cursor-pointer flex items-center gap-1  "
@@ -84,8 +88,8 @@ function Card({ Message, Messages, setMessages }) {
                         </div>
                     ) : (
                         <div className=" flex flex-col ">
-                            <div>{Message?.message.slice(0, 500)}</div>
-                            {Message?.message.length > 500 && (
+                            <div>{Demand?.message.slice(0, 500)}</div>
+                            {Demand?.message.length > 500 && (
                                 <div
                                     onClick={Toogle_Show_More}
                                     className=" text-yallow_v cursor-pointer flex items-center gap-1  "
@@ -105,7 +109,7 @@ function Card({ Message, Messages, setMessages }) {
                     <div
                         className=" cursor-pointer text-white bg-red-500 px-4 py-2 rounded-lg font-semibold"
                         onClick={() => {
-                            handle_Delete_Message();
+                            handle_Delete_Demand();
                         }}
                     >
                         Delete

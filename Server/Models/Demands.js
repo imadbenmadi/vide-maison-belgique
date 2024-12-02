@@ -20,5 +20,9 @@ const Demands = sequelize.define("Demands", {
         type: DataTypes.TEXT,
         allowNull: false,
     },
+    type: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
 });
 module.exports = { Demands };
