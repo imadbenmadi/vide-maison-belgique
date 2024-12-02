@@ -150,7 +150,7 @@ function Home() {
 
         return (
             <div>
-                <div className="text-blue_v text-2xl font-semibold pt-6 pl-6">
+                <div className="text-yallow_v text-2xl font-semibold pt-6 pl-6">
                     Home page
                 </div>
                 <div className="flex justify-center items-center flex-wrap gap-6 mx-6 my-6">
@@ -162,7 +162,7 @@ function Home() {
                             <div className="font-semibold text-2xl">
                                 {data?.Malad_nbr}
                             </div>
-                            <div className="shrink-0 text-blue_v border border-gray_white px-2 py-1 flex items-center justify-center rounded-lg shadow-lg">
+                            <div className="shrink-0 text-yallow_v border border-gray_white px-2 py-1 flex items-center justify-center rounded-lg shadow-lg">
                                 <LiaUsersSolid className="shrink-0 text-2xl" />
                             </div>
                         </div>
@@ -175,7 +175,7 @@ function Home() {
                             <div className="font-semibold text-2xl">
                                 {data?.Doctor_nbr}
                             </div>
-                            <div className="shrink-0 text-blue_v border border-gray_white px-2 py-1 flex items-center justify-center rounded-lg shadow-lg">
+                            <div className="shrink-0 text-yallow_v border border-gray_white px-2 py-1 flex items-center justify-center rounded-lg shadow-lg">
                                 <FaUserDoctor className="shrink-0 text-2xl" />
                             </div>
                         </div>
@@ -188,7 +188,7 @@ function Home() {
                             <div className="font-semibold text-2xl">
                                 {data?.Company_nbr}
                             </div>
-                            <div className="shrink-0 text-blue_v border border-gray_white px-2 py-1 flex items-center justify-center rounded-lg shadow-lg">
+                            <div className="shrink-0 text-yallow_v border border-gray_white px-2 py-1 flex items-center justify-center rounded-lg shadow-lg">
                                 <FaRegBuilding className="shrink-0 text-2xl" />
                             </div>
                         </div>

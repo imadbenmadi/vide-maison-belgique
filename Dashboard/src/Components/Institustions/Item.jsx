@@ -178,7 +178,7 @@ function InstitutionItem() {
                 <div className=" flex flex-col gap-6 text-center">
                     {/* <Link
                         to={`/Institustions/${institution_id}/Events`}
-                        className="border-2 border-blue_v text-blue_v font-semibold px-4 py-2 rounded-md"
+                        className="border-2 border-yallow_v text-yallow_v font-semibold px-4 py-2 rounded-md"
                     >
                         See events
                     </Link> */}
@@ -211,7 +211,7 @@ function InstitutionItem() {
                             <span>Email: {director?.email}</span>
                             <Link
                                 to={`/Institustions/${institution_id}/Edit`}
-                                className="text-blue_v"
+                                className="text-yallow_v"
                             >
                                 ✏️
                             </Link>
@@ -220,7 +220,7 @@ function InstitutionItem() {
                             <span>Password: {director?.password}</span>
                             <Link
                                 to={`/Institustions/${institution_id}/Edit`}
-                                className="text-blue_v"
+                                className="text-yallow_v"
                             >
                                 ✏️
                             </Link>

@@ -68,8 +68,8 @@ function Mobile_Nav_Items({ MobileNav_Open, Toogle_Menu_Bar }) {
                                 onClick={Toogle_Menu_Bar}
                                 className={` ${
                                     Active_nav == "Home"
-                                        ? "bg-blue_v text-white px-4 "
-                                        : "bg-white hover:text-blue_v"
+                                        ? "bg-yallow_v text-white px-4 "
+                                        : "bg-white hover:text-yallow_v"
                                 }  transition-all duration-150  cursor-pointer py-1 select-none  w-[150px] rounded-full  `}
                             >
                                 <span>Home</span>
@@ -79,8 +79,8 @@ function Mobile_Nav_Items({ MobileNav_Open, Toogle_Menu_Bar }) {
                                 onClick={Toogle_Menu_Bar}
                                 className={` ${
                                     Active_nav == "Users"
-                                        ? "bg-blue_v text-white px-4 "
-                                        : "bg-white hover:text-blue_v"
+                                        ? "bg-yallow_v text-white px-4 "
+                                        : "bg-white hover:text-yallow_v"
                                 }  transition-all duration-150  cursor-pointer py-1 select-none  w-[150px] rounded-full  `}
                             >
                                 <span>Users</span>
@@ -98,8 +98,8 @@ function Mobile_Nav_Items({ MobileNav_Open, Toogle_Menu_Bar }) {
                                 onClick={Toogle_Menu_Bar}
                                 className={` ${
                                     Active_nav == "Institustions"
-                                        ? "bg-blue_v text-white px-4 "
-                                        : "bg-white hover:text-blue_v"
+                                        ? "bg-yallow_v text-white px-4 "
+                                        : "bg-white hover:text-yallow_v"
                                 }  transition-all duration-150  cursor-pointer py-1 select-none 
                                 flex items-center gap-2 
                                     w-[150px] rounded-full  `}
@@ -112,8 +112,8 @@ function Mobile_Nav_Items({ MobileNav_Open, Toogle_Menu_Bar }) {
                                 onClick={Toogle_Menu_Bar}
                                 className={` ${
                                     Active_nav == "New_institution"
-                                        ? "bg-blue_v text-white px-4 "
-                                        : "bg-white hover:text-blue_v"
+                                        ? "bg-yallow_v text-white px-4 "
+                                        : "bg-white hover:text-yallow_v"
                                 }  transition-all duration-150  cursor-pointer py-1 select-none 
                                 flex items-center gap-2 
                                     w-[180px] rounded-full  `}
@@ -136,8 +136,8 @@ function Mobile_Nav_Items({ MobileNav_Open, Toogle_Menu_Bar }) {
                                 onClick={Toogle_Menu_Bar}
                                 className={` ${
                                     Active_nav == "Terms"
-                                        ? "bg-blue_v text-white px-4 "
-                                        : "bg-white hover:text-blue_v"
+                                        ? "bg-yallow_v text-white px-4 "
+                                        : "bg-white hover:text-yallow_v"
                                 }  transition-all duration-150  cursor-pointer py-1 select-none  w-[150px] rounded-full  `}
                             >
                                 <span>Terms of service</span>
@@ -155,8 +155,8 @@ function Mobile_Nav_Items({ MobileNav_Open, Toogle_Menu_Bar }) {
                                 onClick={Toogle_Menu_Bar}
                                 className={` ${
                                     Active_nav == "Contact"
-                                        ? "bg-blue_v text-white px-4 "
-                                        : "bg-white hover:text-blue_v"
+                                        ? "bg-yallow_v text-white px-4 "
+                                        : "bg-white hover:text-yallow_v"
                                 }  transition-all duration-150  cursor-pointer py-1 select-none  w-[150px] rounded-full  `}
                             >
                                 <span> Messages</span>

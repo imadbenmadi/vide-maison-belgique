@@ -96,9 +96,7 @@ function Terms({ initialContent }) {
                     console.error("Error parsing content:");
                 }
             })
-            .catch((error) =>
-                console.error("Error fetching initial content:")
-            );
+            .catch((error) => console.error("Error fetching initial content:"));
     }, []);
 
     const onChange = (newEditorState) => {
@@ -180,7 +178,7 @@ function Terms({ initialContent }) {
 
     return (
         <>
-            <div className=" text-xl font-semibold text-blue_v my-5 pl-5">
+            <div className=" text-xl font-semibold text-yallow_v my-5 pl-5">
                 {" "}
                 Terms & Conditions{" "}
             </div>{" "}
@@ -292,7 +290,7 @@ function Terms({ initialContent }) {
                     <span className="small-loader  w-full m-auto mt-6"></span>
                 ) : (
                     <div
-                        className=" text-white text-xl bg-blue_v rounded-xl w-fit mx-auto py-1 px-2 
+                        className=" text-white text-xl bg-yallow_v rounded-xl w-fit mx-auto py-1 px-2 
                 cursor-pointer mt-6"
                         onClick={() => handleEditePrivacy()}
                     >

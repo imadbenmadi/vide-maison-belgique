@@ -76,7 +76,7 @@ const edit_institution = () => {
 
     return (
         <div className="container mx-auto py-6 px-4">
-            <div className="text-xl font-semibold text-blue_v mb-12">
+            <div className="text-xl font-semibold text-yallow_v mb-12">
                 Edit Institutions
             </div>
             <Formik
@@ -278,7 +278,7 @@ const edit_institution = () => {
                         <div className="md:col-span-2  mx-auto">
                             <button
                                 type="submit"
-                                className="px-6 bg-blue_v font-bold w-fit text-white py-2 rounded-md"
+                                className="px-6 bg-yallow_v font-bold w-fit text-white py-2 rounded-md"
                             >
                                 Edit
                             </button>

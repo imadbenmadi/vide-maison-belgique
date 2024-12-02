@@ -180,7 +180,7 @@ function Login() {
                                         ) : (
                                             <button
                                                 type="submit"
-                                                className=" bg-blue_v py-2 mt-4 rounded-2xl text-white font-semibold "
+                                                className=" bg-yallow_v py-2 mt-4 rounded-2xl text-white font-semibold "
                                                 disabled={isSubmitting}
                                             >
                                                 Login

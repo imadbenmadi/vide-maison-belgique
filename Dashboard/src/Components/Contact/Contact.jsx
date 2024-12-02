@@ -28,7 +28,11 @@ function Contact() {
                     const Messages = response.data.Messages;
                     setMessages(Messages);
                 } else if (response.status == 401) {
-                    Swal.fire("Error", "يجب عليك تسجيل الدخول مرة اخرى", "error");
+                    Swal.fire(
+                        "Error",
+                        "يجب عليك تسجيل الدخول مرة اخرى",
+                        "error"
+                    );
                     Navigate("/Login");
                 } else {
                     setError(response.data);
@@ -62,7 +66,7 @@ function Contact() {
     else
         return (
             <div className=" py-6 px-4">
-                <div className=" text-xl font-semibold text-blue_v">
+                <div className=" text-xl font-semibold text-yallow_v">
                     {" "}
                     Contact Messages
                 </div>
@@ -82,7 +86,7 @@ function Contact() {
                                     <div className="  font-semibold text-2xl">
                                         {Messages?.length}
                                     </div>
-                                    <div className=" shrink-0 text-blue_v border border-gray_white px-2 py-1 flex items-center justify-center rounded-lg shadow-lg">
+                                    <div className=" shrink-0 text-yallow_v border border-gray_white px-2 py-1 flex items-center justify-center rounded-lg shadow-lg">
                                         <BiMessage className=" shrink-0 text-2xl" />
                                     </div>
                                 </div>

@@ -7,7 +7,8 @@ export default {
             colors: {
                 red_error: "#F84141",
                 green_v: "#469F78",
-                yallow_v: "#F6BC63",
+                // yallow_v: "#face0d",
+                yallow_v: "rgb(139 113 0)",
                 Rose_v: "#EFCFF9",
                 Rose_b_v: "#CF74E9",
                 blue_v: "#2A77F1",

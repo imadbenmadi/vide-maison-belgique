@@ -11,7 +11,7 @@ const New_institution = () => {
 
     return (
         <div className=" mx-auto py-6 px-4">
-            <div className="text-xl font-semibold text-blue_v mb-12">
+            <div className="text-xl font-semibold text-yallow_v mb-12">
                 Add new Institutions
             </div>
             <Formik
@@ -213,7 +213,7 @@ const New_institution = () => {
                         <div className="md:col-span-2  mx-auto">
                             <button
                                 type="submit"
-                                className="px-6 bg-blue_v font-bold w-fit text-white py-2 rounded-md"
+                                className="px-6 bg-yallow_v font-bold w-fit text-white py-2 rounded-md"
                             >
                                 Complete
                             </button>

@@ -64,8 +64,8 @@ function Laptop() {
                         to={"/Home"}
                         className={` ${
                             Active_nav == "Home"
-                                ? "bg-blue_v text-white px-4 "
-                                : "bg-white hover:text-blue_v text-gray_v"
+                                ? "bg-yallow_v text-white px-4 "
+                                : "bg-white hover:text-yallow_v text-gray_v"
                         }  transition-all duration-150  cursor-pointer py-1 select-none  w-[150px] rounded-full `}
                     >
                         <span>Statistics</span>
@@ -74,8 +74,8 @@ function Laptop() {
                         to={"/Users"}
                         className={` ${
                             Active_nav == "Users"
-                                ? "bg-blue_v text-white px-4 "
-                                : "bg-white hover:text-blue_v text-gray_v"
+                                ? "bg-yallow_v text-white px-4 "
+                                : "bg-white hover:text-yallow_v text-gray_v"
                         }  transition-all duration-150  cursor-pointer py-1 select-none  w-[150px] rounded-full  `}
                     >
                         <span>Users</span>
@@ -92,8 +92,8 @@ function Laptop() {
                         to={"/Institustions"}
                         className={` ${
                             Active_nav == "Institustions"
-                                ? "bg-blue_v text-white px-4 "
-                                : "bg-white hover:text-blue_v text-gray_v"
+                                ? "bg-yallow_v text-white px-4 "
+                                : "bg-white hover:text-yallow_v text-gray_v"
                         }  transition-all duration-150  cursor-pointer py-1 select-none  
                         w-[150px] rounded-full flex items-center gap-2  `}
                     >
@@ -105,8 +105,8 @@ function Laptop() {
                         to={"/New_institution"}
                         className={` ${
                             Active_nav == "New_institution"
-                                ? "bg-blue_v text-white px-4 "
-                                : "bg-white hover:text-blue_v text-gray_v"
+                                ? "bg-yallow_v text-white px-4 "
+                                : "bg-white hover:text-yallow_v text-gray_v"
                         }  transition-all duration-150  cursor-pointer py-1 select-none  w-[180px] rounded-full flex items-center gap-2  `}
                     >
                         <MdOutlineAddCircleOutline className=" text-lg" />
@@ -125,8 +125,8 @@ function Laptop() {
                         to={"/Terms"}
                         className={` ${
                             Active_nav == "Terms"
-                                ? "bg-blue_v text-white px-4 "
-                                : "bg-white hover:text-blue_v text-gray_v"
+                                ? "bg-yallow_v text-white px-4 "
+                                : "bg-white hover:text-yallow_v text-gray_v"
                         }  transition-all duration-150  cursor-pointer py-1 select-none  w-[150px] rounded-full  `}
                     >
                         <span>Terms of service</span>
@@ -143,8 +143,8 @@ function Laptop() {
                         to={"/Contact"}
                         className={` ${
                             Active_nav == "Contact"
-                                ? "bg-blue_v text-white px-4 "
-                                : "bg-white hover:text-blue_v text-gray_v"
+                                ? "bg-yallow_v text-white px-4 "
+                                : "bg-white hover:text-yallow_v text-gray_v"
                         }  transition-all duration-150  cursor-pointer py-1 select-none  w-[150px] rounded-full  `}
                     >
                         <span> Messages</span>

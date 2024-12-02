@@ -85,7 +85,7 @@ function Institutions() {
     } else {
         return (
             <div className="py-6 px-4">
-                <div className="text-xl font-semibold text-blue_v">
+                <div className="text-xl font-semibold text-yallow_v">
                     Institutions
                 </div>
                 <div className="mt-4 flex flex-col md:flex-row gap-4 justify-center md:justify-end md:mr-6 md:gap-6 text-gray_v">
@@ -167,7 +167,7 @@ function Institutions() {
                                                     `/Institustions/${institution?.id}`
                                                 );
                                             }}
-                                            className="bg-blue_v text-white px-4 py-2 rounded"
+                                            className="bg-yallow_v text-white px-4 py-2 rounded"
                                         >
                                             View
                                         </button>
