@@ -34,30 +34,29 @@ function Demands() {
                         "error"
                     );
                     Navigate("/Login");
+                    setError(response.data);
                 } else {
                     setError(response.data);
                 }
             } catch (error) {
                 setError(error);
             } finally {
-                // setLoading(false);
+                setLoading(false);
             }
         };
 
-        FetchDemands({ setDemands, setLoading, setError }).then(() => {
-            setLoading(false);
-        });
+        FetchDemands({ setDemands, setLoading, setError });
     }, []);
 
     if (loading) {
         return (
-            <div className=" w-[100vw] h-[80vh] flex flex-col items-center justify-center">
+            <div className=" w-full h-[80vh] flex flex-col items-center justify-center">
                 <span className="loader"></span>
             </div>
         );
     } else if (error)
         return (
-            <div className=" w-[100vw] h-screen flex items-center justify-center">
+            <div className=" w-full h-screen flex items-center justify-center">
                 <div className="text-red-600 font-semibold">{error.demand}</div>
             </div>
         );
@@ -66,19 +65,19 @@ function Demands() {
             <div className=" py-6 px-4">
                 <div className=" text-xl font-semibold text-yallow_v">
                     {" "}
-                    
+                    quote requests
                 </div>
 
                 {!Demands || Demands?.length == 0 ? (
                     <div className="text-md font-semibold text-gray_v text-center pt-12">
-                        No Demands yet
+                        No quote requests yet
                     </div>
                 ) : (
                     <div>
                         <div className=" w-full flex justify-center py-4">
                             <div className="max-w-[300px] border shadow-md py-6 px-6 flex flex-col items-center justify-start rounded-md md:min-w-[200px]">
                                 <div className=" text-xs font-semibold pb-5 text-gray_v w-full">
-                                    Total Number of demands:
+                                    Total Number of quote requests:
                                 </div>
                                 <div className=" flex justify-between gap-2 mx-2 w-full">
                                     <div className="  font-semibold text-2xl">

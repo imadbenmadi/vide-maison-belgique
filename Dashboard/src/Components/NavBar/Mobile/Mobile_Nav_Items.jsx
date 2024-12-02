@@ -49,7 +49,7 @@ function Mobile_Nav_Items({ MobileNav_Open, Toogle_Menu_Bar }) {
             <div
                 className={`${
                     MobileNav_Open ? "translate-x-[0vw]" : "translate-x-[200vh]"
-                } absolute transition-transform duration-300 select-none w-[100vw] z-50 text-black_text bg-white`}
+                } absolute transition-transform duration-300 select-none w-full z-50 text-black_text bg-white`}
             >
                 <div className="flex flex-col gap-4 text-sm text-black_text pl-8 py-4 h-screen overflow-auto">
                     <div className="flex flex-col gap-2  mt-6">
