@@ -16,8 +16,8 @@ function Hero() {
                         المنصة
                     </div>
                     <div className=" text-sm pt-4">
-                        SCS انضم إلى منصة <br />و استمتع بتجربة تواصل صحي
-                        جديدة و مميزة
+                        vide-maison-belgique انضم إلى منصة <br />و استمتع بتجربة
+                        تواصل صحي جديدة و مميزة
                     </div>
                     <div
                         onClick={() => {

@@ -41,27 +41,19 @@ initializeDirectories();
 app.use("/", express.static(path.join(__dirname, "/public")));
 
 app.get("/", (req, res) => {
-    res.send("Hello from SCSTawassolSihi");
+    res.send("Hello from vide-maison-belgique");
 });
-app.use("/check_Auth", require("./Routes/Auth/check_Auth"));
-app.use("/Login", require("./Routes/Auth/Login"));
-app.use("/Register", require("./Routes/Auth/Register"));
-app.use("/Logout", require("./Routes/Auth/Logout"));
+app.get("/home", (req, res) => {
+    res.send("Hello from vide-maison-belgique");
+});
 
 app.use("/Contact", require("./Routes/Contact"));
 app.use("/Admin", require("./Routes/Admin/Admin"));
 app.use("/Admin_Login", require("./Routes/Auth/Admin/Admin_Login"));
 app.use("/Add_Admin", require("./Routes/Auth/Admin/Admin_Add"));
 // app.use("/Admin_Logout", require("./Routes/Auth/Admin/Admin_Logout"));
+app.use("/Logout", require("./Routes/Auth/Logout"));
 app.use("/Admin_CheckAuth", require("./Routes/Auth/Admin/Admin_CheckAuth"));
-
-app.use("/Directors", require("./Routes/Director"));
-app.use("/Workers", require("./Routes/Worker"));
-app.use("/Doctors", require("./Routes/Doctor"));
-app.use("/Malads", require("./Routes/Malad"));
-
-app.use("/Privacy", require("./Routes/Privacy"));
-app.use("/Messages", require("./Routes/Messages"));
 
 app.listen(3000);
 
