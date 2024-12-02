@@ -30,21 +30,13 @@ function Laptop_Nav_Items() {
                         كيف نعمل
                     </a>
                 </div>
-                {/* <div className=" md:hover:text-yallow_v transition-all duration-150  cursor-pointer">
-                    <a
-                        href={"/Home#Benefits"}
-                        className=" md:hover:text-yallow_v transition-all duration-150 select-none"
-                    >
-                        فائدتنا
-                    </a>
-                </div> */}
 
                 <div className=" md:hover:text-yallow_v transition-all duration-150  cursor-pointer">
                     <a
                         href={"/Home#Contact"}
                         className=" md:hover:text-yallow_v transition-all duration-150 select-none"
                     >
-                        اتصل بنا
+                        Contact
                     </a>
                 </div>
             </div>
