@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const adminMiddleware = require("../../Middlewares/Admin");
+const adminMiddleware = require("../../Middlewares/Admin_middleware");
 const { Contact_Messages } = require("../../Models/Contact_Messages");
 
 router.get("/", adminMiddleware, async (req, res) => {
@@ -16,13 +16,15 @@ router.get("/", adminMiddleware, async (req, res) => {
     }
 });
 router.delete("/:id", adminMiddleware, async (req, res) => {
+    if (!req.params.id || req.params.id < 1 || isNaN(req.params.id)) {
+        return res.status(400).json({ message: "invalide id" });
+    }
     const messageId = req.params.id;
     if (!messageId)
         return res.status(409).json({ message: "message id is required" });
     try {
         const message = await Contact_Messages.findOne({
             where: { id: messageId },
-            order: [["createdAt", "DESC"]],
         });
         if (!message)
             return res
