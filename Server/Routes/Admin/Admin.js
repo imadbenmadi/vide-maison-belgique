@@ -15,8 +15,10 @@ router.get("/Admins", Admin_midllware, async (req, res) => {
     }
 });
 router.use("/Home", require("./Home"));
+router.get("/home", (req, res) => {
+    res.send("Hello from vide-maison-belgique");
+});
+// router.use("/Companies", require("./Companies"));
 
-router.use("/Companies", require("./Companies"));
 router.use("/Contact", require("./Contact"));
-router.use("/Users", require("./Users"));
 module.exports = router;
