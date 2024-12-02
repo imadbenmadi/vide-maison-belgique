@@ -1,6 +1,6 @@
 const { Sequelize, DataTypes } = require("sequelize");
-const sequelize = require("../config/db_connection");
-const faq = sequelize.define("faq", {
+const sequelize = require("../../config/db_connection");
+const Faq = sequelize.define("Faq", {
     qst: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -10,4 +10,4 @@ const faq = sequelize.define("faq", {
         allowNull: false,
     },
 });
-module.exports = { faq };
+module.exports = { Faq };
