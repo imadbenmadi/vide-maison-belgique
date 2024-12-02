@@ -13,6 +13,9 @@ import { PiListFill } from "react-icons/pi";
 import { RiContactsLine } from "react-icons/ri";
 import { FaRegBuilding } from "react-icons/fa";
 import { MdOutlineAddCircleOutline } from "react-icons/md";
+import LaptopNavItem from "./laptop_nav_item";
+import { FaRegEdit } from "react-icons/fa";
+import { MdOutlineWork } from "react-icons/md";
 
 function Laptop() {
     const Navigate = useNavigate();
@@ -55,101 +58,66 @@ function Laptop() {
                 {/* <div className="text-sm text-white font-semibold">Admin Panel</div> */}
             </div>
             <div>
-                <div className=" font-semibold pb-4  flex gap-2 items-center ">
-                    <GoHome className=" text-lg" />
-                    Home
+                <div className=" flex flex-col gap-2  my-6  ">
+                    <LaptopNavItem
+                        Link="Home"
+                        name="Home"
+                        Active_nav={Active_nav}
+                        Icon={GoHome}
+                    />
                 </div>
-                <div className=" flex flex-col gap-2 pl-2  ">
-                    <Link
-                        to={"/Home"}
-                        className={` ${
-                            Active_nav == "Home"
-                                ? "bg-yallow_v text-white px-4 "
-                                : "bg-white hover:text-yallow_v text-gray_v"
-                        }  transition-all duration-150  cursor-pointer py-1 select-none  w-[150px] rounded-full `}
-                    >
-                        <span>Statistics</span>
-                    </Link>
-                    <Link
-                        to={"/Users"}
-                        className={` ${
-                            Active_nav == "Users"
-                                ? "bg-yallow_v text-white px-4 "
-                                : "bg-white hover:text-yallow_v text-gray_v"
-                        }  transition-all duration-150  cursor-pointer py-1 select-none  w-[150px] rounded-full  `}
-                    >
-                        <span>Users</span>
-                    </Link>
+                <div>
+                    <div className=" font-semibold pb-4  flex gap-2 items-center ">
+                        <FaRegEdit className=" text-lg" />
+                        Edit Content
+                    </div>{" "}
+                    <div className=" flex flex-col gap-1 pl-2  ">
+                        <LaptopNavItem
+                            Link="Edit_Main"
+                            name="main page"
+                            Active_nav={Active_nav}
+                            Icon={null}
+                        />
+                        <LaptopNavItem
+                            Link="Edit_About"
+                            name="About"
+                            Active_nav={Active_nav}
+                            Icon={null}
+                        />
+                        <LaptopNavItem
+                            Link="Edit_FAQ"
+                            name="FAQ"
+                            Active_nav={Active_nav}
+                            Icon={null}
+                        />
+                        <LaptopNavItem
+                            Link="Edit_Services"
+                            name="Services"
+                            Active_nav={Active_nav}
+                            Icon={null}
+                        />
+                    </div>
                 </div>
             </div>
             <div>
-                <div className=" font-semibold pb-4  flex gap-2 items-center ">
-                    {/* <FaRegBuilding className=" text-lg" /> */}
-                    Medical Institustions
-                </div>
-                <div className=" flex flex-col gap-2 pl-2 ">
-                    <Link
-                        to={"/Institustions"}
-                        className={` ${
-                            Active_nav == "Institustions"
-                                ? "bg-yallow_v text-white px-4 "
-                                : "bg-white hover:text-yallow_v text-gray_v"
-                        }  transition-all duration-150  cursor-pointer py-1 select-none  
-                        w-[150px] rounded-full flex items-center gap-2  `}
-                    >
-                        <FaRegBuilding className=" text-lg" />
-                        <span>Institustions</span>
-                    </Link>
-
-                    <Link
-                        to={"/New_institution"}
-                        className={` ${
-                            Active_nav == "New_institution"
-                                ? "bg-yallow_v text-white px-4 "
-                                : "bg-white hover:text-yallow_v text-gray_v"
-                        }  transition-all duration-150  cursor-pointer py-1 select-none  w-[180px] rounded-full flex items-center gap-2  `}
-                    >
-                        <MdOutlineAddCircleOutline className=" text-lg" />
-                        <span> new institution</span>
-                    </Link>
-                </div>
-            </div>
-
-            {/* <div>
-                <div className=" font-semibold pb-4  flex gap-2 items-center ">
-                    <PiListFill className=" text-lg" />
-                    Terms
-                </div>
-                <div className=" flex flex-col gap-2 pl-2 ">
-                    <Link
-                        to={"/Terms"}
-                        className={` ${
-                            Active_nav == "Terms"
-                                ? "bg-yallow_v text-white px-4 "
-                                : "bg-white hover:text-yallow_v text-gray_v"
-                        }  transition-all duration-150  cursor-pointer py-1 select-none  w-[150px] rounded-full  `}
-                    >
-                        <span>Terms of service</span>
-                    </Link>
-                </div>
-            </div> */}
-            <div>
-                <div className=" font-semibold pb-4  flex gap-2 items-center ">
-                    <RiContactsLine className=" text-lg" />
-                    Contact
+                <div className=" font-semibold   flex gap-2 items-center ">
+                    <LaptopNavItem
+                        Link="Demands"
+                        name="Demands"
+                        Active_nav={Active_nav}
+                        Icon={MdOutlineWork}
+                    />
                 </div>{" "}
-                <div className=" flex flex-col gap-2 pl-2  ">
-                    <Link
-                        to={"/Contact"}
-                        className={` ${
-                            Active_nav == "Contact"
-                                ? "bg-yallow_v text-white px-4 "
-                                : "bg-white hover:text-yallow_v text-gray_v"
-                        }  transition-all duration-150  cursor-pointer py-1 select-none  w-[150px] rounded-full  `}
-                    >
-                        <span> Messages</span>
-                    </Link>
-                </div>
+            </div>
+            <div>
+                <div className=" font-semibold pb-4  flex gap-2 items-center ">
+                    <LaptopNavItem
+                        Link="Contact"
+                        name="Contact Messages"
+                        Active_nav={Active_nav}
+                        Icon={RiContactsLine}
+                    />
+                </div>{" "}
             </div>
             <div className="pb-6">
                 {LogoutClicked ? (
