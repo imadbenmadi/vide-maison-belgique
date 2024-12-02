@@ -74,25 +74,25 @@ function Laptop() {
                     <div className=" flex flex-col gap-1 pl-2  ">
                         <LaptopNavItem
                             Link="Edit_Main"
-                            name="main page"
+                            name="Main Section"
                             Active_nav={Active_nav}
                             Icon={null}
                         />
                         <LaptopNavItem
                             Link="Edit_About"
-                            name="About"
-                            Active_nav={Active_nav}
-                            Icon={null}
-                        />
-                        <LaptopNavItem
-                            Link="Edit_FAQ"
-                            name="FAQ"
+                            name="About Section"
                             Active_nav={Active_nav}
                             Icon={null}
                         />
                         <LaptopNavItem
                             Link="Edit_Services"
-                            name="Services"
+                            name="Services Section"
+                            Active_nav={Active_nav}
+                            Icon={null}
+                        />
+                        <LaptopNavItem
+                            Link="Edit_FAQ"
+                            name="FAQ Section"
                             Active_nav={Active_nav}
                             Icon={null}
                         />

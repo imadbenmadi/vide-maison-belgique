@@ -10,7 +10,7 @@ import { GoHome } from "react-icons/go";
 import { RiContactsLine } from "react-icons/ri";
 import { FaRegEdit } from "react-icons/fa";
 import { MdOutlineWork } from "react-icons/md";
-
+import Item from "./Item";
 function Mobile_Nav_Items({ MobileNav_Open, Toogle_Menu_Bar }) {
     const Navigate = useNavigate();
     const { set_Auth } = useAppContext();
@@ -53,99 +53,70 @@ function Mobile_Nav_Items({ MobileNav_Open, Toogle_Menu_Bar }) {
                 <div className="flex flex-col gap-8 text-sm text-black_text pl-8 py-4 h-screen overflow-auto">
                     <div>
                         <div className="flex flex-col gap-2 my-6">
-                            <Link
-                                to="/Home"
+                            <Item
+                                Link="Home"
+                                name="Home"
+                                Active_nav={Active_nav}
+                                Icon={GoHome}
                                 onClick={Toogle_Menu_Bar}
-                                className={`${
-                                    Active_nav === "Home"
-                                        ? "bg-yallow_v text-white px-4"
-                                        : "bg-white hover:text-yallow_v"
-                                } transition-all duration-150 cursor-pointer py-1 w-[150px] rounded-full flex gap-2`}
-                            >
-                                <GoHome className="text-lg" /> Home
-                            </Link>
+                            />
                         </div>
                         <div>
                             <div className="font-semibold pb-4 flex gap-2 items-center">
                                 <FaRegEdit className="text-lg" /> Edit Content
                             </div>
                             <div className="flex flex-col gap-2 pl-2">
-                                <Link
-                                    to="/Edit_Main"
+                                <Item
+                                    Link="Edit_Main"
+                                    name="Main Section"
+                                    Active_nav={Active_nav}
+                                    Icon={null}
                                     onClick={Toogle_Menu_Bar}
-                                    className={`${
-                                        Active_nav === "Edit_Main"
-                                            ? "bg-yallow_v text-white px-4"
-                                            : "bg-white hover:text-yallow_v"
-                                    } transition-all duration-150 cursor-pointer py-1 w-[150px] rounded-full`}
-                                >
-                                    Main Page
-                                </Link>
-                                <Link
-                                    to="/Edit_About"
+                                />
+                                <Item
+                                    Link="Edit_About"
+                                    name="About Section"
+                                    Active_nav={Active_nav}
+                                    Icon={null}
                                     onClick={Toogle_Menu_Bar}
-                                    className={`${
-                                        Active_nav === "Edit_About"
-                                            ? "bg-yallow_v text-white px-4"
-                                            : "bg-white hover:text-yallow_v"
-                                    } transition-all duration-150 cursor-pointer py-1 w-[150px] rounded-full`}
-                                >
-                                    About
-                                </Link>
-                                <Link
-                                    to="/Edit_FAQ"
+                                />
+                                <Item
+                                    Link="Edit_Services"
+                                    name="Services Section"
+                                    Active_nav={Active_nav}
+                                    Icon={null}
                                     onClick={Toogle_Menu_Bar}
-                                    className={`${
-                                        Active_nav === "Edit_FAQ"
-                                            ? "bg-yallow_v text-white px-4"
-                                            : "bg-white hover:text-yallow_v"
-                                    } transition-all  duration-150 cursor-pointer py-1 w-[150px] rounded-full`}
-                                >
-                                    FAQ
-                                </Link>
-                                <Link
-                                    to="/Edit_Services"
+                                />
+                                <Item
+                                    Link="Edit_FAQ"
+                                    name="FAQ Section"
+                                    Active_nav={Active_nav}
+                                    Icon={null}
                                     onClick={Toogle_Menu_Bar}
-                                    className={`${
-                                        Active_nav === "Edit_Services"
-                                            ? "bg-yallow_v text-white px-4"
-                                            : "bg-white hover:text-yallow_v"
-                                    } transition-all duration-150 cursor-pointer py-1 w-[150px] rounded-full`}
-                                >
-                                    Services
-                                </Link>
+                                />
                             </div>
                         </div>
                     </div>
                     <div>
                         <div className="font-semibold flex gap-2 items-center">
-                            <Link
-                                to="/Demands"
+                            <Item
+                                Link="Demands"
+                                name="Demands"
+                                Active_nav={Active_nav}
+                                Icon={MdOutlineWork}
                                 onClick={Toogle_Menu_Bar}
-                                className={`${
-                                    Active_nav === "Demands"
-                                        ? "bg-yallow_v text-white px-4"
-                                        : "bg-white hover:text-yallow_v"
-                                } transition-all duration-150 cursor-pointer py-1 w-[150px] rounded-full flex gap-2`}
-                            >
-                                <MdOutlineWork className="text-lg" /> Demands
-                            </Link>
+                            />
                         </div>
                     </div>
                     <div>
                         <div className="font-semibold pb-4 flex gap-2 items-center">
-                            <Link
-                                to="/Contact"
+                            <Item
+                                Link="Contact"
+                                name="Contact Messages"
+                                Active_nav={Active_nav}
+                                Icon={RiContactsLine}
                                 onClick={Toogle_Menu_Bar}
-                                className={`${
-                                    Active_nav === "Contact"
-                                        ? "bg-yallow_v text-white px-4"
-                                        : "bg-white hover:text-yallow_v"
-                                } transition-all duration-150 cursor-pointer py-1  w-fit rounded-full flex gap-2`}
-                            >
-                                <RiContactsLine className="text-lg" /> Contact
-                                Messages
-                            </Link>
+                            />
                         </div>
                     </div>
                     <div className="pb-20">
