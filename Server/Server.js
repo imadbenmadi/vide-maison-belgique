@@ -43,9 +43,7 @@ app.use("/", express.static(path.join(__dirname, "/public")));
 app.get("/", (req, res) => {
     res.send("Hello from vide-maison-belgique");
 });
-app.get("/home", (req, res) => {
-    res.send("Hello from vide-maison-belgique");
-});
+app.get("/Home", require("./Routes/Home"));
 
 app.use("/Contact", require("./Routes/Contact"));
 app.use("/Admin", require("./Routes/Admin/Admin"));
