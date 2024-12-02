@@ -30,17 +30,22 @@ function Card({ Demand, Demands, setDemands }) {
                     (item) => item?.id !== Demand?.id
                 );
                 setDemands(newDemands);
-                Swal.fire("نجاح", "تم حذف الرسالة بنجاح", "success");
+                Swal.fire("Success", "Deleted Successfully", "success");
             } else if (response.status === 401) {
                 Swal.fire(
-                    "غير مصرح",
-                    "يجب عليك تسجيل الدخول مرة أخرى",
+                    "UnAuthorised",
+                    "you have to re-Login again",
                     "error"
                 );
                 Navigate("/Login");
-            } else Swal.fire("خطأ", "حدث خطأ ما", "error");
+            } else
+                Swal.fire(
+                    "Error",
+                    "An Error Occured , Please Try Again",
+                    "error"
+                );
         } catch (err) {
-            Swal.fire("خطأ", "حدث خطأ ما", "error");
+            Swal.fire("Error", "An Error Occured , Please Try Again", "error");
         } finally {
             setDeleteLoading(false);
         }

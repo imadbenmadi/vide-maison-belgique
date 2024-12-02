@@ -28,11 +28,7 @@ function Contact() {
                     const Messages = response.data.Messages;
                     setMessages(Messages);
                 } else if (response.status == 401) {
-                    Swal.fire(
-                        "Error",
-                        "يجب عليك تسجيل الدخول مرة اخرى",
-                        "error"
-                    );
+                    Swal.fire("Error", "you have to re-Login again", "error");
                     Navigate("/Login");
                 } else {
                     setError(response.data);

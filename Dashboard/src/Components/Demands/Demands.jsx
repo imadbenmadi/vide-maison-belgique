@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import axios from "axios";
 import Card from "./Card";
-import { BiDemand } from "react-icons/bi";
+import { BiMessage } from "react-icons/bi";
 
 function Demands() {
     const Navigate = useNavigate();
@@ -12,6 +12,10 @@ function Demands() {
     const [Demands, setDemands] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
+    useEffect(() => {
+        console.log("Demands : ", Demands);
+    }, [Demands]);
+
     useEffect(() => {
         setLoading(true);
         const FetchDemands = async ({ setDemands, setLoading, setError }) => {
@@ -28,11 +32,7 @@ function Demands() {
                     const Demands = response.data.demands;
                     setDemands(Demands);
                 } else if (response.status == 401) {
-                    Swal.fire(
-                        "Error",
-                        "يجب عليك تسجيل الدخول مرة اخرى",
-                        "error"
-                    );
+                    Swal.fire("Error", "you have to re-Login again", "error");
                     Navigate("/Login");
                     setError(response.data);
                 } else {
@@ -84,7 +84,7 @@ function Demands() {
                                         {Demands?.length}
                                     </div>
                                     <div className=" shrink-0 text-yallow_v border border-gray_white px-2 py-1 flex items-center justify-center rounded-lg shadow-lg">
-                                        <BiDemand className=" shrink-0 text-2xl" />
+                                        <BiMessage className=" shrink-0 text-2xl" />
                                     </div>
                                 </div>
                             </div>

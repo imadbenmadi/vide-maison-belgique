@@ -15,27 +15,27 @@ async function handleLogin(values, { setSubmitting }) {
             window.location.href = `/`;
         } else if (response.status == 401) {
             setSubmitting(false);
-            Swal.fire("خطأ!", "اسم المستخدم أو كلمة المرور غير صحيحة", "error");
+            Swal.fire("Error", "Email or Password is not Correct", "error");
         } else if (response.status == 409) {
             setSubmitting(false);
-            Swal.fire("خطأ!", `${response.data.message} `, "error");
+            Swal.fire("Error", `${response.data.message} `, "error");
         } else if (response.status == 500) {
             setSubmitting(false);
-            Swal.fire("خطأ!", `خطأ في الخادم الداخلي   `, "error");
+            Swal.fire("Error", "Internal Server Error", "error");
         } else if (response.status == 429) {
             setSubmitting(false);
             Swal.fire(
-                "خطأ!",
-                `عدد كبير جدًا من الطلبات، حاول مرة أخرى لاحقًا\n  `,
+                "Error",
+                `Too Many Requests , Please Try Again Later`,
                 "error"
             );
         } else {
             setSubmitting(false);
-            Swal.fire("خطأ!", `حدث خطأ ما ,`, "error");
+            Swal.fire("Error", "An Error Occured ,Please try Again", "error");
         }
     } catch (error) {
         setSubmitting(false);
-        Swal.fire("خطأ!", `حدث خطأ ما `, "error");
+        Swal.fire("Error", "An Error Occured , please try Again", "error");
     }
 
     // setSubmitting(false);
