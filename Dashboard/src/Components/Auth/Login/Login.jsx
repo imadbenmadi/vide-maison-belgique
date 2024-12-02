@@ -1,5 +1,5 @@
 import React from "react";
-import Login_image from "../../../../public/Login.png";
+import Login_image from "../../../../public/Login.jpg";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import handleLogin from "./Post_Login";
 import { useNavigate } from "react-router";
@@ -183,7 +183,7 @@ function Login() {
                                                 className=" bg-blue_v py-2 mt-4 rounded-2xl text-white font-semibold "
                                                 disabled={isSubmitting}
                                             >
-                                                Get Started
+                                                Login
                                             </button>
                                         )}
                                     </Form>

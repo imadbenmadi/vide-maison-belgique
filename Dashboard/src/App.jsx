@@ -4,7 +4,7 @@ import { Outlet } from "react-router";
 import axios from "axios";
 import { useNavigate } from "react-router";
 import Logo from "../public/Logo.png";
-import Login_icon from "../public/Login.png";
+import Login_icon from "../public/Login.jpg";
 import { useAppContext } from "./AppContext";
 import NavBar from "./Components/NavBar/NavBar";
 function App() {
