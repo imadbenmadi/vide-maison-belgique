@@ -1,7 +1,8 @@
-const { Sequelize, DataTypes } = require("sequelize");
+const { DataTypes } = require("sequelize");
 const sequelize = require("../config/db_connection");
 const { Company } = require("./Company");
-const Adv = sequelize.define("Adv", {
+
+const Services = sequelize.define("Services", {
     Title: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -14,11 +15,10 @@ const Adv = sequelize.define("Adv", {
         type: DataTypes.STRING,
         allowNull: true,
     },
-    companyId: {
-        type: DataTypes.INTEGER,
+    type: {
+        type: DataTypes.STRING,
         allowNull: false,
     },
 });
-Adv.belongsTo(Company, { foreignKey: "companyId" });
 
-module.exports = { Adv };
+module.exports = { Services };

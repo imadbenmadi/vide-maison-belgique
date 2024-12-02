@@ -1,5 +1,5 @@
 const { Sequelize, DataTypes } = require("sequelize");
-const sequelize = require("../../config/db_connection");
+const sequelize = require("../config/db_connection");
 const Admins = sequelize.define("Admins", {
     email: {
         type: DataTypes.STRING,
