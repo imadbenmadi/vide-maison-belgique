@@ -80,35 +80,21 @@ function Faqs() {
                     </div>
                 ) : (
                     <div>
-                        <div className=" w-full flex justify-center py-4">
-                            <div className="max-w-[300px] overflow-auto border shadow-md py-6 px-6 flex flex-col items-center justify-start rounded-md md:min-w-[200px]">
-                                <div className=" text-xs font-semibold pb-5 text-gray_v w-full">
-                                    Total Number of Faqs:
-                                </div>
-                                <div className=" flex justify-between gap-2 mx-2 w-full">
-                                    <div className="  font-semibold text-2xl">
-                                        {Faqs?.length}
-                                    </div>
-                                    <div className=" shrink-0 text-yallow_v border border-gray_white px-2 py-1 flex items-center justify-center rounded-lg shadow-lg">
-                                        <BiMessage className=" shrink-0 text-2xl" />
-                                    </div>
-                                </div>
-                            </div>
+                        <div className=" flex flex-col items-center justify-center  w-[90%] pt-6">
+                            {Faqs &&
+                                Faqs.length > 0 &&
+                                Faqs?.map((faq) => {
+                                    return (
+                                        <Card
+                                            key={faq.id}
+                                            faq={faq}
+                                            setFaqs={setFaqs}
+                                            Faqs={Faqs}
+                                            // handle_Delete_Faqs={handle_Delete_Faqs}
+                                        />
+                                    );
+                                })}
                         </div>
-
-                        {Faqs &&
-                            Faqs.length > 0 &&
-                            Faqs?.map((faq) => {
-                                return (
-                                    <Card
-                                        key={faq.id}
-                                        faq={faq}
-                                        setFaqs={setFaqs}
-                                        Faqs={Faqs}
-                                        // handle_Delete_Faqs={handle_Delete_Faqs}
-                                    />
-                                );
-                            })}
                     </div>
                 )}
             </div>
