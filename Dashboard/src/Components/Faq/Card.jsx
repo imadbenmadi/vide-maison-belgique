@@ -9,7 +9,7 @@ import { FiUser } from "react-icons/fi";
 import { MdOutlineMailOutline } from "react-icons/md";
 import { MdCategory } from "react-icons/md";
 
-function Card({ Faq, Faqs, setFaqs }) {
+function Card({ Faq, faq, setFaq }) {
     const [deleteLoading, setDeleteLoading] = useState(false);
     const [show_more, setShow_more] = useState(false);
     const Toogle_Show_More = () => {
@@ -19,15 +19,15 @@ function Card({ Faq, Faqs, setFaqs }) {
         setDeleteLoading(true);
         try {
             const response = await axios.delete(
-                `http://localhost:3000/Admin/Faqs/${Faq?.id}`,
+                `http://localhost:3000/Admin/faq/${Faq?.id}`,
                 {
                     withCredentials: true,
                     validateStatus: () => true,
                 }
             );
             if (response.status === 200) {
-                const newFaqs = Faqs.filter((item) => item?.id !== Faq?.id);
-                setFaqs(newFaqs);
+                const newfaq = faq.filter((item) => item?.id !== Faq?.id);
+                setFaq(newfaq);
                 Swal.fire("Success", "Deleted Successfully", "success");
             } else if (response.status === 401) {
                 Swal.fire(

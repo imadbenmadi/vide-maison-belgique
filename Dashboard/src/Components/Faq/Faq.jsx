@@ -25,6 +25,7 @@ function Faq() {
                         validateStatus: () => true,
                     }
                 );
+
                 if (response.status == 200) {
                     const Faq = response.data.faq;
                     setFaq(Faq);
@@ -54,7 +55,7 @@ function Faq() {
     } else if (error)
         return (
             <div className=" w-full h-screen flex items-center justify-center">
-                <div className="text-red-600 font-semibold">{error.demand}</div>
+                <div className="text-red-600 font-semibold">{error.Faq}</div>
             </div>
         );
     else
@@ -86,14 +87,14 @@ function Faq() {
 
                         {Faq &&
                             Faq.length > 0 &&
-                            Faq?.map((demand) => {
+                            Faq?.map((faq) => {
                                 return (
                                     <Card
-                                        key={demand.id}
-                                        Demand={demand}
+                                        key={faq.id}
+                                        faq={faq}
                                         setFaq={setFaq}
                                         Faq={Faq}
-                                        // handle_Delete_demand={handle_Delete_demand}
+                                        // handle_Delete_Faq={handle_Delete_Faq}
                                     />
                                 );
                             })}
