@@ -25,4 +25,29 @@ router.use("/Contact_informations", require("./Contact_informations"));
 router.use("/Demands", require("./Demands"));
 router.use("/Faqs", require("./Faq"));
 router.use("/Services", require("./Services"));
+
+// Formidable images
+const cookieParser = require("cookie-parser");
+const formidableMiddleware = require("express-formidable");
+router.use(cookieParser());
+router.use(formidableMiddleware());
+const delete_servrice = require("./Controllers/service_delete");
+const add_service = require("./Controllers/service_add");
+router.delete(
+    "/Services/:eventId",
+    (req, res, next) => {
+        req.body = req.fields;
+        next();
+    },
+    delete_servrice
+);
+
+router.post(
+    "/Services",
+    (req, res, next) => {
+        req.body = req.fields;
+        next();
+    },
+    add_service
+);
 module.exports = router;

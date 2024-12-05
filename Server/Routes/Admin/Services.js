@@ -21,13 +21,16 @@ router.delete("/:id", adminMiddleware, async (req, res) => {
         return res.status(400).json({ service: "invalide id" });
     }
     const serviceId = req.params.id;
-    if (!serviceId) return res.status(409).json({ service: "service id is required" });
+    if (!serviceId)
+        return res.status(409).json({ service: "service id is required" });
     try {
         const service = await Services.findOne({
             where: { id: serviceId },
         });
         if (!service)
-            return res.status(404).json({ service: "service not found in database " });
+            return res
+                .status(404)
+                .json({ service: "service not found in database " });
         await Services.destroy({ where: { id: serviceId } });
         res.status(200).json({ service: "service deleted successfully" });
     } catch (err) {
@@ -44,10 +47,16 @@ router.post("/", adminMiddleware, async (req, res) => {
             sol,
         });
 
-        res.status(200).json({ message: "service created successfully", service });
+        res.status(200).json({
+            message: "service created successfully",
+            service,
+        });
     } catch (err) {
         console.error("Error fetching Messages:", err);
         res.status(500).json({ service: "Internal Server Error" });
     }
 });
+
+
+
 module.exports = router;
