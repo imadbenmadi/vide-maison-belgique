@@ -4,6 +4,8 @@ const { Services } = require("../../../Models/Content/Services");
 
 const add_service = async (req, res) => {
     const { Title, Description, type } = req.body;
+    console.log(req.body);
+    
     if ((!Title, !type)) {
         return res.status(400).json({ message: "Missing required fields." });
     }
@@ -24,7 +26,7 @@ const add_service = async (req, res) => {
         if (![".jpeg", ".jpg", ".png", ".heic"].includes(fileExtension)) {
             throw new Error("Invalid file extension");
         }
-        uniqueSuffix = `Services_Pic-${ownerId}-${Date.now()}${fileExtension}`;
+        uniqueSuffix = `Services_Pic-${Date.now()}${fileExtension}`;
         const targetPath = path.join("public/services_images/", uniqueSuffix);
         fs.copyFileSync(image.path, targetPath);
         fs.unlinkSync(image.path);

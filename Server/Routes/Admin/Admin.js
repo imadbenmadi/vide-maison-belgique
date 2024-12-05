@@ -48,6 +48,8 @@ router.post(
     "/Services",
     (req, res, next) => {
         req.body = req.fields;
+        console.log("hello ");
+
         next();
     },
     add_service

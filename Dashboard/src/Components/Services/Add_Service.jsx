@@ -6,15 +6,13 @@ import axios from "axios";
 
 function Add_Service() {
     const navigate = useNavigate();
-    const [imagePreview, setImagePreview] = useState(null); // For displaying image preview
+    const [imagePreview, setImagePreview] = useState(null); // For previewing the image
 
     const handleAdd_Service = async (values, { setSubmitting, resetForm }) => {
         const formData = new FormData();
         formData.append("Title", values.Title);
         formData.append("Description", values.Description);
-        formData.append("ownerId", user.id);
-        formData.append("ownerType", "Doctor");
-        formData.append("companyId", user.companyId);
+        formData.append("type", values.type);
 
         if (values.image) {
             formData.append("image", values.image);
@@ -34,19 +32,23 @@ function Add_Service() {
             );
 
             if (response.status === 200) {
-                Swal.fire("نجاح", "تم إضافة المقال بنجاح", "success");
-                navigate("/Doctor/Services");
+                Swal.fire("Success", "Service added successfully!", "success");
+                navigate("/Services");
                 resetForm();
-                setImagePreview(null);
+                setImagePreview(null); // Reset the image preview
             } else {
                 Swal.fire(
-                    "خطأ",
-                    response.data.message || "فشل في إضافة المقال",
+                    "Error",
+                    response.data.message || "Failed to add the service",
                     "error"
                 );
             }
         } catch (error) {
-            Swal.fire("خطأ", "حدث خطأ ما. حاول مرة أخرى.", "error");
+            Swal.fire(
+                "Error",
+                "An unexpected error occurred. Try again.",
+                "error"
+            );
         } finally {
             setSubmitting(false);
         }
@@ -64,22 +66,27 @@ function Add_Service() {
 
     return (
         <div className="flex justify-center items-center min-h-screen bg-gray-100">
-            <div className="w-full max-w-lg py-12 px-8 bg-white shadow-lg rounded-lg text-right">
-                <h2 className="text-3xl font-semibold mb-6 text-gray-800">
-                    Add New Service{" "}
+            <div className="w-full max-w-lg py-12 px-8 bg-white shadow-lg rounded-lg text-center">
+                <h2 className="text-3xl font-semibold mb-6 text-yallow_v">
+                    Add New Service
                 </h2>
 
                 <Formik
                     initialValues={{
                         Title: "",
                         Description: "",
+                        type: "",
                         image: null,
                     }}
                     validate={(values) => {
                         const errors = {};
-                        if (!values.Title) errors.Title = "العنوان مطلوب";
+                        if (!values.Title)
+                            errors.Title = "Service title is required";
                         if (!values.Description)
-                            errors.Description = "الوصف مطلوب";
+                            errors.Description =
+                                "Service description is required";
+                        if (!values.type)
+                            errors.type = "Service type is required";
                         return errors;
                     }}
                     onSubmit={handleAdd_Service}
@@ -88,12 +95,12 @@ function Add_Service() {
                         <Form className="flex flex-col gap-4">
                             <div>
                                 <label className="font-semibold text-sm pb-1 text-gray-700">
-                                    العنوان
+                                    Service Title
                                 </label>
                                 <Field
                                     type="text"
                                     name="Title"
-                                    placeholder="أدخل عنوان المقال"
+                                    placeholder="Enter the service title"
                                     disabled={isSubmitting}
                                     className="w-full border border-gray-300 px-4 py-2 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 />
@@ -103,15 +110,32 @@ function Add_Service() {
                                     style={errorInputMessage}
                                 />
                             </div>
+                            <div>
+                                <label className="font-semibold text-sm pb-1 text-gray-700">
+                                    Service type
+                                </label>
+                                <Field
+                                    type="text"
+                                    name="type"
+                                    placeholder="Enter the service type"
+                                    disabled={isSubmitting}
+                                    className="w-full border border-gray-300 px-4 py-2 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                />
+                                <ErrorMessage
+                                    name="type"
+                                    component="div"
+                                    style={errorInputMessage}
+                                />
+                            </div>
 
                             <div>
                                 <label className="font-semibold text-sm pb-1 text-gray-700">
-                                    الوصف
+                                    Service Description
                                 </label>
                                 <Field
                                     as="textarea"
                                     name="Description"
-                                    placeholder="أدخل وصف المقال"
+                                    placeholder="Enter the service description"
                                     disabled={isSubmitting}
                                     className="w-full border border-gray-300 px-4 py-2 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 />
@@ -124,7 +148,7 @@ function Add_Service() {
 
                             <div>
                                 <label className="font-semibold text-sm pb-1 text-gray-700">
-                                    صورة المقال
+                                    Service Image
                                 </label>
                                 <input
                                     type="file"
@@ -146,7 +170,7 @@ function Add_Service() {
                                     <img
                                         loading="lazy"
                                         src={imagePreview}
-                                        alt="معاينة الصورة"
+                                        alt="Image Preview"
                                         className="w-fit h-48 object-cover rounded-lg shadow-md"
                                     />
                                 </div>
@@ -157,16 +181,14 @@ function Add_Service() {
                                 className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg font-semibold mt-4 transition duration-200"
                                 disabled={isSubmitting}
                             >
-                                {isSubmitting
-                                    ? "جارٍ الإضافة..."
-                                    : "إضافة المقال"}
+                                {isSubmitting ? "Adding..." : "Add Service"}
                             </button>
 
                             <Link
-                                to="/Doctor/Services"
+                                to="/Services"
                                 className="text-blue-500 hover:underline mt-4 text-sm"
                             >
-                                الرجوع إلى قائمة المقالات
+                                Back to Services List
                             </Link>
                         </Form>
                     )}
