@@ -3,7 +3,8 @@ const router = express.Router();
 const { Admins } = require("../../Models/Admin");
 const delete_service = require("./Controllers/service_delete");
 const add_service = require("./Controllers/service_add");
-
+const Main_Edit = require("./Controllers/Main_Edit");
+const { Main_page } = require("../../Models/Content/Main_page");
 const Admin_midllware = require("../../Middlewares/Admin_middleware");
 router.get("/Admins", Admin_midllware, async (req, res) => {
     try {
@@ -28,6 +29,20 @@ router.use("/Demands", require("./Demands"));
 router.use("/Faqs", require("./Faq"));
 router.use("/Services", require("./Services"));
 
+
+
+router.get("/Main_page", async (req, res) => {
+    try {
+        const main_page = await Main_page.findOne({
+            where: {},
+        });
+        res.status(200).json({ main_page });
+    } catch (err) {
+        console.error("Error fetching Main_page:", err);
+        res.status(500).json({ message: "Internal Server Error" });
+    }
+});
+
 // Formidable images
 const cookieParser = require("cookie-parser");
 const formidableMiddleware = require("express-formidable");
@@ -48,10 +63,18 @@ router.post(
     "/Services",
     (req, res, next) => {
         req.body = req.fields;
-        console.log("hello ");
-
         next();
     },
     add_service
 );
+
+router.put(
+    "/Main_page",
+    (req, res, next) => {
+        req.body = req.fields;
+        next();
+    },
+    Main_Edit
+);
+
 module.exports = router;

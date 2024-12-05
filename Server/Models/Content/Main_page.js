@@ -1,6 +1,5 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../../config/db_connection");
-const { Company } = require("./Company");
 
 const Main_page = sequelize.define("Main_page", {
     Title: {
@@ -18,10 +17,6 @@ const Main_page = sequelize.define("Main_page", {
     button: {
         type: DataTypes.STRING,
         allowNull: true,
-        link: {
-            type: DataTypes.STRING,
-            allowNull: true,
-        },
     },
 });
 
