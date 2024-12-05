@@ -23,4 +23,5 @@ router.get("/home", (req, res) => {
 router.use("/Contact", require("./Contact"));
 router.use("/Contact_informations", require("./Contact_informations"));
 router.use("/Demands", require("./Demands"));
+router.use("/Faqs", require("./Faq"));
 module.exports = router;

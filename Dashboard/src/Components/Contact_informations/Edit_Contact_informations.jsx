@@ -56,7 +56,6 @@ const Edit_Contact_informations = () => {
                 values,
                 { withCredentials: true }
             );
-            console.log("response", response);
 
             if (response.status == 200) {
                 Swal.fire(
@@ -73,7 +72,6 @@ const Edit_Contact_informations = () => {
                 );
             }
         } catch (err) {
-            console.log("Error updating contact information", err);
             
             Swal.fire("Error", "Network error, please try again", "error");
         } finally {

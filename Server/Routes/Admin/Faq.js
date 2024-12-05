@@ -5,11 +5,11 @@ const { Faq } = require("../../Models/Content/Faq");
 
 router.get("/", adminMiddleware, async (req, res) => {
     try {
-        const Faq = await Faq.findAll({
+        const faq = await Faq.findAll({
             where: {},
             // order: [["createdAt", "DESC"]],
         });
-        res.status(200).json({ Faq });
+        res.status(200).json({ faq });
     } catch (err) {
         console.error("Error fetching faqs:", err);
         res.status(500).json({ faq: "Internal Server Error" });
@@ -37,7 +37,6 @@ router.delete("/:id", adminMiddleware, async (req, res) => {
 });
 router.post("/", adminMiddleware, async (req, res) => {
     const { qst, sol } = req.body;
-    console.log("req.body", req.body);
 
     try {
         const faq = await Faq.create({

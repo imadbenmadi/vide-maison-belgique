@@ -18,7 +18,6 @@ router.get("/", adminMiddleware, async (req, res) => {
 
 router.put("/", adminMiddleware, async (req, res) => {
     const { phone, email, instagram, facebook } = req.body;
-    console.log("req.body", req.body);
 
     try {
         const contact_info = await Contact_informations.findOne({

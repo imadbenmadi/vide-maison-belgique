@@ -12,9 +12,7 @@ function Demands() {
     const [Demands, setDemands] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
-    useEffect(() => {
-        console.log("Demands : ", Demands);
-    }, [Demands]);
+    
 
     useEffect(() => {
         setLoading(true);

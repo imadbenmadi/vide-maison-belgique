@@ -25,7 +25,6 @@ const Contact_informations = () => {
                         validateStatus: () => true,
                     }
                 );
-                console.log("response", response);
 
                 if (response.status === 200) {
                     setContactInformations(
