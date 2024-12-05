@@ -28,7 +28,9 @@ const Contact_informations = () => {
                 console.log("response", response);
 
                 if (response.status === 200) {
-                    setContactInformations(response.data.contact_informations);
+                    setContactInformations(
+                        response.data.contact_informations[0]
+                    );
                 } else if (response.status === 401) {
                     Swal.fire("Error", "You have to re-login", "error");
                     Navigate("/Login");
@@ -72,7 +74,6 @@ const Contact_informations = () => {
 
                     <div className="max-w-3xl mx-auto p-6 bg-white shadow-lg rounded-lg">
                         <table className="min-w-full">
-                            
                             <tbody>
                                 <tr className="border-t">
                                     <td className="py-3 px-6 text-gray-600 font-medium">

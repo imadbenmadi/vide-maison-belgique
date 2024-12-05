@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import { FaEdit, FaTrashAlt } from "react-icons/fa"; // React Icons for edit and delete
 import { Formik, Form, Field } from "formik";
-
+import { ErrorMessage } from "formik";
 const Edit_Contact_informations = () => {
     const Navigate = useNavigate();
     const [loading, setLoading] = useState(false);
@@ -25,7 +25,9 @@ const Edit_Contact_informations = () => {
                     }
                 );
                 if (response.status === 200) {
-                    setContactInformations(response.data.contact_informations);
+                    setContactInformations(
+                        response.data.contact_informations[0]
+                    );
                 } else if (response.status === 401) {
                     Swal.fire("Error", "Unauthorized access", "error");
                     Navigate("/login");
@@ -54,13 +56,15 @@ const Edit_Contact_informations = () => {
                 values,
                 { withCredentials: true }
             );
-            if (response.status === 200) {
+            console.log("response", response);
+
+            if (response.status == 200) {
                 Swal.fire(
                     "Success",
                     "Contact information updated successfully",
                     "success"
                 );
-                setContactInformations(response.data.contact_informations);
+                setContactInformations(values);
             } else {
                 Swal.fire(
                     "Error",
@@ -69,6 +73,8 @@ const Edit_Contact_informations = () => {
                 );
             }
         } catch (err) {
+            console.log("Error updating contact information", err);
+            
             Swal.fire("Error", "Network error, please try again", "error");
         } finally {
             setEditLoading(false);
@@ -90,6 +96,16 @@ const Edit_Contact_informations = () => {
                     instagram: contactInformations?.instagram || "",
                     facebook: contactInformations?.facebook || "",
                 }}
+                validate={(values) => {
+                    const errors = {};
+                    if (!values.phone) {
+                        errors.phone = "Phone or email is required";
+                    }
+                    if (!values.email) {
+                        errors.email = "Phone or email is required";
+                    }
+                    return errors;
+                }}
                 onSubmit={handleEditSubmit}
             >
                 {({ values }) => (
@@ -109,10 +125,14 @@ const Edit_Contact_informations = () => {
                                     type="text"
                                     placeholder="Enter phone number"
                                 />
+                                <ErrorMessage
+                                    name="phone"
+                                    component="div"
+                                    style={{ color: "red" }}
+                                />
                                 <div className="mt-1 text-sm text-gray-500">
-                                    {values.phone ||
-                                        "Current phone number: " +
-                                            contactInformations?.phone}
+                                    {"Current phone number: " +
+                                        contactInformations?.phone}
                                 </div>
                             </div>
 
@@ -131,9 +151,8 @@ const Edit_Contact_informations = () => {
                                     placeholder="Enter email address"
                                 />
                                 <div className="mt-1 text-sm text-gray-500">
-                                    {values.email ||
-                                        "Current email: " +
-                                            contactInformations?.email}
+                                    {"Current email: " +
+                                        contactInformations?.email}
                                 </div>
                             </div>
 
@@ -152,9 +171,8 @@ const Edit_Contact_informations = () => {
                                     placeholder="Enter Instagram handle"
                                 />
                                 <div className="mt-1 text-sm text-gray-500">
-                                    {values.instagram ||
-                                        "Current Instagram: " +
-                                            contactInformations?.instagram}
+                                    {"Current Instagram: " +
+                                        contactInformations?.instagram}
                                 </div>
                             </div>
 
@@ -173,9 +191,8 @@ const Edit_Contact_informations = () => {
                                     placeholder="Enter Facebook handle"
                                 />
                                 <div className="mt-1 text-sm text-gray-500">
-                                    {values.facebook ||
-                                        "Current Facebook: " +
-                                            contactInformations?.facebook}
+                                    {"Current Facebook: " +
+                                        contactInformations?.facebook}
                                 </div>
                             </div>
 
