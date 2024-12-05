@@ -4,7 +4,6 @@ const { Services } = require("../../../Models/Content/Services");
 
 const add_service = async (req, res) => {
     const { Title, Description, type } = req.body;
-    console.log(req.body);
     
     if ((!Title, !type)) {
         return res.status(400).json({ message: "Missing required fields." });
