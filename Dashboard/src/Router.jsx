@@ -10,6 +10,9 @@ import Contact_informations from "./Components/Contact_informations/Contact_info
 import Edit_Contact_informations from "./Components/Contact_informations/Edit_Contact_informations.jsx";
 import Demands from "./Components/Demands/Demands.jsx";
 
+import Faq from "./Components/Faq/Faq.jsx";
+import Add_Faq from "./Components/Faq/add_Faq.jsx";
+
 import Not_Found from "./Components/Not_Found";
 import Not_Finished from "./Components/Not_Finished";
 import ErrorElement from "./Components/ErrorElement";
@@ -52,6 +55,16 @@ const routes = createBrowserRouter([
             {
                 path: "/Demands",
                 element: <Demands />,
+                errorElement: <ErrorElement />,
+            },
+            {
+                path: "/Faq",
+                element: <Faq />,
+                errorElement: <ErrorElement />,
+            },
+            {
+                path: "/Faq/add",
+                element: <Add_Faq />,
                 errorElement: <ErrorElement />,
             },
             {
