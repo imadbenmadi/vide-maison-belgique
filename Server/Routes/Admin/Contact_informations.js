@@ -15,30 +15,46 @@ router.get("/", adminMiddleware, async (req, res) => {
         res.status(500).json({ message: "Internal Server Error" });
     }
 });
-router.delete("/:id", adminMiddleware, async (req, res) => {
-    if (!req.params.id || req.params.id < 1 || isNaN(req.params.id)) {
-        return res.status(400).json({ contact_info: "invalide id" });
-    }
-    const contact_infoId = req.params.id;
-    if (!contact_infoId)
-        return res
-            .status(409)
-            .json({ contact_info: "contact_info id is required" });
+
+router.put("/", adminMiddleware, async (req, res) => {
+    const { phone, email, instagram, facebook } = req.body;
+    console.log("req.body", req.body);
+
     try {
         const contact_info = await Contact_informations.findOne({
-            where: { id: contact_infoId },
+            where: {}, // Be more specific here if you have unique constraints
         });
-        if (!contact_info)
-            return res
-                .status(404)
-                .json({ contact_info: "contact_info not found in database " });
-        await Contact_informations.destroy({ where: { id: contact_infoId } });
-        res.status(200).json({
-            contact_info: "contact_info deleted successfully",
-        });
+
+        if (!contact_info) {
+            await Contact_informations.create({
+                phone,
+                email,
+                instagram,
+                facebook,
+            });
+        } else {
+            // await Contact_informations.update(
+            //     {
+            //         phone: phone ? phone : contact_info.phone,
+            //         email: email ? email : contact_info.email,
+            //         instagram: instagram ? instagram : contact_info.instagram,
+            //         facebook: facebook ? facebook : contact_info.facebook,
+            //     },
+            //     { where: {} } // Again, refine this to select a specific record
+            // );
+            contact_info.phone = phone ? phone : contact_info.phone;
+            contact_info.email = email ? email : contact_info.email;
+            contact_info.instagram = instagram ? instagram : contact_info.instagram;
+            contact_info.facebook = facebook ? facebook : contact_info.facebook;
+            await contact_info.save();
+            
+        }
+
+        res.status(200).json({ contact_info: "contact_info updated" });
     } catch (err) {
-        console.error("Error fetching deleting Messages:", err);
+        console.error("Error fetching Messages:", err);
         res.status(500).json({ message: "Internal Server Error" });
     }
 });
+
 module.exports = router;
