@@ -85,7 +85,7 @@ function Laptop() {
                         Icon={null}
                     />
                     <LaptopNavItem
-                        Link="Edit_Services"
+                        Link="Services"
                         name="Services Section"
                         Active_nav={Active_nav}
                         Icon={null}

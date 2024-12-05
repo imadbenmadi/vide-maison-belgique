@@ -12,6 +12,8 @@ import Demands from "./Components/Demands/Demands.jsx";
 
 import Faq from "./Components/Faq/Faq.jsx";
 import Add_Faq from "./Components/Faq/add_Faq.jsx";
+import Services from "./Components/Services/Services.jsx";
+import Add_Services from "./Components/Services/Add_Service.jsx";
 
 import Not_Found from "./Components/Not_Found";
 import Not_Finished from "./Components/Not_Finished";
@@ -65,6 +67,16 @@ const routes = createBrowserRouter([
             {
                 path: "/Faq/add",
                 element: <Add_Faq />,
+                errorElement: <ErrorElement />,
+            },
+            {
+                path: "/Services",
+                element: <Services />,
+                errorElement: <ErrorElement />,
+            },
+            {
+                path: "/Services/add",
+                element: <Add_Services />,
                 errorElement: <ErrorElement />,
             },
             {
