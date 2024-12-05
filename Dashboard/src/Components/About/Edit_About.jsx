@@ -12,7 +12,7 @@ function EditMainPage() {
     const [imagePreview, setImagePreview] = useState(null);
 
     useEffect(() => {
-        // Fetch the existing main page data
+        // Fetch the existing about page data
         const fetchData = async () => {
             try {
                 const response = await axios.get(
@@ -24,7 +24,7 @@ function EditMainPage() {
                 console.log(response.data);
 
                 const { Title, Description, button, image_link } =
-                    response.data.main_page; // Access main_page object correctly
+                    response.data.about_page; // Corrected to access about_page
 
                 setFormData({
                     Title: Title || "", // Ensure default empty string
@@ -38,13 +38,14 @@ function EditMainPage() {
                 Swal.fire({
                     icon: "error",
                     title: "Error",
-                    text: "Failed to load main page data.",
+                    text: "Failed to load about page data.",
                 });
             }
         };
 
         fetchData();
     }, []);
+
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
