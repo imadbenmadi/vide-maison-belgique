@@ -42,7 +42,7 @@ router.get("/Main_page", async (req, res) => {
         res.status(500).json({ message: "Internal Server Error" });
     }
 });
-router.get("/About_page", async (req, res) => {
+router.get("/About_Page", async (req, res) => {
     try {
         const about_page = await About_page.findOne({
             where: {},
@@ -88,7 +88,7 @@ router.put(
     Main_Edit
 );
 router.put(
-    "/About_page",
+    "/About_Page",
     (req, res, next) => {
         req.body = req.fields;
         next();

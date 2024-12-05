@@ -16,6 +16,7 @@ import Services from "./Components/Services/Services.jsx";
 import Add_Services from "./Components/Services/Add_Service.jsx";
 
 import EditMainPage from "./Components/Main/Edit_Main.jsx";
+import Edit_About from "./Components/About/Edit_About.jsx";
 
 import Not_Found from "./Components/Not_Found";
 import Not_Finished from "./Components/Not_Finished";
@@ -84,6 +85,12 @@ const routes = createBrowserRouter([
             {
                 path: "/Edit_main",
                 element: <EditMainPage />,
+                errorElement: <ErrorElement />,
+            },
+            {
+                path: "/Edit_about",
+                element: <Edit_About />,
+                errorElement: <ErrorElement />,
             },
             {
                 path: "*",

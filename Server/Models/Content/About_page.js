@@ -17,10 +17,6 @@ const About_page = sequelize.define("About_page", {
     button: {
         type: DataTypes.STRING,
         allowNull: true,
-        link: {
-            type: DataTypes.STRING,
-            allowNull: true,
-        },
     },
 });
 
