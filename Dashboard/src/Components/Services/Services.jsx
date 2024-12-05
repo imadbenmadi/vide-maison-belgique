@@ -56,37 +56,39 @@ function Services() {
     else
         return (
             <div className="p-6">
-                <h3 className="text-2xl font-bold mb-6 text-gray-900">
+                <h3 className="text-2xl font-bold mb-6 text-yallow_v">
                     Services Offered
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                    {Services.map((service) => (
-                        <div
-                            key={service.id}
-                            className="bg-white p-4 rounded-lg shadow-md"
-                        >
-                            {service.image_link && (
-                                <img
-                                    src={service.image_link}
-                                    alt={service.Title}
-                                    className="w-full h-40 object-cover rounded-md mb-4"
-                                />
-                            )}
-                            <h4 className="text-lg font-semibold text-gray-800">
-                                {service.Title}
-                            </h4>
-                            {service.Description && (
-                                <p className="text-gray-600 mt-2">
-                                    {service.Description}
-                                </p>
-                            )}
-                            {service.type && (
-                                <p className="text-sm text-gray-500 mt-2">
-                                    Type: {service.type}
-                                </p>
-                            )}
-                        </div>
-                    ))}
+                    {!Services ||
+                        (Services?.length == 0 &&
+                            Services.map((service) => (
+                                <div
+                                    key={service.id}
+                                    className="bg-white p-4 rounded-lg shadow-md"
+                                >
+                                    {service.image_link && (
+                                        <img
+                                            src={service.image_link}
+                                            alt={service.Title}
+                                            className="w-full h-40 object-cover rounded-md mb-4"
+                                        />
+                                    )}
+                                    <h4 className="text-lg font-semibold text-gray-800">
+                                        {service.Title}
+                                    </h4>
+                                    {service.Description && (
+                                        <p className="text-gray-600 mt-2">
+                                            {service.Description}
+                                        </p>
+                                    )}
+                                    {service.type && (
+                                        <p className="text-sm text-gray-500 mt-2">
+                                            Type: {service.type}
+                                        </p>
+                                    )}
+                                </div>
+                            )))}
                 </div>
             </div>
         );
