@@ -44,4 +44,4 @@ const add_service = async (req, res) => {
     }
 };
 
-module.exports = { add_service };
+module.exports = add_service;

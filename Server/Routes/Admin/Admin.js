@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { Admins } = require("../../Models/Admin");
-const delete_servrice = require("./Controllers/service_delete");
+const delete_service = require("./Controllers/service_delete");
 const add_service = require("./Controllers/service_add");
 
 const Admin_midllware = require("../../Middlewares/Admin_middleware");
@@ -38,9 +38,10 @@ router.delete(
     "/Services/:eventId",
     (req, res, next) => {
         req.body = req.fields;
+        req.params = { serviceId: req.params.eventId };
         next();
     },
-    delete_servrice
+    delete_service
 );
 
 router.post(
