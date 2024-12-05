@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import Card from "./Card";
 import { BiMessage } from "react-icons/bi";
-
+import { Link } from "react-router-dom";
 function Faqs() {
     const Navigate = useNavigate();
 
@@ -67,13 +67,13 @@ function Faqs() {
                 </div>
 
                 {!Faqs || Faqs?.length == 0 ? (
-                    <div>
+                    <div className=" flex flex-col gap-2 items-center justify-center">
                         <div className="text-md font-semibold text-gray_v text-center pt-12">
                             No Faqs yet
                         </div>
                         <Link
                             to={"/Faq/Add"}
-                            className=" py-2 px-4 rounded bg-blue_v text-white cursor-pointer font-semibold text-sm"
+                            className="mx-auto py-2 px-4 rounded bg-blue_v text-white cursor-pointer font-semibold text-sm"
                         >
                             Add FaQ{" "}
                         </Link>
