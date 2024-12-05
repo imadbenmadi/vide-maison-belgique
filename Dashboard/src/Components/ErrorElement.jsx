@@ -5,10 +5,10 @@ function ErrorElement({ error }) {
         <div className="flex items-center justify-center h-screen bg-gray-100">
             <div className="bg-white p-8 rounded-md shadow-lg text-center max-w-md mx-auto">
                 <h1 className="text-3xl md:text-4xl mb-4 text-red-600">
-                    خطأ
+                    Error
                 </h1>
                 <p className="text-lg mb-4 text-gray_v">
-                    حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى.
+                    An unexpected error occurred. Please try again.
                 </p>
                 {error && (
                     <div className="text-left bg-red-100 p-4 mb-4 rounded-md">
@@ -21,9 +21,9 @@ function ErrorElement({ error }) {
                     </div>
                 )}
                 <p className="text-lg">
-                    الرجوع الى{" "}
+                    Go back to{" "}
                     <a className="text-blue_v hover:underline" href="/">
-                        الصفحة الرئيسية
+                        Home page
                     </a>
                     .
                 </p>
