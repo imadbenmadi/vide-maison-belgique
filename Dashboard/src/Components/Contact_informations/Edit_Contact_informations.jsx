@@ -4,13 +4,13 @@ import { useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import { FaEdit, FaTrashAlt } from "react-icons/fa"; // React Icons for edit and delete
 import { Formik, Form, Field } from "formik";
-import * as Yup from "yup"; // For form validation
 
-const Contact_informations = () => {
+const Edit_Contact_informations = () => {
     const Navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
     const [contactInformations, setContactInformations] = useState({});
+    const [editLoading, setEditLoading] = useState(false);
 
     // Fetch contact information on load
     useEffect(() => {
@@ -27,60 +27,40 @@ const Contact_informations = () => {
                 if (response.status === 200) {
                     setContactInformations(response.data.contact_informations);
                 } else if (response.status === 401) {
-                    Swal.fire("Error", "You have to re-login", "error");
-                    Navigate("/Login");
-                    setError("Unauthorized");
+                    Swal.fire("Error", "Unauthorized access", "error");
+                    Navigate("/login");
                 } else {
-                    setError("Error fetching contact information");
+                    Swal.fire(
+                        "Error",
+                        "Failed to fetch contact information",
+                        "error"
+                    );
                 }
-            } catch (error) {
-                setError("Error fetching data");
-                console.error("Error fetching contact data", error);
+            } catch (err) {
+                setError(true);
+                Swal.fire("Error", "Network error, please try again", "error");
             } finally {
                 setLoading(false);
             }
         };
-
         fetchContactInformations();
     }, [Navigate]);
 
-    // Formik initial values and validation schema
-    const initialValues = contactInformations
-        ? {
-              phone: contactInformations.phone || "",
-              email: contactInformations.email || "",
-              instagram: contactInformations.instagram || "",
-              facebook: contactInformations.facebook || "",
-          }
-        : {
-              phone: "",
-              email: "",
-              instagram: "",
-              facebook: "",
-          };
-
-    const validationSchema = Yup.object({
-        phone: Yup.string().required("Phone number is required"),
-        email: Yup.string()
-            .email("Invalid email address")
-            .required("Email is required"),
-        instagram: Yup.string(),
-        facebook: Yup.string(),
-    });
-
-    const handleSubmit = async (values) => {
+    const handleEditSubmit = async (values) => {
+        setEditLoading(true);
         try {
             const response = await axios.put(
-                "http://localhost:3000/Admin/Contact_informations",
+                `http://localhost:3000/Admin/Contact_informations`,
                 values,
-                {
-                    withCredentials: true,
-                    headers: { "Content-Type": "application/json" },
-                }
+                { withCredentials: true }
             );
             if (response.status === 200) {
-                Swal.fire("Success", "Contact information updated", "success");
-                setContactInformations(values); // Update the state with new values
+                Swal.fire(
+                    "Success",
+                    "Contact information updated successfully",
+                    "success"
+                );
+                setContactInformations(response.data.contact_informations);
             } else {
                 Swal.fire(
                     "Error",
@@ -88,129 +68,132 @@ const Contact_informations = () => {
                     "error"
                 );
             }
-        } catch (error) {
-            Swal.fire("Error", "There was a problem with the server", "error");
-            console.error("Error during form submission:", error);
+        } catch (err) {
+            Swal.fire("Error", "Network error, please try again", "error");
+        } finally {
+            setEditLoading(false);
         }
     };
 
-    if (loading)
-        return (
-            <div className=" w-full h-[80vh] flex flex-col items-center justify-center">
-                <span className="loader"></span>
-            </div>
-        );
-    if (error)
-        return (
-            <div className=" w-full h-screen flex items-center justify-center">
-                <div className="text-red-600 font-semibold">
-                    {error.message}
-                </div>
-            </div>
-        );
+    if (loading) return <div>Loading...</div>;
+    if (error) return <div>Error loading contact information</div>;
+
     return (
-        <div className="max-w-4xl mx-auto p-8 bg-white rounded-lg shadow-md">
-            <h2 className="text-2xl font-bold text-center mb-6">
-                Contact Information
+        <div className="max-w-3xl mx-auto p-6 bg-white shadow-lg rounded-lg">
+            <h2 className="text-2xl font-semibold mb-6">
+                Edit Contact Information
             </h2>
-            <div>
-                <div className="p-6 bg-white rounded-lg shadow-md">
-                    <h2 className="text-2xl font-bold mb-6 text-blue-800">
-                        تفاصيل المؤسسة
-                    </h2>
+            <Formik
+                initialValues={{
+                    phone: contactInformations?.phone || "",
+                    email: contactInformations?.email || "",
+                    instagram: contactInformations?.instagram || "",
+                    facebook: contactInformations?.facebook || "",
+                }}
+                onSubmit={handleEditSubmit}
+            >
+                {({ values }) => (
+                    <Form>
+                        <div className="space-y-4">
+                            <div>
+                                <label
+                                    htmlFor="phone"
+                                    className="block text-gray-700 font-medium"
+                                >
+                                    Phone
+                                </label>
+                                <Field
+                                    id="phone"
+                                    name="phone"
+                                    className="mt-1 p-2 border rounded-md w-full"
+                                    type="text"
+                                    placeholder="Enter phone number"
+                                />
+                                <div className="mt-1 text-sm text-gray-500">
+                                    {values.phone ||
+                                        "Current phone number: " +
+                                            contactInformations?.phone}
+                                </div>
+                            </div>
 
-                    {/* Basic Info */}
-                    <div className="mb-6">
-                        <p className="text-gray-700 mb-2">
-                            <span className="font-semibold">الاسم:</span>{" "}
-                            {company?.Name}
-                        </p>
-                        <p className="text-gray-700 mb-2">
-                            <span className="font-semibold">الموقع:</span>{" "}
-                            {company?.Location}
-                        </p>
-                        <p className="text-gray-700 mb-2">
-                            <span className="font-semibold">الولاية:</span>{" "}
-                            {company?.Wilaya}
-                        </p>
-                        <p className="text-gray-700 mb-2">
-                            <span className="font-semibold">النوع:</span>{" "}
-                            {company?.Type}
-                        </p>
-                        <p className="text-gray-700 mb-2">
-                            <span className="font-semibold">
-                                تاريخ الإنشاء:
-                            </span>{" "}
-                            {dayjs(company?.createdAt).format("DD-MMM-YYYY")}
-                        </p>
-                        <p className="text-gray-700 mb-2">
-                            <span className="font-semibold">آخر تحديث:</span>{" "}
-                            {dayjs(company?.updatedAt).format("DD-MMM-YYYY")}
-                        </p>
-                    </div>
+                            <div>
+                                <label
+                                    htmlFor="email"
+                                    className="block text-gray-700 font-medium"
+                                >
+                                    Email
+                                </label>
+                                <Field
+                                    id="email"
+                                    name="email"
+                                    className="mt-1 p-2 border rounded-md w-full"
+                                    type="email"
+                                    placeholder="Enter email address"
+                                />
+                                <div className="mt-1 text-sm text-gray-500">
+                                    {values.email ||
+                                        "Current email: " +
+                                            contactInformations?.email}
+                                </div>
+                            </div>
 
-                    {/* Statistics */}
-                    <div className="grid grid-cols-2 gap-4 mb-6">
-                        <div className="bg-blue-100 p-4 rounded-lg text-center">
-                            <p className="text-lg font-semibold text-blue-700">
-                                عدد المدونات
-                            </p>
-                            <p className="text-2xl font-bold text-blue-800">
-                                {company?.Blogs?.length || 0}
-                            </p>
-                        </div>
-                        <div className="bg-green-100 p-4 rounded-lg text-center">
-                            <p className="text-lg font-semibold text-green-700">
-                                عدد الأحداث
-                            </p>
-                            <p className="text-2xl font-bold text-green-800">
-                                {company?.Events?.length || 0}
-                            </p>
-                        </div>
-                        <div className="bg-yellow-100 p-4 rounded-lg text-center">
-                            <p className="text-lg font-semibold text-yellow-700">
-                                عدد الأطباء
-                            </p>
-                            <p className="text-2xl font-bold text-yellow-800">
-                                {company?.Doctors?.length || 0}
-                            </p>
-                        </div>
-                        <div className="bg-purple-100 p-4 rounded-lg text-center">
-                            <p className="text-lg font-semibold text-purple-700">
-                                عدد الخدمات
-                            </p>
-                            <p className="text-2xl font-bold text-purple-800">
-                                {company?.Services?.length || 0}
-                            </p>
-                        </div>
-                    </div>
+                            <div>
+                                <label
+                                    htmlFor="instagram"
+                                    className="block text-gray-700 font-medium"
+                                >
+                                    Instagram
+                                </label>
+                                <Field
+                                    id="instagram"
+                                    name="instagram"
+                                    className="mt-1 p-2 border rounded-md w-full"
+                                    type="text"
+                                    placeholder="Enter Instagram handle"
+                                />
+                                <div className="mt-1 text-sm text-gray-500">
+                                    {values.instagram ||
+                                        "Current Instagram: " +
+                                            contactInformations?.instagram}
+                                </div>
+                            </div>
 
-                    {/* Follow/Unfollow Button */}
-                    <div className="flex space-x-4">
-                        {isFollowing ? (
-                            <button
-                                onClick={handleUnfollow}
-                                disabled={followLoading}
-                                className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 focus:outline-none"
-                            >
-                                {followLoading
-                                    ? "إلغاء المتابعة..."
-                                    : "إلغاء المتابعة"}
-                            </button>
-                        ) : (
-                            <button
-                                onClick={handleFollow}
-                                disabled={followLoading}
-                                className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 focus:outline-none"
-                            >
-                                {followLoading ? "متابعة..." : "متابعة"}
-                            </button>
-                        )}
-                    </div>
-                </div>
-            </div>
+                            <div>
+                                <label
+                                    htmlFor="facebook"
+                                    className="block text-gray-700 font-medium"
+                                >
+                                    Facebook
+                                </label>
+                                <Field
+                                    id="facebook"
+                                    name="facebook"
+                                    className="mt-1 p-2 border rounded-md w-full"
+                                    type="text"
+                                    placeholder="Enter Facebook handle"
+                                />
+                                <div className="mt-1 text-sm text-gray-500">
+                                    {values.facebook ||
+                                        "Current Facebook: " +
+                                            contactInformations?.facebook}
+                                </div>
+                            </div>
+
+                            <div className="flex justify-end mt-6">
+                                <button
+                                    type="submit"
+                                    disabled={editLoading}
+                                    className="px-4 py-2 bg-blue-600 text-white rounded-md disabled:bg-gray-400"
+                                >
+                                    {editLoading ? "Saving..." : "Save Changes"}
+                                </button>
+                            </div>
+                        </div>
+                    </Form>
+                )}
+            </Formik>
         </div>
     );
 };
 
-export default Contact_informations;
+export default Edit_Contact_informations;

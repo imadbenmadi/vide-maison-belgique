@@ -7,7 +7,7 @@ import Login from "./Components/Auth/Login/Login";
 
 import Contact from "./Components/Contact/Contact.jsx";
 import Contact_informations from "./Components/Contact_informations/Contact_informations.jsx";
-import Edit_Contact_informations from "./Components/Contact_informations/Contact_informations.jsx";
+import Edit_Contact_informations from "./Components/Contact_informations/Edit_Contact_informations.jsx";
 import Demands from "./Components/Demands/Demands.jsx";
 
 import Not_Found from "./Components/Not_Found";
