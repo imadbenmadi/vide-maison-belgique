@@ -4,7 +4,9 @@ const { Admins } = require("../../Models/Admin");
 const delete_service = require("./Controllers/service_delete");
 const add_service = require("./Controllers/service_add");
 const Main_Edit = require("./Controllers/Main_Edit");
+const About_Edit = require("./Controllers/About_Edit");
 const { Main_page } = require("../../Models/Content/Main_page");
+const { About_page } = require("../../Models/Content/About_page");
 const Admin_midllware = require("../../Middlewares/Admin_middleware");
 router.get("/Admins", Admin_midllware, async (req, res) => {
     try {
@@ -29,14 +31,23 @@ router.use("/Demands", require("./Demands"));
 router.use("/Faqs", require("./Faq"));
 router.use("/Services", require("./Services"));
 
-
-
 router.get("/Main_page", async (req, res) => {
     try {
         const main_page = await Main_page.findOne({
             where: {},
         });
         res.status(200).json({ main_page });
+    } catch (err) {
+        console.error("Error fetching Main_page:", err);
+        res.status(500).json({ message: "Internal Server Error" });
+    }
+});
+router.get("/About_page", async (req, res) => {
+    try {
+        const about_page = await About_page.findOne({
+            where: {},
+        });
+        res.status(200).json({ about_page });
     } catch (err) {
         console.error("Error fetching Main_page:", err);
         res.status(500).json({ message: "Internal Server Error" });
@@ -75,6 +86,14 @@ router.put(
         next();
     },
     Main_Edit
+);
+router.put(
+    "/About_page",
+    (req, res, next) => {
+        req.body = req.fields;
+        next();
+    },
+    About_Edit
 );
 
 module.exports = router;
