@@ -26,7 +26,7 @@ function Footer() {
             animate={isInView ? "visible" : ""}
             className=" bg-zinc-100 py-4 mt-10  text-black "
         >
-            <div className="max-w-[1200px] mx-auto text-center">
+            <div className="max-w-[1200px]  overflow-auto mx-auto text-center">
                 <div>
                     <div className=" font-semibold mb-6 flex justify-center items-center gap-12 w-full text-right">
                         <div

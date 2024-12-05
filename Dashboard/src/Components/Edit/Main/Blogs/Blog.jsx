@@ -134,7 +134,7 @@ function Blog() {
 
     return (
         <div className="py-6 px-4">
-            <div className="max-w-3xl mx-auto border rounded-lg shadow-lg overflow-hidden bg-white">
+            <div className="max-w-3xl  mx-auto border rounded-lg shadow-lg overflow-hidden bg-white">
                 {/* Blog Image */}
                 <div className="w-full h-64 bg-gray-300 flex items-center justify-center">
                     {blog.image_link ? (

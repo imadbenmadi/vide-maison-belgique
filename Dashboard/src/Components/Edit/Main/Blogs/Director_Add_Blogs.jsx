@@ -66,7 +66,7 @@ function AddBlog() {
 
     return (
         <div className="flex justify-center items-center min-h-screen bg-gray-100">
-            <div className="w-full max-w-lg py-12 px-8 bg-white shadow-lg rounded-lg text-right">
+            <div className="w-full max-w-lg overflow-auto py-12 px-8 bg-white shadow-lg rounded-lg text-right">
                 <h2 className="text-3xl font-semibold mb-6 text-gray-800">
                     إضافة مقال جديد
                 </h2>

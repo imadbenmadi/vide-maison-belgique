@@ -83,7 +83,7 @@ const Edit_Contact_informations = () => {
     if (error) return <div>Error loading contact information</div>;
 
     return (
-        <div className="max-w-3xl mx-auto p-6 bg-white shadow-lg rounded-lg">
+        <div className="max-w-3xl overflow-auto mx-auto p-6 bg-white shadow-lg rounded-lg">
             <h2 className="text-2xl font-semibold mb-6 text-center text-black_text">
                 Edit Contact Information
             </h2>

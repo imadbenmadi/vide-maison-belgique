@@ -3,7 +3,7 @@ import React from "react";
 function ErrorElement({ error }) {
     return (
         <div className="flex items-center justify-center h-screen bg-gray-100">
-            <div className="bg-white p-8 rounded-md shadow-lg text-center max-w-md mx-auto">
+            <div className="bg-white p-8 rounded-md shadow-lg text-center max-w-md  mx-auto">
                 <h1 className="text-3xl md:text-4xl mb-4 text-red-600">
                     Oops! An Error Occurred
                 </h1>

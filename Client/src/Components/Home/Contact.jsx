@@ -101,7 +101,7 @@ function Contact() {
                 <div className=" text-xs">أرسل لنا رسالة</div>
                 <div className=" w-full flex flex-col gap-4 items-center justify-center pt-6 text-right">
                     <div>
-                        <div className=" flex justify-center items-center gap-3 max-w-full text-sm ">
+                        <div className=" flex justify-center items-center gap-3 max-w-full overflow-auto text-sm ">
                             <input
                                 placeholder="الاسم"
                                 type="text"
