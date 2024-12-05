@@ -81,7 +81,13 @@ function Faqs() {
                         </Link>
                     </div>
                 ) : (
-                    <div>
+                    <div className=" my-6 flex flex-col gap-6">
+                        <Link
+                            to={"/Faq/Add"}
+                            className="mx-auto py-2 px-4 rounded bg-blue_v text-white cursor-pointer font-semibold text-sm"
+                        >
+                            Add FaQ{" "}
+                        </Link>
                         <div className=" flex flex-col items-center justify-center  w-[90%] pt-6">
                             {Faqs &&
                                 Faqs.length > 0 &&

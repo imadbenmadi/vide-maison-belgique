@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 
 function Services() {
     const [Services, setServices] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-
+    const Navigate = useNavigate();
     useEffect(() => {
         setLoading(true);
         const FetchServices = async ({ setServices, setLoading, setError }) => {
@@ -55,41 +58,58 @@ function Services() {
         );
     else
         return (
-            <div className="p-6">
-                <h3 className="text-2xl font-bold mb-6 text-yallow_v">
+            <div className="py-6 px-4">
+                <div className="text-xl font-semibold text-yallow_v">
                     Services Offered
-                </h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                    {!Services ||
-                        (Services?.length == 0 &&
-                            Services.map((service) => (
-                                <div
-                                    key={service.id}
-                                    className="bg-white p-4 rounded-lg shadow-md"
-                                >
-                                    {service.image_link && (
-                                        <img
-                                            src={service.image_link}
-                                            alt={service.Title}
-                                            className="w-full h-40 object-cover rounded-md mb-4"
-                                        />
-                                    )}
-                                    <h4 className="text-lg font-semibold text-gray-800">
-                                        {service.Title}
-                                    </h4>
-                                    {service.Description && (
-                                        <p className="text-gray-600 mt-2">
-                                            {service.Description}
-                                        </p>
-                                    )}
-                                    {service.type && (
-                                        <p className="text-sm text-gray-500 mt-2">
-                                            Type: {service.type}
-                                        </p>
-                                    )}
-                                </div>
-                            )))}
                 </div>
+                {!Services || Services?.length === 0 ? (
+                    <div className="flex flex-col gap-2 items-center justify-center">
+                        <div className="text-md font-semibold text-gray-500 text-center pt-12">
+                            No Services yet
+                        </div>
+                        <Link
+                            to="/Services/Add"
+                            className="mx-auto py-2 px-4 rounded bg-blue-500 text-white cursor-pointer font-semibold text-sm"
+                        >
+                            Add Service
+                        </Link>
+                    </div>
+                ) : (
+                    <div>
+                        <div className="my-6 flex flex-col gap-6">
+                            <Link
+                                to="/Services/Add"
+                                className="mx-auto py-2 px-4 rounded bg-blue-500 text-white cursor-pointer font-semibold text-sm"
+                            >
+                                Add Service
+                            </Link>
+                            <div>
+                                {Services.map((service) => (
+                                    <div
+                                        key={service.id}
+                                        className="bg-white p-4 rounded-lg shadow-md"
+                                    >
+                                        {service.image_link && (
+                                            <img
+                                                src={service.image_link}
+                                                alt={service.name}
+                                                className="w-full h-auto rounded"
+                                            />
+                                        )}
+                                        <div className="mt-4">
+                                            <div className="text-lg font-semibold">
+                                                {service.name}
+                                            </div>
+                                            <p className="text-gray-600">
+                                                {service.description}
+                                            </p>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                )}
             </div>
         );
 }
