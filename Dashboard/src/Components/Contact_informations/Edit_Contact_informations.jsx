@@ -72,15 +72,30 @@ const Edit_Contact_informations = () => {
                 );
             }
         } catch (err) {
-            
             Swal.fire("Error", "Network error, please try again", "error");
         } finally {
             setEditLoading(false);
         }
     };
 
-    if (loading) return <div>Loading...</div>;
-    if (error) return <div>Error loading contact information</div>;
+    if (loading) {
+        return (
+            <div className="w-full h-[80vh] flex flex-col items-center justify-center">
+                <span className="loader"></span>
+            </div>
+        );
+    }
+    if (error) {
+        return (
+            <div>
+                <div className="w-full h-screen flex items-center justify-center">
+                    <div className="text-red-600 font-semibold">
+                        Failed to fetch contact information
+                    </div>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="max-w-3xl overflow-auto mx-auto p-6 bg-white shadow-lg rounded-lg">
@@ -97,10 +112,10 @@ const Edit_Contact_informations = () => {
                 validate={(values) => {
                     const errors = {};
                     if (!values.phone) {
-                        errors.phone = "Phone or email is required";
+                        errors.phone = "Phone is required";
                     }
                     if (!values.email) {
-                        errors.email = "Phone or email is required";
+                        errors.email = "email is required";
                     }
                     return errors;
                 }}
@@ -147,6 +162,11 @@ const Edit_Contact_informations = () => {
                                     className="mt-1 p-2 border rounded-md w-full"
                                     type="email"
                                     placeholder="Enter email address"
+                                />
+                                <ErrorMessage
+                                    name="email"
+                                    component="div"
+                                    style={{ color: "red" }}
                                 />
                                 <div className="mt-1 text-sm text-gray-500">
                                     {"Current email: " +
