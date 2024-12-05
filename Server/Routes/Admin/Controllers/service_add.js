@@ -1,7 +1,6 @@
 const fs = require("fs");
 const path = require("path");
 const { Services } = require("../../../Models/Content/Services");
-const { Company } = require("../../../Models/Company");
 
 const add_service = async (req, res) => {
     const { Title, Description, type } = req.body;
@@ -44,4 +43,5 @@ const add_service = async (req, res) => {
         return res.status(500).json({ message: "Internal server error." });
     }
 };
+
 module.exports = { add_service };

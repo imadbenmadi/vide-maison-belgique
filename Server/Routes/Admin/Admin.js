@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const { Admins } = require("../../Models/Admin");
+const delete_servrice = require("./Controllers/service_delete");
+const add_service = require("./Controllers/service_add");
 
 const Admin_midllware = require("../../Middlewares/Admin_middleware");
 router.get("/Admins", Admin_midllware, async (req, res) => {
@@ -31,8 +33,7 @@ const cookieParser = require("cookie-parser");
 const formidableMiddleware = require("express-formidable");
 router.use(cookieParser());
 router.use(formidableMiddleware());
-const delete_servrice = require("./Controllers/service_delete");
-const add_service = require("./Controllers/service_add");
+
 router.delete(
     "/Services/:eventId",
     (req, res, next) => {
