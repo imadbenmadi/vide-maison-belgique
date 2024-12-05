@@ -27,7 +27,7 @@ function Faqs() {
                 );
 
                 if (response.status == 200) {
-                    const Faqs = response.data.Faqs;
+                    const Faqs = response.data.faq;
                     setFaqs(Faqs);
                 } else if (response.status == 401) {
                     Swal.fire("Error", "you have to re-Login again", "error");
