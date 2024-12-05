@@ -55,7 +55,9 @@ function Faqs() {
     } else if (error)
         return (
             <div className=" w-full h-screen flex items-center justify-center">
-                <div className="text-red-600 font-semibold">{error.Faqs}</div>
+                <div className="text-red-600 font-semibold">
+                    {error.message}
+                </div>
             </div>
         );
     else
