@@ -6,16 +6,16 @@ import axios from "axios";
 import Card from "./Card";
 import { BiMessage } from "react-icons/bi";
 
-function Faq() {
+function Faqs() {
     const Navigate = useNavigate();
 
-    const [Faq, setFaq] = useState([]);
+    const [Faqs, setFaqs] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
 
     useEffect(() => {
         setLoading(true);
-        const FetchFaq = async ({ setFaq, setLoading, setError }) => {
+        const FetchFaqs = async ({ setFaqs, setLoading, setError }) => {
             setLoading(true);
             try {
                 const response = await axios.get(
@@ -27,8 +27,8 @@ function Faq() {
                 );
 
                 if (response.status == 200) {
-                    const Faq = response.data.faq;
-                    setFaq(Faq);
+                    const Faqs = response.data.Faqs;
+                    setFaqs(Faqs);
                 } else if (response.status == 401) {
                     Swal.fire("Error", "you have to re-Login again", "error");
                     Navigate("/Login");
@@ -43,7 +43,7 @@ function Faq() {
             }
         };
 
-        FetchFaq({ setFaq, setLoading, setError });
+        FetchFaqs({ setFaqs, setLoading, setError });
     }, []);
 
     if (loading) {
@@ -55,28 +55,39 @@ function Faq() {
     } else if (error)
         return (
             <div className=" w-full h-screen flex items-center justify-center">
-                <div className="text-red-600 font-semibold">{error.Faq}</div>
+                <div className="text-red-600 font-semibold">{error.Faqs}</div>
             </div>
         );
     else
         return (
             <div className=" py-6 px-4">
-                <div className=" text-xl font-semibold text-yallow_v"> Faq</div>
+                <div className=" text-xl font-semibold text-yallow_v">
+                    {" "}
+                    Faqs
+                </div>
 
-                {!Faq || Faq?.length == 0 ? (
-                    <div className="text-md font-semibold text-gray_v text-center pt-12">
-                        No Faq yet
+                {!Faqs || Faqs?.length == 0 ? (
+                    <div>
+                        <div className="text-md font-semibold text-gray_v text-center pt-12">
+                            No Faqs yet
+                        </div>
+                        <Link
+                            to={"/Faq/Add"}
+                            className=" py-2 px-4 rounded bg-blue_v text-white cursor-pointer font-semibold text-sm"
+                        >
+                            Add FaQ{" "}
+                        </Link>
                     </div>
                 ) : (
                     <div>
                         <div className=" w-full flex justify-center py-4">
                             <div className="max-w-[300px] overflow-auto border shadow-md py-6 px-6 flex flex-col items-center justify-start rounded-md md:min-w-[200px]">
                                 <div className=" text-xs font-semibold pb-5 text-gray_v w-full">
-                                    Total Number of FaQ:
+                                    Total Number of Faqs:
                                 </div>
                                 <div className=" flex justify-between gap-2 mx-2 w-full">
                                     <div className="  font-semibold text-2xl">
-                                        {Faq?.length}
+                                        {Faqs?.length}
                                     </div>
                                     <div className=" shrink-0 text-yallow_v border border-gray_white px-2 py-1 flex items-center justify-center rounded-lg shadow-lg">
                                         <BiMessage className=" shrink-0 text-2xl" />
@@ -85,16 +96,16 @@ function Faq() {
                             </div>
                         </div>
 
-                        {Faq &&
-                            Faq.length > 0 &&
-                            Faq?.map((faq) => {
+                        {Faqs &&
+                            Faqs.length > 0 &&
+                            Faqs?.map((faq) => {
                                 return (
                                     <Card
                                         key={faq.id}
                                         faq={faq}
-                                        setFaq={setFaq}
-                                        Faq={Faq}
-                                        // handle_Delete_Faq={handle_Delete_Faq}
+                                        setFaqs={setFaqs}
+                                        Faqs={Faqs}
+                                        // handle_Delete_Faqs={handle_Delete_Faqs}
                                     />
                                 );
                             })}
@@ -104,4 +115,4 @@ function Faq() {
         );
 }
 
-export default Faq;
+export default Faqs;

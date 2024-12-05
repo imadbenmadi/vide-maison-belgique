@@ -89,8 +89,8 @@ function Mobile_Nav_Items({ MobileNav_Open, Toogle_Menu_Bar }) {
                                 onClick={Toogle_Menu_Bar}
                             />
                             <Item
-                                Link="FAQ"
-                                name="FAQ Section"
+                                Link="Faq"
+                                name="FaQ Section"
                                 Active_nav={Active_nav}
                                 Icon={null}
                                 onClick={Toogle_Menu_Bar}

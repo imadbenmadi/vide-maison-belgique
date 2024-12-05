@@ -91,8 +91,8 @@ function Laptop() {
                         Icon={null}
                     />
                     <LaptopNavItem
-                        Link="FAQ"
-                        name="FAQ Section"
+                        Link="Faq"
+                        name="FaQ Section"
                         Active_nav={Active_nav}
                         Icon={null}
                     />
