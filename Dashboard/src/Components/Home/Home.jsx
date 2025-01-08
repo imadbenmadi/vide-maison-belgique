@@ -11,9 +11,9 @@ function Home() {
     const [data, setData] = useState();
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState();
-    useEffect(() => {
-        console.log(data);
-    }, [data]);
+    // useEffect(() => {
+    //     console.log(data);
+    // }, [data]);
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);

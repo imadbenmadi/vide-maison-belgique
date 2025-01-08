@@ -44,7 +44,7 @@ function About({ data }) {
             <div className="text-4xl font-semibold text-gray-800 text-center mb-8 md:mb-16">
                 À propos de nous
             </div>
-            <div className="flex flex-col md:gap-16 gap-6 md:flex-row items-center justify-center">
+            <div className="mx-12 flex flex-col md:gap-16 gap-6 md:flex-row items-center justify-center">
                 <div className="md:w-1/2 text-center md:text-start" ref={ref}>
                     {/* Animated Text Section */}
                     <motion.div
@@ -61,7 +61,7 @@ function About({ data }) {
                         </div>
                         <button
                             onClick={handleScroll}
-                            className="select-none px-3 py-2 mt-4 bg-yellow-500 text-white rounded-lg font-bold text-2xl"
+                            className="select-none px-3 py-2 mt-4  bg-yellow-500 text-white rounded-lg font-bold text-2xl"
                         >
                             {data?.button}
                         </button>
