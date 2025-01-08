@@ -2,11 +2,18 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 import dayjs from "dayjs";
-
+import Main from "./Main";
+import About from "./About";
+import Services from "./Services";
+import Faq from "./Faq";
+import Footer from "./Footer";
 function Home() {
     const [data, setData] = useState();
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState();
+    // useEffect(() => {
+    //     console.log(data);
+    // }, [data]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -18,12 +25,11 @@ function Home() {
                         withCredentials: true,
                     }
                 );
-                console.log(response);
 
                 if (response.status === 200) {
-                    setData(response);
+                    setData(response.data);
                 } else {
-                    setError(response);
+                    setError(response.data);
                 }
             } catch (error) {
                 setError(error);
@@ -51,7 +57,11 @@ function Home() {
     } else {
         return (
             <div>
-                
+                <Main data={data?.Main_page} />
+                <About data={data?.About_page} />
+                <Services data={data?.Services} />
+                <Faq data={data?.Faq} />
+                <Footer data={data?.Contact_informations} />
             </div>
         );
     }
