@@ -19,7 +19,7 @@ function Home() {
                     }
                 );
                 console.log(response);
-                
+
                 if (response.status === 200) {
                     setData(response);
                 } else {
@@ -49,7 +49,11 @@ function Home() {
             </div>
         );
     } else {
-        return <div>home</div>;
+        return (
+            <div>
+                
+            </div>
+        );
     }
 }
 
