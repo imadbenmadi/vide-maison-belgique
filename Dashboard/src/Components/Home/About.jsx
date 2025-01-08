@@ -11,9 +11,7 @@ function About({ data }) {
         margin: "0px 0px -100px 0px",
     }); // Trigger only once when 100px above the viewport
 
-    useEffect(() => {
-        console.log(data);
-    }, [data]);
+   
 
     useEffect(() => {
         const loadImage = (src) => {
