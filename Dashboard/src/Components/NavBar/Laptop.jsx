@@ -61,7 +61,7 @@ function Laptop() {
             <div className=" flex flex-col gap-2  mt-6  ">
                 <LaptopNavItem
                     Link="Home"
-                    name="Home"
+                    name="Overview"
                     Active_nav={Active_nav}
                     Icon={GoHome}
                 />
