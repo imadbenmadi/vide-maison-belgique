@@ -11,9 +11,6 @@ function Home() {
     const [data, setData] = useState();
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState();
-    // useEffect(() => {
-    //     console.log(data);
-    // }, [data]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -21,9 +18,7 @@ function Home() {
             try {
                 const response = await axios.get(
                     "http://localhost:3000/Admin/Home",
-                    {
-                        withCredentials: true,
-                    }
+                    { withCredentials: true }
                 );
 
                 if (response.status === 200) {
@@ -59,7 +54,9 @@ function Home() {
             <div>
                 <Main data={data?.Main_page} />
                 <About data={data?.About_page} />
-                <Services id="ServicesID" data={data?.Services} />
+                <div id="ServicesID">
+                    <Services data={data?.Services} />
+                </div>
                 <Faq data={data?.Faq} />
                 <Footer data={data?.Contact_informations} />
             </div>
