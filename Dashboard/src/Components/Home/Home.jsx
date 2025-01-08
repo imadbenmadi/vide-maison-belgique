@@ -59,7 +59,7 @@ function Home() {
             <div>
                 <Main data={data?.Main_page} />
                 <About data={data?.About_page} />
-                <Services data={data?.Services} />
+                <Services id="ServicesID" data={data?.Services} />
                 <Faq data={data?.Faq} />
                 <Footer data={data?.Contact_informations} />
             </div>

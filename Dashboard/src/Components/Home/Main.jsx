@@ -23,7 +23,12 @@ function Main({ data }) {
             <div>
                 <div className=" text-3xl ">{Data?.Title}</div>
                 <div>{Data?.Description}</div>
-                <Link className></Link>
+
+                <Link
+                    to={"/Home#ServicesID"}
+                    className="select-none px-3 py-2 bg-yallow_v text-white
+                    rounded-lg"
+                ></Link>
             </div>
         </div>
     );
