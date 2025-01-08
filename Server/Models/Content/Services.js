@@ -3,15 +3,15 @@ const sequelize = require("../../config/db_connection");
 
 const Services = sequelize.define("Services", {
     Title: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: false,
     },
     Description: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: true,
     },
     image_link: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: true,
     },
     type: {
