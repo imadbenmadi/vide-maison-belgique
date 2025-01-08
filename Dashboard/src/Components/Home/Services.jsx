@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 function Services({ data }) {
     if (!data) return null;
@@ -50,6 +51,7 @@ function Service_card({ service }) {
                     {service?.Description}
                 </p>
             </div>
+            <Link to={`/Home/Demand?Title=${service?.Title}`}>Demand</Link>
         </div>
     );
 }

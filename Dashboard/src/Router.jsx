@@ -18,6 +18,9 @@ import Add_Services from "./Components/Services/Add_Service.jsx";
 import EditMainPage from "./Components/Main/Edit_Main.jsx";
 import Edit_About from "./Components/About/Edit_About.jsx";
 
+import Home_Demands from "./Components/Home/Demands/Demands.jsx";
+import Home_Contact from "./Components/Home/Contact/Contact.jsx";
+
 import Not_Found from "./Components/Not_Found";
 import Not_Finished from "./Components/Not_Finished";
 import ErrorElement from "./Components/ErrorElement";
@@ -35,10 +38,14 @@ const routes = createBrowserRouter([
                 path: "/Home",
                 element: <Home />,
                 errorElement: <ErrorElement />,
-                children: [{
-                    
-                    
-                }],
+            },
+            {
+                path: "/Home/Demand",
+                element: <Home_Demands />,
+            },
+            {
+                path: "/Home/Contact",
+                element: <Home_Contact />,
             },
 
             // {
