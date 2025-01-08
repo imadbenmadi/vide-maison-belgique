@@ -41,7 +41,7 @@ function About({ data }) {
 
     return (
         <div className="relative min-h-[70vh] bg-cover bg-center my-12">
-            <div className="text-4xl font-semibold text-gray-700 text-center mb-8 md:mb-16">
+            <div className="text-4xl font-semibold text-gray-800 text-center mb-8 md:mb-16">
                 À propos de nous
             </div>
             <div className="flex flex-col md:gap-16 gap-6 md:flex-row items-center justify-center">

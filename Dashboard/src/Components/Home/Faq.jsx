@@ -8,7 +8,7 @@ function Faq({ data }) {
     }
 
     return (
-        <div className="py-12 bg-gray-50">
+        <div className="py-12 ">
             <div className="text-center mb-8">
                 <h2 className="text-3xl font-bold text-gray-800">
                     Frequently Asked Questions
