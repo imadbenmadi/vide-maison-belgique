@@ -1,6 +1,9 @@
 import React from "react";
 
-function Faq() {
+function Faq({ data }) {
+     if (!data) {
+         return null;
+     }
     return <div>Faq</div>;
 }
 

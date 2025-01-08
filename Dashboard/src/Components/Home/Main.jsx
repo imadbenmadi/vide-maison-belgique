@@ -24,11 +24,7 @@ function Main({ data }) {
     }, [data]);
 
     if (!data) {
-        return (
-            <div className="w-full h-[80vh] flex flex-col items-center justify-center">
-                <span className="loader"></span>
-            </div>
-        );
+        return null;
     }
 
     const handleScroll = () => {

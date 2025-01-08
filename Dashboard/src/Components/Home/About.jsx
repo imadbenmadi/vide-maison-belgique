@@ -31,11 +31,7 @@ function About({ data }) {
     }, [data]);
 
     if (!data) {
-        return (
-            <div className="w-full h-[80vh] flex flex-col items-center justify-center">
-                <span className="loader"></span>
-            </div>
-        );
+        return null;
     }
 
     const handleScroll = () => {
@@ -57,7 +53,7 @@ function About({ data }) {
                         initial={{ opacity: 0, y: 50 }}
                         animate={isInView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.8, ease: "easeOut" }}
-                        className="text-start relative z-10 " 
+                        className="text-start relative z-10 "
                     >
                         <div className="text-2xl mb-1 text-gray-700 font-bold">
                             {data?.Title}
