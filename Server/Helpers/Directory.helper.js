@@ -17,6 +17,7 @@ const initializeDirectories = () => {
         "public/main_page_images",
         "public/phrases_images",
         "public/services_images",
+        "public/Description_page_images",
     ];
 
     directories.forEach((dir) => {
