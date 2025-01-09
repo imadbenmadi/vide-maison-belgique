@@ -21,9 +21,9 @@ import Edit_About from "./Components/About/Edit_About.jsx";
 import Home_Demands from "./Components/Home/Demands/Demands.jsx";
 import Home_Contact from "./Components/Home/Contact/Contact.jsx";
 
-import Call_Phrase from "./Components/Home/Call_Phrase.jsx";
-import Description from "./Components/Home/Description.jsx";
-import Contact_Phrase from "./Components/Home/Contact_Phrase.jsx";
+import Call_Phrase from "./Components/Phrases/Call_Phrase.jsx";
+import Description from "./Components/Description/Description.jsx";
+import Contact_Phrase from "./Components/Phrases/Contact_Phrase.jsx";
 
 import Not_Found from "./Components/Not_Found";
 import Not_Finished from "./Components/Not_Finished";
@@ -52,15 +52,15 @@ const routes = createBrowserRouter([
                 element: <Home_Contact />,
             },
             {
-                path: "/Home/Call_Phrase",
+                path: "/Call_Phrase",
                 element: <Call_Phrase />,
             },
             {
-                path: "/Home/Description",
+                path: "/Description",
                 element: <Description />,
             },
             {
-                path: "/Home/Contact_Phrase",
+                path: "/Contact_Phrase",
                 element: <Contact_Phrase />,
             },
 
