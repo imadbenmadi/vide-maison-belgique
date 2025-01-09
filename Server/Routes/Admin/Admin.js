@@ -7,8 +7,9 @@ const Main_Edit = require("./Controllers/Main_Edit");
 const About_Edit = require("./Controllers/About_Edit");
 const { Main_page } = require("../../Models/Content/Main_page");
 const { About_page } = require("../../Models/Content/About_page");
+const { Description_page } = require("../../Models/Content/Description");
 const Admin_midllware = require("../../Middlewares/Admin_middleware");
-const Phrases  = require("./Phrases");
+const Phrases = require("./Phrases");
 router.use(Phrases);
 router.get("/Admins", Admin_midllware, async (req, res) => {
     try {
@@ -22,9 +23,7 @@ router.get("/Admins", Admin_midllware, async (req, res) => {
     }
 });
 router.use("/Home", require("./Home"));
-router.get("/home", (req, res) => {
-    res.send("Hello from vide-maison-belgique");
-});
+
 // router.use("/Companies", require("./Companies"));
 
 router.use("/Contact", require("./Contact"));
@@ -50,6 +49,17 @@ router.get("/About_Page", async (req, res) => {
             where: {},
         });
         res.status(200).json({ about_page });
+    } catch (err) {
+        console.error("Error fetching Main_page:", err);
+        res.status(500).json({ message: "Internal Server Error" });
+    }
+});
+router.get("/Description_Page", async (req, res) => {
+    try {
+        const description_page = await Description_page.findOne({
+            where: {},
+        });
+        res.status(200).json({ description_page });
     } catch (err) {
         console.error("Error fetching Main_page:", err);
         res.status(500).json({ message: "Internal Server Error" });
