@@ -5,7 +5,7 @@ const { About_page } = require("../../../Models/Content/About_page");
 const Main_Edit = async (req, res) => {
     const { Title, Description, button } = req.body;
 
-    if ((!Title, !button)) {
+    if (!Title || !button || !Description) {
         return res.status(400).json({ message: "Missing required fields." });
     }
     let uniqueSuffix = null;

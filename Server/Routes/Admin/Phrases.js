@@ -1,0 +1,57 @@
+const express = require("express");
+const router = express.Router();
+const adminMiddleware = require("../../Middlewares/Admin_middleware");
+const { Phrase_Call } = require("../../Models/Content/Phrase_Call");
+
+router.get("/Phrase_Call", adminMiddleware, async (req, res) => {
+    try {
+        const phrase = await Phrase_Call.findOne({});
+        res.status(200).json({ phrase });
+    } catch (err) {
+        console.error("Error fetching phrases:", err);
+        res.status(500).json({ phrase: "Internal Server Error" });
+    }
+});
+
+router.delete("/Phrase_Call/:id", adminMiddleware, async (req, res) => {
+    if (!req.params.id || req.params.id < 1 || isNaN(req.params.id)) {
+        return res.status(400).json({ phrase: "invalide id" });
+    }
+    const phraseId = req.params.id;
+    if (!phraseId)
+        return res.status(409).json({ phrase: "phrase id is required" });
+    try {
+        const phrase = await Phrase_Call.findOne({
+            where: { id: phraseId },
+        });
+        if (!phrase)
+            return res
+                .status(404)
+                .json({ phrase: "phrase not found in database " });
+        await Phrase_Call.destroy({ where: { id: phraseId } });
+        res.status(200).json({ phrase: "phrase deleted successfully" });
+    } catch (err) {
+        console.error("Error fetching deleting phrases:", err);
+        res.status(500).json({ phrase: "Internal Server Error" });
+    }
+});
+router.post("/Phrase_Call", adminMiddleware, async (req, res) => {
+    const { Text, button } = req.body;
+    if (!Text || !button)
+        return res.status(400).json({ phrase: "Missing Data" });
+    try {
+        const phrase = await Phrase_Call.create({
+            Text,
+            button,
+        });
+
+        res.status(200).json({
+            message: "phrase created successfully",
+            phrase,
+        });
+    } catch (err) {
+        console.error("Error fetching Messages:", err);
+        res.status(500).json({ phrase: "Internal Server Error" });
+    }
+});
+module.exports = router;

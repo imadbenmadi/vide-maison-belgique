@@ -37,7 +37,7 @@ router.delete("/:id", adminMiddleware, async (req, res) => {
 });
 router.post("/", adminMiddleware, async (req, res) => {
     const { qst, sol } = req.body;
-
+    if (!qst || !sol) return res.status(400).json({ faq: "Missing Data" });
     try {
         const faq = await Faq.create({
             qst,
