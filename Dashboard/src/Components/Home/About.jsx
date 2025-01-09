@@ -68,7 +68,11 @@ function About({ data }) {
                     </motion.div>
                 </div>
 
-                <img src={imageSrc} alt="" className="rounded-lg w-[220px]" />
+                <img
+                    src={imageSrc}
+                    alt=""
+                    className="rounded-lg w-[300px] h-[300px] object-cover"
+                />
             </div>
         </div>
     );
