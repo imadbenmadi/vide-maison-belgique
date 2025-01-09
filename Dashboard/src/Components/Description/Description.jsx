@@ -103,7 +103,7 @@ function Edit_Description() {
                 Swal.fire({
                     icon: "success",
                     title: "Success",
-                    text: "Main page updated successfully!",
+                    text: "Description page updated successfully!",
                 });
             }
         } catch (error) {
@@ -118,7 +118,7 @@ function Edit_Description() {
     return (
         <div className="max-w-lg mx-auto p-6 mt-6 bg-white shadow-lg rounded-lg border border-gray-200">
             <h2 className="text-3xl font-bold text-center text-yallow_v mb-6">
-                Edit Main Page
+                Edit Description Page
             </h2>
             <form onSubmit={handleSubmit} encType="multipart/form-data">
                 <div className="mb-4">
