@@ -16,7 +16,7 @@ const handle_get_home_data = async (req, res) => {
         const main_page = await Main_page.findOne();
         const faq = await Faq.findAll();
         const services = await Services.findAll();
-        const description = await Description_page.findOne();
+        // const description = await Description_page.findOne();
         const phrase_call = await Phrase_Call.findOne();
         const phrase_contact = await Phrase_Contact.findOne();
         return res.status(200).json({
@@ -25,7 +25,7 @@ const handle_get_home_data = async (req, res) => {
             Main_page: main_page,
             Faq: faq,
             Services: services,
-            Description: description,
+            // Description: description,
             Phrase_Call: phrase_call,
             Phrase_Contact: phrase_contact,
         });
