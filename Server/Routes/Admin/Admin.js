@@ -8,6 +8,8 @@ const About_Edit = require("./Controllers/About_Edit");
 const { Main_page } = require("../../Models/Content/Main_page");
 const { About_page } = require("../../Models/Content/About_page");
 const Admin_midllware = require("../../Middlewares/Admin_middleware");
+const Phrases  = require("./Phrases");
+router.use(Phrases);
 router.get("/Admins", Admin_midllware, async (req, res) => {
     try {
         const admins = await Admins.findAll({
