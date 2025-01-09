@@ -84,6 +84,26 @@ function Laptop() {
                         Active_nav={Active_nav}
                         Icon={null}
                     />
+                    <hr />
+                    <LaptopNavItem
+                        Link="Call_Phrase"
+                        name="Call Phrase"
+                        Active_nav={Active_nav}
+                        Icon={null}
+                    />
+                    <LaptopNavItem
+                        Link="Description"
+                        name="Description"
+                        Active_nav={Active_nav}
+                        Icon={null}
+                    />
+                    <LaptopNavItem
+                        Link="Contact_Phrase"
+                        name="Contact Phrase"
+                        Active_nav={Active_nav}
+                        Icon={null}
+                    />
+                    <hr />
                     <LaptopNavItem
                         Link="Services"
                         name="Services Section"

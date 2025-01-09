@@ -81,6 +81,29 @@ function Mobile_Nav_Items({ MobileNav_Open, Toogle_Menu_Bar }) {
                                 Icon={null}
                                 onClick={Toogle_Menu_Bar}
                             />
+                            <hr />
+                            <Item
+                                Link="Call_Phrase"
+                                name="Call Phrase"
+                                Active_nav={Active_nav}
+                                Icon={null}
+                                onClick={Toogle_Menu_Bar}
+                            />
+                            <Item
+                                Link="Description"
+                                name="Description"
+                                Active_nav={Active_nav}
+                                Icon={null}
+                                onClick={Toogle_Menu_Bar}
+                            />
+                            <Item
+                                Link="Contact_Phrase"
+                                name="Contact Phrase"
+                                Active_nav={Active_nav}
+                                Icon={null}
+                                onClick={Toogle_Menu_Bar}
+                            />
+                            <hr />
                             <Item
                                 Link="Services"
                                 name="Services Section"
