@@ -7,13 +7,14 @@ import About from "./About";
 import Services from "./Services";
 import Faq from "./Faq";
 import Footer from "./Footer";
+import Description from "./Description";
 function Home() {
     const [data, setData] = useState();
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState();
-    // useEffect(() => {
-    //     console.log(data);
-    // }, [data]);
+    useEffect(() => {
+        console.log(data);
+    }, [data]);
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
@@ -56,6 +57,7 @@ function Home() {
             <div>
                 <Main data={data?.Main_page} />
                 <About data={data?.About_page} />
+                <Description data={data?.Description_page} />
                 <div id="ServicesID">
                     <Services data={data?.Services} />
                 </div>

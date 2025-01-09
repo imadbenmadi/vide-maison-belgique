@@ -1,7 +1,7 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../../config/db_connection");
 
-const Main_page = sequelize.define("Main_page", {
+const Phrase_Contact = sequelize.define("Main_page", {
     Text: {
         type: DataTypes.TEXT,
         allowNull: true,
@@ -12,4 +12,4 @@ const Main_page = sequelize.define("Main_page", {
     },
 });
 
-module.exports = { Main_page };
+module.exports = { Phrase_Contact };

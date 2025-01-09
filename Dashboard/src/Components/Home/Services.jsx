@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 
 function Services({ data }) {
     if (!data) return null;
-    useEffect(() => {
-        console.log(data);
-    }, [data]);
+    // useEffect(() => {
+    //     console.log(data);
+    // }, [data]);
 
     return (
         <div className="py-6 px-4 min-h-screen">
