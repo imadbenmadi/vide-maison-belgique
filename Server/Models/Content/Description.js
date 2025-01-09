@@ -1,7 +1,7 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../../config/db_connection");
 
-const Main_page = sequelize.define("Main_page", {
+const Description_page = sequelize.define("Description_page", {
     Title: {
         type: DataTypes.TEXT,
         allowNull: false,
@@ -19,7 +19,6 @@ const Main_page = sequelize.define("Main_page", {
         type: DataTypes.TEXT,
         allowNull: true,
     },
-    
 });
 
-module.exports = { Main_page };
+module.exports = { Description_page };

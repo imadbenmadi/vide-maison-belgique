@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const { About_page } = require("../../../Models/Content/About_page");
 
-const Main_Edit = async (req, res) => {
+const About_Edit = async (req, res) => {
     const { Title, Description, button } = req.body;
 
     if (!Title || !button || !Description) {
@@ -46,4 +46,4 @@ const Main_Edit = async (req, res) => {
     }
 };
 
-module.exports = Main_Edit;
+module.exports = About_Edit;
