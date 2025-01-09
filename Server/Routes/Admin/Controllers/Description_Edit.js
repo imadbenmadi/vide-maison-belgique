@@ -43,15 +43,14 @@ const Description_Edit = async (req, res) => {
 
         await Description_page.destroy({ where: {} });
 
-        const about_page = await Description_page.create({
+        const description_page = await Description_page.create({
             Title,
             Description,
-            button,
             image_link1: images.image1,
             image_link2: images.image2,
         });
 
-        return res.status(200).json({ about_page });
+        return res.status(200).json({ description_page });
     } catch (error) {
         console.error(error);
         return res.status(500).json({ message: "Internal server error." });

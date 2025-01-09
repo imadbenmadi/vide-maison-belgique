@@ -5,6 +5,7 @@ const delete_service = require("./Controllers/service_delete");
 const add_service = require("./Controllers/service_add");
 const Main_Edit = require("./Controllers/Main_Edit");
 const About_Edit = require("./Controllers/About_Edit");
+const Description_Edit = require("./Controllers/Description_Edit");
 const { Main_page } = require("../../Models/Content/Main_page");
 const { About_page } = require("../../Models/Content/About_page");
 const { Description_page } = require("../../Models/Content/Description");
@@ -106,6 +107,14 @@ router.put(
         next();
     },
     About_Edit
+);
+router.put(
+    "/Description_Page",
+    (req, res, next) => {
+        req.body = req.fields;
+        next();
+    },
+    Description_Edit
 );
 
 module.exports = router;
