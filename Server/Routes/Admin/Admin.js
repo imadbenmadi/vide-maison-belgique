@@ -9,6 +9,8 @@ const Description_Edit = require("./Controllers/Description_Edit");
 const { Main_page } = require("../../Models/Content/Main_page");
 const { About_page } = require("../../Models/Content/About_page");
 const { Description_page } = require("../../Models/Content/Description");
+const { Phrase_Call } = require("../../Models/Content/Phrase_Call");
+const { Phrase_Contact } = require("../../Models/Content/Phrase_Contact");
 const Admin_midllware = require("../../Middlewares/Admin_middleware");
 const Phrases = require("./Phrases");
 router.use(Phrases);
@@ -61,6 +63,28 @@ router.get("/Description_Page", async (req, res) => {
             where: {},
         });
         res.status(200).json({ description_page });
+    } catch (err) {
+        console.error("Error fetching Main_page:", err);
+        res.status(500).json({ message: "Internal Server Error" });
+    }
+});
+router.get("/Phrase_Page", async (req, res) => {
+    try {
+        const phrase_page = await Phrase_Call.findOne({
+            where: {},
+        });
+        res.status(200).json({ phrase_page });
+    } catch (err) {
+        console.error("Error fetching Main_page:", err);
+        res.status(500).json({ message: "Internal Server Error" });
+    }
+});
+router.get("/Phrase_Page", async (req, res) => {
+    try {
+        const phrase_page = await Phrase_Contact.findOne({
+            where: {},
+        });
+        res.status(200).json({ phrase_page });
     } catch (err) {
         console.error("Error fetching Main_page:", err);
         res.status(500).json({ message: "Internal Server Error" });
