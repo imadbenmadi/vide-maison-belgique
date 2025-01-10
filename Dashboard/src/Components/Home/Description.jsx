@@ -5,9 +5,12 @@ import Swal from "sweetalert2";
 function Description({ data }) {
     const [image1, setImage1] = useState(null);
     const [image2, setImage2] = useState(null);
-    useEffect(() => {
-        console.log(data);
-    }, [data]);
+    // useEffect(() => {
+    //     console.log(data);
+    // }, [data]);
+    if (!data) {
+        return null;
+    }
 
     // Fetch data from the backend
     const fetchdata = async () => {
@@ -37,7 +40,7 @@ function Description({ data }) {
     }, []);
 
     return (
-        <div className="max-w-7xl mx-auto p-8  rounded-lg shadow-md">
+        <div className="max-w-7xl mx-auto p-8  rounded-lg ">
             {/* Title */}
             {data?.Title && (
                 <h1 className="text-3xl font-bold text-gray-800 mb-6">
