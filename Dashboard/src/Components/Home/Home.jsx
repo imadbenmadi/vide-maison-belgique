@@ -60,9 +60,9 @@ function Home() {
                 <div className=" min-h-screen">
                     <Main data={data?.Main_page} />
                     <About data={data?.About_page} />
-                    <Call_Phrase data={data?.Phrase_page} />
-                    <Description data={data?.Description_page} />
-                    <Contact_Phrase data={data?.Phrase_page} />
+                    <Call_Phrase data={data?.Phrase_Call} />
+                    <Description data={data?.Description} />
+                    <Contact_Phrase data={data?.Phrase_Contact} />
                     <div id="ServicesID">
                         <Services data={data?.Services} />
                     </div>
