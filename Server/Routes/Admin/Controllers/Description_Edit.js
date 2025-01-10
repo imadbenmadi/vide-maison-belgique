@@ -3,113 +3,88 @@ const path = require("path");
 const { v4: uuidv4 } = require("uuid");
 const { Description_page } = require("../../../Models/Content/Description");
 
+const allowedTypes = ["image/jpeg", "image/png", "image/jpg", "image/heic"];
+const allowedExtensions = [".jpeg", ".jpg", ".png", ".heic"];
+const targetDir = path.join(
+    __dirname,
+    "../../../public/Description_page_images"
+);
+
+const ensureDirectoryExists = (dir) => {
+    if (!fs.existsSync(dir)) {
+        fs.mkdirSync(dir, { recursive: true });
+    }
+};
+
+const deleteExistingImage = (imagePath) => {
+    const fullPath = path.join(__dirname, "../../../public", imagePath);
+    if (imagePath && fs.existsSync(fullPath)) {
+        fs.unlinkSync(fullPath);
+    }
+};
+
+const processImage = (image, descriptionPage) => {
+    if (!image?.path) return null;
+
+    const fileExtension = path.extname(image.name).toLowerCase();
+    if (
+        !allowedTypes.includes(image.type) ||
+        !allowedExtensions.includes(fileExtension)
+    ) {
+        throw new Error("Invalid image type or file extension.");
+    }
+
+    const uniqueFilename = `Description_page_Pic-${uuidv4()}${fileExtension}`;
+    const targetPath = path.join(targetDir, uniqueFilename);
+
+    ensureDirectoryExists(targetDir);
+
+    if (descriptionPage.image_link1) {
+        deleteExistingImage(descriptionPage.image_link1);
+    }
+    if (descriptionPage.image_link2) {
+        deleteExistingImage(descriptionPage.image_link2);
+    }
+
+    fs.copyFileSync(image.path, targetPath);
+    fs.unlinkSync(image.path);
+
+    return `/Description_page_images/${uniqueFilename}`;
+};
+
 const Description_Edit = async (req, res) => {
     const { Title, Description } = req.body;
+    const { image1, image2 } = req.files;
 
     if (!Title || !Description) {
         return res.status(400).json({ message: "Missing required fields." });
     }
 
-    const { image1, image2 } = req.files;
-    const allowedTypes = ["image/jpeg", "image/png", "image/jpg", "image/heic"];
-    const allowedExtensions = [".jpeg", ".jpg", ".png", ".heic"];
-    const images = { image1: null, image2: null };
-
-    const processImage = (image, description_page) => {
-        if (!image || !image.path) {
-            return null;
-        }
-        const fileExtension = path.extname(image.name).toLowerCase();
-
-        if (!allowedTypes.includes(image.type)) {
-            throw new Error("Only JPEG, PNG, and JPG images are allowed!");
-        }
-
-        if (!allowedExtensions.includes(fileExtension)) {
-            throw new Error("Invalid file extension.");
-        }
-
-        const uniqueSuffix = `Description_page_Pic-${uuidv4()}${fileExtension}`;
-        const targetDir = path.join(
-            __dirname,
-            "../../../public/Description_page_images"
-        );
-        const targetPath = path.join(targetDir, uniqueSuffix);
-
-        // Ensure target directory exists
-        if (!fs.existsSync(targetDir)) {
-            fs.mkdirSync(targetDir, { recursive: true });
-        }
-        if (
-            description_page.image_link1 &&
-            fs.existsSync(
-                path.join(
-                    __dirname,
-                    "../../../public",
-                    description_page.image_link1
-                )
-            )
-        ) {
-            fs.unlinkSync(
-                path.join(
-                    __dirname,
-                    "../../../public",
-                    description_page.image_link1
-                )
-            );
-        }
-        if (
-            description_page.image_link2 &&
-            fs.existsSync(
-                path.join(
-                    __dirname,
-                    "../../../public",
-                    description_page.image_link2
-                )
-            )
-        ) {
-            fs.unlinkSync(
-                path.join(
-                    __dirname,
-                    "../../../public",
-                    description_page.image_link2
-                )
-            );
-        }
-        fs.copyFileSync(image.path, targetPath);
-        fs.unlinkSync(image.path);
-
-        return `/Description_page_images/${uniqueSuffix}`;
-    };
-
     try {
-        const description_page = await Description_page.findOne();
+        const descriptionPage = await Description_page.findOne();
+        const images = {
+            image1: image1 ? processImage(image1, descriptionPage) : null,
+            image2: image2 ? processImage(image2, descriptionPage) : null,
+        };
 
-        if (image1) images.image1 = processImage(image1, description_page);
-        if (image2) images.image2 = processImage(image2, description_page);
-
-        if (!description_page) {
-            await Description_page.create({
+        if (!descriptionPage) {
+            const newPage = await Description_page.create({
                 Title,
                 Description,
                 image_link1: images.image1,
                 image_link2: images.image2,
             });
-        } else {
-            description_page.Title = Title;
-            description_page.Description = Description;
-
-            if (images.image1) {
-                description_page.image_link1 = images.image1;
-            }
-            if (images.image2) {
-                description_page.image_link2 = images.image2;
-            }
-
-            await description_page.save();
+            return res.status(201).json({ description_page: newPage });
         }
 
-        return res.status(200).json({ description_page });
+        descriptionPage.Title = Title;
+        descriptionPage.Description = Description;
+        if (images.image1) descriptionPage.image_link1 = images.image1;
+        if (images.image2) descriptionPage.image_link2 = images.image2;
+
+        await descriptionPage.save();
+
+        return res.status(200).json({ description_page: descriptionPage });
     } catch (error) {
         console.error(error);
         return res.status(500).json({ message: "Internal server error." });
