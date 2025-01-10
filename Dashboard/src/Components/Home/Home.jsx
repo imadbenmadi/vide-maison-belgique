@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-import dayjs from "dayjs";
 import Main from "./Main";
 import About from "./About";
 import Services from "./Services";
@@ -10,6 +9,7 @@ import Footer from "./Footer";
 import Description from "./Description";
 import Call_Phrase from "./Call_Phrase";
 import Contact_Phrase from "./Contact_Phrase";
+import Phone_Popup from "./Phone_Popup";
 function Home() {
     const [data, setData] = useState();
     const [loading, setLoading] = useState(true);
@@ -57,7 +57,10 @@ function Home() {
     } else {
         return (
             <div>
-                <div className=" min-h-screen">
+                <div className=" min-h-screen relative">
+                    <div className=" fixed bottom-10 right-10 z-50 ">
+                        <Phone_Popup data={data.contact_informations} />
+                    </div>
                     <Main data={data?.Main_page} />
                     <About data={data?.About_page} />
                     <Call_Phrase data={data?.Phrase_Call} />
@@ -69,7 +72,7 @@ function Home() {
                     <Faq data={data?.Faq} />
                 </div>
 
-                <Footer data={data?.Contact_informations} />
+                <Footer data={data?.contact_informations} />
             </div>
         );
     }
