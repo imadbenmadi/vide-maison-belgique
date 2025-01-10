@@ -9,7 +9,7 @@ function Contact_Phrase() {
     });
 
     useEffect(() => {
-        // Fetch the existing phrase_page page data
+        // Fetch the existing phrase page data
         const fetchData = async () => {
             try {
                 const response = await axios.get(
@@ -70,7 +70,7 @@ function Contact_Phrase() {
             Swal.fire({
                 icon: "error",
                 title: "Error",
-                text: "Failed to update phrase_page page.",
+                text: "Failed to update phrase page.",
             });
         }
     };
