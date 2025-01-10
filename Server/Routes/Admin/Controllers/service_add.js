@@ -26,7 +26,7 @@ const add_service = async (req, res) => {
             throw new Error("Invalid file extension");
         }
         uniqueSuffix = `Services_Pic-${Date.now()}${fileExtension}`;
-        const targetPath = path.join("public/services_images/", uniqueSuffix);
+        const targetPath = path.join("/services_images/", uniqueSuffix);
         fs.copyFileSync(image.path, targetPath);
         fs.unlinkSync(image.path);
     }

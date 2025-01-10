@@ -13,9 +13,7 @@ function Edit_Description() {
     const [image2, setImage2] = useState(null);
     const [imagePreview1, setImagePreview1] = useState(null);
     const [imagePreview2, setImagePreview2] = useState(null);
-    useEffect(() => {
-        console.log("new form data be like : ", formData);
-    }, [formData]);
+   
     useEffect(() => {
         // Fetch the existing description page data
         const fetchData = async () => {
@@ -26,7 +24,6 @@ function Edit_Description() {
                         withCredentials: true,
                     }
                 );
-                console.log(response.data);
 
                 const { Title, Description, image_link1, image_link2 } =
                     response.data.description_page; // Access description_page object correctly

@@ -9,6 +9,7 @@ const About_Edit = async (req, res) => {
         return res.status(400).json({ message: "Missing required fields." });
     }
     let uniqueSuffix = null;
+    let targetPath = null;
     const { image } = req.files;
     if (image) {
         const allowedTypes = [
@@ -26,18 +27,30 @@ const About_Edit = async (req, res) => {
             throw new Error("Invalid file extension");
         }
         uniqueSuffix = `About_page_Pic-${Date.now()}${fileExtension}`;
-        const targetPath = path.join("public/About_page_images/", uniqueSuffix);
+        targetPath = path.join("/About_page_images/", uniqueSuffix);
         fs.copyFileSync(image.path, targetPath);
         fs.unlinkSync(image.path);
     }
     try {
-        await About_page.destroy({ where: {} });
-        const about_page = await About_page.create({
-            Title,
-            Description,
-            button,
-            image_link: image ? `/About_page_images/${uniqueSuffix}` : null,
-        });
+        const about_page = await About_page.findOne();
+        if (!about_page)
+            await About_page.create({
+                Title,
+                Description,
+                button,
+                image_link: targetPath,
+            });
+        else {
+            about_page.Title = Title ? Title : about_page.Title;
+            about_page.Description = Description
+                ? Description
+                : about_page.Description;
+            about_page.button = button ? button : about_page.button;
+            about_page.image_link = targetPath
+                ? targetPath
+                : about_page.image_link;
+            await about_page.save();
+        }
 
         return res.status(200).json({ about_page });
     } catch (error) {

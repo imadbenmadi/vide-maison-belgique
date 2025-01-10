@@ -31,7 +31,7 @@ const Description_Edit = async (req, res) => {
 
         const uniqueSuffix = `Description_page_Pic-${Date.now()}${fileExtension}`;
         const targetPath = path.join(
-            "public/Description_page_images/",
+            "/Description_page_images/",
             uniqueSuffix
         );
 

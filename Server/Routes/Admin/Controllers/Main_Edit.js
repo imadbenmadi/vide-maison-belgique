@@ -26,18 +26,31 @@ const Main_Edit = async (req, res) => {
             throw new Error("Invalid file extension");
         }
         uniqueSuffix = `Main_page_Pic-${Date.now()}${fileExtension}`;
-        const targetPath = path.join("public/Main_page_images/", uniqueSuffix);
+        const targetPath = path.join("/Main_page_images/", uniqueSuffix);
         fs.copyFileSync(image.path, targetPath);
         fs.unlinkSync(image.path);
     }
     try {
-        await Main_page.destroy({ where: {} });
-        const main_page = await Main_page.create({
-            Title,
-            Description,
-            button,
-            image_link: image ? `/Main_page_images/${uniqueSuffix}` : null,
-        });
+        const main_page = await Main_page.findOne();
+
+        if (!main_page)
+            await Main_page.create({
+                Title,
+                Description,
+                button,
+                image_link: uniqueSuffix,
+            });
+        else {
+            main_page.Title = Title ? Title : main_page.Title;
+            main_page.Description = Description
+                ? Description
+                : main_page.Description;
+            main_page.button = button ? button : main_page.button;
+            main_page.image_link = uniqueSuffix
+                ? uniqueSuffix
+                : main_page.image_link;
+            await main_page.save();
+        }
 
         return res.status(200).json({ main_page });
     } catch (error) {

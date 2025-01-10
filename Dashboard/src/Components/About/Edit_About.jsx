@@ -7,6 +7,7 @@ function EditMainPage() {
         Title: "",
         Description: "",
         button: "",
+        image_link: "",
     });
     const [image, setImage] = useState(null);
     const [imagePreview, setImagePreview] = useState(null);
@@ -30,6 +31,7 @@ function EditMainPage() {
                     Title: Title || "", // Ensure default empty string
                     Description: Description || "",
                     button: button || "",
+                    image_link: image_link || "",
                 });
                 setImagePreview(
                     image_link ? `http://localhost:3000${image_link}` : null
@@ -45,7 +47,6 @@ function EditMainPage() {
 
         fetchData();
     }, []);
-
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -73,7 +74,7 @@ function EditMainPage() {
 
         if (image) {
             data.append("image", image);
-        }
+        } else data.append("image", formData.image_link);
 
         try {
             const response = await axios.put(
