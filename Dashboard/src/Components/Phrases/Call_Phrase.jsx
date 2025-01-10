@@ -9,11 +9,11 @@ function Call_Phrase() {
     });
 
     useEffect(() => {
-        // Fetch the existing Phrase_Page page data
+        // Fetch the existing Call_Phrase page data
         const fetchData = async () => {
             try {
                 const response = await axios.get(
-                    "http://localhost:3000/Admin/Phrase_Page",
+                    "http://localhost:3000/Admin/Phrase_Call",
                     {
                         withCredentials: true,
                     }
@@ -52,13 +52,14 @@ function Call_Phrase() {
 
         try {
             const response = await axios.put(
-                "http://localhost:3000/Admin/Phrase_Page",
+                "http://localhost:3000/Admin/Phrase_Call",
                 data,
                 {
                     withCredentials: true,
                 }
             );
-
+            console.log(response.data);
+            
             if (response.status === 200) {
                 Swal.fire({
                     icon: "success",

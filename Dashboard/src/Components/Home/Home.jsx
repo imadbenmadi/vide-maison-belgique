@@ -8,6 +8,8 @@ import Services from "./Services";
 import Faq from "./Faq";
 import Footer from "./Footer";
 import Description from "./Description";
+import Call_Phrase from "./Call_Phrase";
+import Contact_Phrase from "./Contact_Phrase";
 function Home() {
     const [data, setData] = useState();
     const [loading, setLoading] = useState(true);
@@ -57,7 +59,9 @@ function Home() {
             <div>
                 <Main data={data?.Main_page} />
                 <About data={data?.About_page} />
+                <Call_Phrase data={data?.Phrase_page} />
                 <Description data={data?.Description_page} />
+                <Contact_Phrase data={data?.Phrase_page} />
                 <div id="ServicesID">
                     <Services data={data?.Services} />
                 </div>

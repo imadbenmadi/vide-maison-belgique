@@ -1,7 +1,7 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../../config/db_connection");
 
-const Phrase_Contact = sequelize.define("Main_page", {
+const Phrase_Contact = sequelize.define("Phrase_Contact", {
     Text: {
         type: DataTypes.TEXT,
         allowNull: true,

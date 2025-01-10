@@ -68,7 +68,7 @@ router.get("/Description_Page", async (req, res) => {
         res.status(500).json({ message: "Internal Server Error" });
     }
 });
-router.get("/Phrase_Page", async (req, res) => {
+router.get("/Phrase_Call", async (req, res) => {
     try {
         const phrase_page = await Phrase_Call.findOne({
             where: {},
@@ -79,7 +79,7 @@ router.get("/Phrase_Page", async (req, res) => {
         res.status(500).json({ message: "Internal Server Error" });
     }
 });
-router.get("/Phrase_Page", async (req, res) => {
+router.get("/Phrase_Contact", async (req, res) => {
     try {
         const phrase_page = await Phrase_Contact.findOne({
             where: {},
@@ -140,5 +140,5 @@ router.put(
     },
     Description_Edit
 );
-
+    
 module.exports = router;
