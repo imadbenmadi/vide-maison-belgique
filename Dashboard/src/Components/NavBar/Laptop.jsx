@@ -84,7 +84,7 @@ function Laptop() {
                         Active_nav={Active_nav}
                         Icon={null}
                     />
-                    <hr />
+                    <hr className=" my-2" />
                     <LaptopNavItem
                         Link="Call_Phrase"
                         name="Call Phrase"
@@ -103,7 +103,7 @@ function Laptop() {
                         Active_nav={Active_nav}
                         Icon={null}
                     />
-                    <hr />
+                    <hr className=" my-2" />
                     <LaptopNavItem
                         Link="Services"
                         name="Services Section"

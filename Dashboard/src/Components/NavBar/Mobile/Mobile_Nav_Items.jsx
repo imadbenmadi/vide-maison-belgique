@@ -81,7 +81,7 @@ function Mobile_Nav_Items({ MobileNav_Open, Toogle_Menu_Bar }) {
                                 Icon={null}
                                 onClick={Toogle_Menu_Bar}
                             />
-                            <hr />
+                            <hr className=" my-2" />
                             <Item
                                 Link="Call_Phrase"
                                 name="Call Phrase"
@@ -103,7 +103,7 @@ function Mobile_Nav_Items({ MobileNav_Open, Toogle_Menu_Bar }) {
                                 Icon={null}
                                 onClick={Toogle_Menu_Bar}
                             />
-                            <hr />
+                            <hr className=" my-2" />
                             <Item
                                 Link="Services"
                                 name="Services Section"
