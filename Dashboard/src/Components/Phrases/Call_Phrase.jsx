@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 
 function Call_Phrase() {
     const [formData, setFormData] = useState({
-        Title: "",
+        Text: "",
         button: "",
     });
 
@@ -20,10 +20,10 @@ function Call_Phrase() {
                 );
                 console.log(response.data);
 
-                const { Title, button } = response.data.phrase_page; // Access Phrase_page object correctly
+                const { Text, button } = response.data.phrase_page; // Access Phrase_page object correctly
 
                 setFormData({
-                    Title: Title || "", // Ensure default empty string
+                    Text: Text || "", // Ensure default empty string
                     button: button || "",
                 });
             } catch (error) {
@@ -46,17 +46,11 @@ function Call_Phrase() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const data = new FormData();
-        data.append("Title", formData.Title);
-        data.append("button", formData.button);
-
         try {
-            console.log("formData", formData);
-
             const response = await axios.put(
                 "http://localhost:3000/Admin/Phrase_Call",
                 // data,
-                { Title: formData?.Title, button: formData?.button },
+                { Text: formData?.Text, button: formData?.button },
                 {
                     withCredentials: true,
                 }
@@ -88,12 +82,12 @@ function Call_Phrase() {
             <form onSubmit={handleSubmit} encType="multipart/form-data">
                 <div className="mb-4">
                     <label className="block text-gray-700 font-medium mb-2">
-                        Title
+                        Text
                     </label>
                     <input
                         type="text"
-                        name="Title"
-                        value={formData.Title}
+                        name="Text"
+                        value={formData.Text}
                         onChange={handleInputChange}
                         className="w-full p-2 border rounded"
                     />

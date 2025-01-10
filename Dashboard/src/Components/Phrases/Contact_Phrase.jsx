@@ -4,12 +4,12 @@ import Swal from "sweetalert2";
 
 function Contact_Phrase() {
     const [formData, setFormData] = useState({
-        Title: "",
+        Text: "",
         button: "",
     });
 
     useEffect(() => {
-        // Fetch the existing phrase page data
+        // Fetch the existing Contact_Phrase page data
         const fetchData = async () => {
             try {
                 const response = await axios.get(
@@ -18,19 +18,19 @@ function Contact_Phrase() {
                         withCredentials: true,
                     }
                 );
-                console.log(response.data.phrase_page);
+                console.log(response.data);
 
-                const { Title, button } = response.data.phrase_page; // Access phrase_page_page object correctly
+                const { Text, button } = response.data.phrase_page; // Access Phrase_page object correctly
 
                 setFormData({
-                    Title: Title || "", // Ensure default empty string
+                    Text: Text || "", // Ensure default empty string
                     button: button || "",
                 });
             } catch (error) {
                 Swal.fire({
                     icon: "error",
                     title: "Error",
-                    text: "Failed to load phrase page data.",
+                    text: "Failed to load Phrase page data.",
                 });
             }
         };
@@ -46,18 +46,16 @@ function Contact_Phrase() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const data = new FormData();
-        data.append("Title", formData.Title);
-        data.append("button", formData.button);
-
         try {
             const response = await axios.put(
                 "http://localhost:3000/Admin/Phrase_Contact",
-                data,
+                // data,
+                { Text: formData?.Text, button: formData?.button },
                 {
                     withCredentials: true,
                 }
             );
+            console.log(response.data);
 
             if (response.status === 200) {
                 Swal.fire({
@@ -67,10 +65,11 @@ function Contact_Phrase() {
                 });
             }
         } catch (error) {
+            console.error(error);
             Swal.fire({
                 icon: "error",
                 title: "Error",
-                text: "Failed to update phrase page.",
+                text: "Failed to update Phrase page.",
             });
         }
     };
@@ -83,12 +82,12 @@ function Contact_Phrase() {
             <form onSubmit={handleSubmit} encType="multipart/form-data">
                 <div className="mb-4">
                     <label className="block text-gray-700 font-medium mb-2">
-                        Title
+                        Text
                     </label>
                     <input
                         type="text"
-                        name="Title"
-                        value={formData.Title}
+                        name="Text"
+                        value={formData.Text}
                         onChange={handleInputChange}
                         className="w-full p-2 border rounded"
                     />

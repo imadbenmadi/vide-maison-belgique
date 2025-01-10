@@ -96,6 +96,10 @@ router.get("/Phrase_Contact", async (req, res) => {
 router.put("/Phrase_Contact", async (req, res) => {
     const { Text, button } = req.body;
 
+    if (!Text || !button)
+        return res
+            .status(400)
+            .json({ message: "Text and button are required" });
     try {
         const phrase_in_db = await Phrase_Contact.findOne({});
 
@@ -109,9 +113,8 @@ router.put("/Phrase_Contact", async (req, res) => {
             phrase_in_db.button = button ? button : phrase_in_db.button;
             await phrase_in_db.save();
         }
-
         res.status(200).json({
-            message: "phrase created successfully",
+            message: "phrase updated successfully",
         });
     } catch (err) {
         console.error("Error fetching Messages:", err);
@@ -120,7 +123,10 @@ router.put("/Phrase_Contact", async (req, res) => {
 });
 router.put("/Phrase_Call", async (req, res) => {
     const { Text, button } = req.body;
-
+    if (!Text || !button)
+        return res
+            .status(400)
+            .json({ message: "Text and button are required" });
     try {
         const phrase_in_db = await Phrase_Call.findOne({});
 
