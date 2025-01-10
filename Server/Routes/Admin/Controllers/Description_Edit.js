@@ -15,7 +15,7 @@ const Description_Edit = async (req, res) => {
     const allowedExtensions = [".jpeg", ".jpg", ".png", ".heic"];
     const images = { image1: null, image2: null };
 
-    const processImage = (image) => {
+    const processImage = (image, description_page) => {
         if (!image || !image.path) {
             return null;
         }
@@ -40,7 +40,16 @@ const Description_Edit = async (req, res) => {
         if (!fs.existsSync(targetDir)) {
             fs.mkdirSync(targetDir, { recursive: true });
         }
-
+        if (
+            description_page.image_link &&
+            fs.existsSync(
+                path.join(__dirname, "../../../public", description_page.image_link)
+            )
+        ) {
+            fs.unlinkSync(
+                path.join(__dirname, "../../../public", description_page.image_link)
+            );
+        }
         fs.copyFileSync(image.path, targetPath);
         fs.unlinkSync(image.path);
 
@@ -48,10 +57,11 @@ const Description_Edit = async (req, res) => {
     };
 
     try {
-        if (image1) images.image1 = processImage(image1);
-        if (image2) images.image2 = processImage(image2);
-
         const description_page = await Description_page.findOne();
+
+        if (image1) images.image1 = processImage(image1, description_page);
+        if (image2) images.image2 = processImage(image2, description_page);
+
         if (!description_page) {
             await Description_page.create({
                 Title,

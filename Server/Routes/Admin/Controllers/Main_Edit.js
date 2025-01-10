@@ -12,7 +12,7 @@ const Main_Edit = async (req, res) => {
     const { image } = req.files;
     let imageLink = null;
 
-    const processImage = (image) => {
+    const processImage = (image, main_page) => {
         if (!image || !image.path) {
             return null;
         }
@@ -44,7 +44,16 @@ const Main_Edit = async (req, res) => {
         if (!fs.existsSync(targetDir)) {
             fs.mkdirSync(targetDir, { recursive: true });
         }
-
+        if (
+            main_page.image_link &&
+            fs.existsSync(
+                path.join(__dirname, "../../../public", main_page.image_link)
+            )
+        ) {
+            fs.unlinkSync(
+                path.join(__dirname, "../../../public", main_page.image_link)
+            );
+        }
         fs.copyFileSync(image.path, targetPath);
         fs.unlinkSync(image.path);
 
@@ -52,11 +61,11 @@ const Main_Edit = async (req, res) => {
     };
 
     try {
+        const main_page = await Main_page.findOne();
+
         if (image) {
             imageLink = processImage(image);
         }
-
-        const main_page = await Main_page.findOne();
 
         if (!main_page) {
             await Main_page.create({
