@@ -57,15 +57,18 @@ function Home() {
     } else {
         return (
             <div>
-                <Main data={data?.Main_page} />
-                <About data={data?.About_page} />
-                <Call_Phrase data={data?.Phrase_page} />
-                <Description data={data?.Description_page} />
-                <Contact_Phrase data={data?.Phrase_page} />
-                <div id="ServicesID">
-                    <Services data={data?.Services} />
+                <div className=" min-h-screen">
+                    <Main data={data?.Main_page} />
+                    <About data={data?.About_page} />
+                    <Call_Phrase data={data?.Phrase_page} />
+                    <Description data={data?.Description_page} />
+                    <Contact_Phrase data={data?.Phrase_page} />
+                    <div id="ServicesID">
+                        <Services data={data?.Services} />
+                    </div>
+                    <Faq data={data?.Faq} />
                 </div>
-                <Faq data={data?.Faq} />
+
                 <Footer data={data?.Contact_informations} />
             </div>
         );
