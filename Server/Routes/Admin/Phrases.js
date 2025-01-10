@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const adminMiddleware = require("../../Middlewares/Admin_middleware");
+const adminMiddleware = require("../../Middlewares/Admin_middleware_New");
 const { Phrase_Call } = require("../../Models/Content/Phrase_Call");
 const { Phrase_Contact } = require("../../Models/Content/Phrase_Contact");
 

@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const adminMiddleware = require("../../Middlewares/Admin_middleware");
+const adminMiddleware = require("../../Middlewares/Admin_middleware_New");
 const { Demands } = require("../../Models/Demands");
 
 router.get("/", adminMiddleware, async (req, res) => {

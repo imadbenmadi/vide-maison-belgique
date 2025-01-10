@@ -18,7 +18,7 @@ function Contact_Phrase() {
                         withCredentials: true,
                     }
                 );
-                console.log(response.data);
+                console.log(response.data.phrase_page);
 
                 const { Title, button } = response.data.phrase_page; // Access phrase_page_page object correctly
 

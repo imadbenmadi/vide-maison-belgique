@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const adminMiddleware = require("../../Middlewares/Admin_middleware");
+const adminMiddleware = require("../../Middlewares/Admin_middleware_New");
 const { Contact_informations } = require("../../Models/Contact_informations");
 
 router.get("/", adminMiddleware, async (req, res) => {
@@ -43,10 +43,11 @@ router.put("/", adminMiddleware, async (req, res) => {
             // );
             contact_info.phone = phone ? phone : contact_info.phone;
             contact_info.email = email ? email : contact_info.email;
-            contact_info.instagram = instagram ? instagram : contact_info.instagram;
+            contact_info.instagram = instagram
+                ? instagram
+                : contact_info.instagram;
             contact_info.facebook = facebook ? facebook : contact_info.facebook;
             await contact_info.save();
-            
         }
 
         res.status(200).json({ contact_info: "contact_info updated" });

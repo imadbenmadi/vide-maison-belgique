@@ -58,8 +58,8 @@ function Call_Phrase() {
                     withCredentials: true,
                 }
             );
-            console.log(response.data);
-            
+            console.log(response.data.phrase_page);
+
             if (response.status === 200) {
                 Swal.fire({
                     icon: "success",
@@ -68,6 +68,7 @@ function Call_Phrase() {
                 });
             }
         } catch (error) {
+            console.error(error);
             Swal.fire({
                 icon: "error",
                 title: "Error",
