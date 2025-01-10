@@ -41,13 +41,39 @@ const Description_Edit = async (req, res) => {
             fs.mkdirSync(targetDir, { recursive: true });
         }
         if (
-            description_page.image_link &&
+            description_page.image_link1 &&
             fs.existsSync(
-                path.join(__dirname, "../../../public", description_page.image_link)
+                path.join(
+                    __dirname,
+                    "../../../public",
+                    description_page.image_link1
+                )
             )
         ) {
             fs.unlinkSync(
-                path.join(__dirname, "../../../public", description_page.image_link)
+                path.join(
+                    __dirname,
+                    "../../../public",
+                    description_page.image_link1
+                )
+            );
+        }
+        if (
+            description_page.image_link2 &&
+            fs.existsSync(
+                path.join(
+                    __dirname,
+                    "../../../public",
+                    description_page.image_link2
+                )
+            )
+        ) {
+            fs.unlinkSync(
+                path.join(
+                    __dirname,
+                    "../../../public",
+                    description_page.image_link2
+                )
             );
         }
         fs.copyFileSync(image.path, targetPath);
