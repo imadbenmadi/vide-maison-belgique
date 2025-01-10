@@ -6,12 +6,16 @@ function Edit_Description() {
     const [formData, setFormData] = useState({
         Title: "",
         Description: "",
+        image_link1: "",
+        image_link2: "",
     });
     const [image1, setImage1] = useState(null);
     const [image2, setImage2] = useState(null);
     const [imagePreview1, setImagePreview1] = useState(null);
     const [imagePreview2, setImagePreview2] = useState(null);
-
+    useEffect(() => {
+        console.log("new form data be like : ", formData);
+    }, [formData]);
     useEffect(() => {
         // Fetch the existing description page data
         const fetchData = async () => {
@@ -26,11 +30,15 @@ function Edit_Description() {
 
                 const { Title, Description, image_link1, image_link2 } =
                     response.data.description_page; // Access description_page object correctly
+                console.log(response.data.description_page);
 
                 setFormData({
                     Title: Title || "", // Ensure default empty string
                     Description: Description || "",
+                    image_link1: image_link1 || "",
+                    image_link2: image_link2 || "",
                 });
+
                 setImagePreview1(
                     image_link1 ? `http://localhost:3000${image_link1}` : null
                 );
@@ -75,7 +83,6 @@ function Edit_Description() {
             reader.readAsDataURL(file);
         }
     };
-
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -83,12 +90,19 @@ function Edit_Description() {
         data.append("Title", formData.Title);
         data.append("Description", formData.Description);
 
-        if (image1) {
+        // Send new images only if they are selected
+        if (image1 !== null) {
             data.append("image1", image1);
+        } else {
+            data.append("image1", formData.image_link1); // Send existing link if no new image
         }
-        if (image2) {
+
+        if (image2 !== null) {
             data.append("image2", image2);
+        } else {
+            data.append("image2", formData.image_link2); // Send existing link if no new image
         }
+        // console.log(data);
 
         try {
             const response = await axios.put(

@@ -10,6 +10,10 @@ const Description_Edit = async (req, res) => {
     }
 
     const { image1, image2 } = req.files;
+    console.log(req.files?.image1?.path);
+    console.log(req.files?.image2?.path);
+    console.log("________________");
+
     const allowedTypes = ["image/jpeg", "image/png", "image/jpg", "image/heic"];
     const allowedExtensions = [".jpeg", ".jpg", ".png", ".heic"];
     const images = { image1: null, image2: null };
@@ -41,14 +45,26 @@ const Description_Edit = async (req, res) => {
         if (image1) images.image1 = processImage(image1);
         if (image2) images.image2 = processImage(image2);
 
-        await Description_page.destroy({ where: {} });
-
-        const description_page = await Description_page.create({
-            Title,
-            Description,
-            image_link1: images.image1,
-            image_link2: images.image2,
-        });
+        const description_page = await Description_page.findOne();
+        if (!description_page) {
+            await Description_page.create({
+                Title,
+                Description,
+                image_link1: images.image1,
+                image_link2: images.image2,
+            });
+        } else {
+            description_page.Title = Title ? Title : description_page.Title;
+            description_page.Description = Description
+                ? Description
+                : description_page.Description;
+            description_page.image_link1 = images.image1
+                ? images.image1
+                : description_page.image_link1;
+            description_page.image_link2 = images.image2
+                ? images.image2
+                : description_page.image_link2;
+        }
 
         return res.status(200).json({ description_page });
     } catch (error) {
