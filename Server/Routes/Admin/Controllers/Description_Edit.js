@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+const { v4: uuidv4 } = require("uuid");
 const { Description_page } = require("../../../Models/Content/Description");
 
 const Description_Edit = async (req, res) => {
@@ -10,15 +11,14 @@ const Description_Edit = async (req, res) => {
     }
 
     const { image1, image2 } = req.files;
-    console.log(req.files?.image1?.path);
-    console.log(req.files?.image2?.path);
-    console.log("________________");
-
     const allowedTypes = ["image/jpeg", "image/png", "image/jpg", "image/heic"];
     const allowedExtensions = [".jpeg", ".jpg", ".png", ".heic"];
     const images = { image1: null, image2: null };
 
     const processImage = (image) => {
+        if (!image || !image.path) {
+            return null;
+        }
         const fileExtension = path.extname(image.name).toLowerCase();
 
         if (!allowedTypes.includes(image.type)) {
@@ -29,11 +29,17 @@ const Description_Edit = async (req, res) => {
             throw new Error("Invalid file extension.");
         }
 
-        const uniqueSuffix = `Description_page_Pic-${Date.now()}${fileExtension}`;
-        const targetPath = path.join(
-            "/Description_page_images/",
-            uniqueSuffix
+        const uniqueSuffix = `Description_page_Pic-${uuidv4()}${fileExtension}`;
+        const targetDir = path.join(
+            __dirname,
+            "../../../public/Description_page_images"
         );
+        const targetPath = path.join(targetDir, uniqueSuffix);
+
+        // Ensure target directory exists
+        if (!fs.existsSync(targetDir)) {
+            fs.mkdirSync(targetDir, { recursive: true });
+        }
 
         fs.copyFileSync(image.path, targetPath);
         fs.unlinkSync(image.path);
@@ -54,16 +60,17 @@ const Description_Edit = async (req, res) => {
                 image_link2: images.image2,
             });
         } else {
-            description_page.Title = Title ? Title : description_page.Title;
-            description_page.Description = Description
-                ? Description
-                : description_page.Description;
-            description_page.image_link1 = images.image1
-                ? images.image1
-                : description_page.image_link1;
-            description_page.image_link2 = images.image2
-                ? images.image2
-                : description_page.image_link2;
+            description_page.Title = Title;
+            description_page.Description = Description;
+
+            if (images.image1) {
+                description_page.image_link1 = images.image1;
+            }
+            if (images.image2) {
+                description_page.image_link2 = images.image2;
+            }
+
+            await description_page.save();
         }
 
         return res.status(200).json({ description_page });

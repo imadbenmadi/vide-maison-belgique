@@ -8,47 +8,69 @@ const About_Edit = async (req, res) => {
     if (!Title || !button || !Description) {
         return res.status(400).json({ message: "Missing required fields." });
     }
-    let uniqueSuffix = null;
-    let targetPath = null;
+
     const { image } = req.files;
-    if (image) {
+    let imageLink = null;
+
+    const processImage = (image) => {
+        if (!image || !image.path) {
+            return null;
+        }
+
         const allowedTypes = [
             "image/jpeg",
             "image/png",
             "image/jpg",
             "image/heic",
         ];
+        const allowedExtensions = [".jpeg", ".jpg", ".png", ".heic"];
+        const fileExtension = path.extname(image.name).toLowerCase();
+
         if (!allowedTypes.includes(image.type)) {
-            throw new Error("Only JPEG and PNG and JPG images are allowed!");
+            throw new Error("Only JPEG, PNG, and JPG images are allowed!");
         }
 
-        const fileExtension = path.extname(image.name).toLocaleLowerCase();
-        if (![".jpeg", ".jpg", ".png", ".heic"].includes(fileExtension)) {
-            throw new Error("Invalid file extension");
+        if (!allowedExtensions.includes(fileExtension)) {
+            throw new Error("Invalid file extension.");
         }
-        uniqueSuffix = `About_page_Pic-${Date.now()}${fileExtension}`;
-        targetPath = path.join("/About_page_images/", uniqueSuffix);
+
+        const uniqueSuffix = `About_page_Pic-${Date.now()}${fileExtension}`;
+        const targetDir = path.join(
+            __dirname,
+            "../../../public/about_page_images"
+        );
+        const targetPath = path.join(targetDir, uniqueSuffix);
+
+        // Ensure target directory exists
+        if (!fs.existsSync(targetDir)) {
+            fs.mkdirSync(targetDir, { recursive: true });
+        }
+
         fs.copyFileSync(image.path, targetPath);
         fs.unlinkSync(image.path);
-    }
+
+        return `/about_page_images/${uniqueSuffix}`;
+    };
+
     try {
+        if (image) {
+            imageLink = processImage(image);
+        }
+
         const about_page = await About_page.findOne();
-        if (!about_page)
+
+        if (!about_page) {
             await About_page.create({
                 Title,
                 Description,
                 button,
-                image_link: targetPath,
+                image_link: imageLink, // Save relative path
             });
-        else {
-            about_page.Title = Title ? Title : about_page.Title;
-            about_page.Description = Description
-                ? Description
-                : about_page.Description;
-            about_page.button = button ? button : about_page.button;
-            about_page.image_link = targetPath
-                ? targetPath
-                : about_page.image_link;
+        } else {
+            about_page.Title = Title || about_page.Title;
+            about_page.Description = Description || about_page.Description;
+            about_page.button = button || about_page.button;
+            about_page.image_link = imageLink || about_page.image_link;
             await about_page.save();
         }
 

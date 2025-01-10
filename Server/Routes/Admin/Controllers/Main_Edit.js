@@ -8,47 +8,68 @@ const Main_Edit = async (req, res) => {
     if (!Title || !Description || !button) {
         return res.status(400).json({ message: "Missing required fields." });
     }
-    let uniqueSuffix = null;
+
     const { image } = req.files;
-    if (image) {
+    let imageLink = null;
+
+    const processImage = (image) => {
+        if (!image || !image.path) {
+            return null;
+        }
         const allowedTypes = [
             "image/jpeg",
             "image/png",
             "image/jpg",
             "image/heic",
         ];
+        const allowedExtensions = [".jpeg", ".jpg", ".png", ".heic"];
+        const fileExtension = path.extname(image.name).toLowerCase();
+
         if (!allowedTypes.includes(image.type)) {
-            throw new Error("Only JPEG and PNG and JPG images are allowed!");
+            throw new Error("Only JPEG, PNG, and JPG images are allowed!");
         }
 
-        const fileExtension = path.extname(image.name).toLocaleLowerCase();
-        if (![".jpeg", ".jpg", ".png", ".heic"].includes(fileExtension)) {
-            throw new Error("Invalid file extension");
+        if (!allowedExtensions.includes(fileExtension)) {
+            throw new Error("Invalid file extension.");
         }
-        uniqueSuffix = `Main_page_Pic-${Date.now()}${fileExtension}`;
-        const targetPath = path.join("/Main_page_images/", uniqueSuffix);
+
+        const uniqueSuffix = `Main_page_Pic-${Date.now()}${fileExtension}`;
+        const targetDir = path.join(
+            __dirname,
+            "../../../public/main_page_images"
+        );
+        const targetPath = path.join(targetDir, uniqueSuffix);
+
+        // Ensure target directory exists
+        if (!fs.existsSync(targetDir)) {
+            fs.mkdirSync(targetDir, { recursive: true });
+        }
+
         fs.copyFileSync(image.path, targetPath);
         fs.unlinkSync(image.path);
-    }
+
+        return `/main_page_images/${uniqueSuffix}`;
+    };
+
     try {
+        if (image) {
+            imageLink = processImage(image);
+        }
+
         const main_page = await Main_page.findOne();
 
-        if (!main_page)
+        if (!main_page) {
             await Main_page.create({
                 Title,
                 Description,
                 button,
-                image_link: uniqueSuffix,
+                image_link: imageLink,
             });
-        else {
-            main_page.Title = Title ? Title : main_page.Title;
-            main_page.Description = Description
-                ? Description
-                : main_page.Description;
-            main_page.button = button ? button : main_page.button;
-            main_page.image_link = uniqueSuffix
-                ? uniqueSuffix
-                : main_page.image_link;
+        } else {
+            main_page.Title = Title || main_page.Title;
+            main_page.Description = Description || main_page.Description;
+            main_page.button = button || main_page.button;
+            main_page.image_link = imageLink || main_page.image_link;
             await main_page.save();
         }
 

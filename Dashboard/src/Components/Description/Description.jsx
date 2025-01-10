@@ -13,7 +13,8 @@ function Edit_Description() {
     const [image2, setImage2] = useState(null);
     const [imagePreview1, setImagePreview1] = useState(null);
     const [imagePreview2, setImagePreview2] = useState(null);
-   
+    
+        
     useEffect(() => {
         // Fetch the existing description page data
         const fetchData = async () => {
