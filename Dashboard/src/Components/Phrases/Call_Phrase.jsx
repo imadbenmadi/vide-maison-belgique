@@ -51,14 +51,17 @@ function Call_Phrase() {
         data.append("button", formData.button);
 
         try {
+            console.log("formData", formData);
+
             const response = await axios.put(
                 "http://localhost:3000/Admin/Phrase_Call",
-                data,
+                // data,
+                { Title: formData?.Title, button: formData?.button },
                 {
                     withCredentials: true,
                 }
             );
-            console.log(response.data.phrase_page);
+            console.log(response.data);
 
             if (response.status === 200) {
                 Swal.fire({
