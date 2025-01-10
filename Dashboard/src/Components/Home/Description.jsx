@@ -4,21 +4,34 @@ import Swal from "sweetalert2";
 function Description({ data }) {
     const [image1, setImage1] = useState(null);
     const [image2, setImage2] = useState(null);
+    const fallbackImage = "/Image-not-found.png"; // Path to your fallback image
 
     useEffect(() => {
         if (!data) return;
+
+        const loadImage = (src, setImage) => {
+            const img = new Image();
+            img.src = src;
+            img.onload = () => setImage(src); // Successfully loaded
+            img.onerror = () => setImage(fallbackImage); // Error occurred
+        };
 
         const fetchData = async () => {
             try {
                 const { image_link1, image_link2 } = data;
 
-                // Update state with fetched data
-                setImage1(
-                    image_link1 ? `http://localhost:3000${image_link1}` : null
-                );
-                setImage2(
-                    image_link2 ? `http://localhost:3000${image_link2}` : null
-                );
+                // Preload images with fallback
+                if (image_link1) {
+                    loadImage(`http://localhost:3000${image_link1}`, setImage1);
+                } else {
+                    setImage1(fallbackImage);
+                }
+
+                if (image_link2) {
+                    loadImage(`http://localhost:3000${image_link2}`, setImage2);
+                } else {
+                    setImage2(fallbackImage);
+                }
             } catch (error) {
                 Swal.fire({
                     icon: "error",
@@ -34,9 +47,9 @@ function Description({ data }) {
     if (!data) return null;
 
     return (
-        <div className="flex flex-col md:flex-row gap-8 mx-auto p-8  w-full">
+        <div className="flex flex-col md:flex-row gap-8 mx-auto p-8 w-full">
             {/* Left Section - Images */}
-            <div className="flex flex-col  items-center justify-center gap-6 w-full md:w-1/3 shrink-0 order-2 md:order-1">
+            <div className="flex flex-col items-center justify-center gap-6 w-full md:w-1/3 shrink-0 order-2 md:order-1">
                 {image1 && (
                     <div>
                         <img
@@ -65,7 +78,7 @@ function Description({ data }) {
                     </h1>
                 )}
                 {data.Description && (
-                    <div className="p-2 ">
+                    <div className="p-2">
                         <p className="text-gray-600">{data.Description}</p>
                     </div>
                 )}
