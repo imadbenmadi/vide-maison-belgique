@@ -99,9 +99,8 @@ router.put("/Phrase_Contact", async (req, res) => {
     try {
         const phrase_in_db = await Phrase_Contact.findOne({});
 
-        let phrase;
         if (!phrase_in_db) {
-            phrase = await Phrase_Contact.create({
+            await Phrase_Contact.create({
                 Text,
                 button,
             });
@@ -113,7 +112,6 @@ router.put("/Phrase_Contact", async (req, res) => {
 
         res.status(200).json({
             message: "phrase created successfully",
-            phrase,
         });
     } catch (err) {
         console.error("Error fetching Messages:", err);
@@ -126,25 +124,19 @@ router.put("/Phrase_Call", async (req, res) => {
     try {
         const phrase_in_db = await Phrase_Call.findOne({});
 
-        let phrase;
         if (!phrase_in_db) {
-            phrase = await Phrase_Call.create({
+            await Phrase_Call.create({
                 Text,
                 button,
-            });
-            res.status(200).json({
-                message: "phrase created successfully",
-                phrase,
             });
         } else {
             phrase_in_db.Text = Text ? Text : phrase_in_db.Text;
             phrase_in_db.button = button ? button : phrase_in_db.button;
             await phrase_in_db.save();
-            res.status(200).json({
-                message: "phrase updated successfully",
-                phrase: phrase_in_db,
-            });
         }
+        res.status(200).json({
+            message: "phrase updated successfully",
+        });
     } catch (err) {
         console.error("Error fetching Messages:", err);
         res.status(500).json({ phrase: "Internal Server Error" });

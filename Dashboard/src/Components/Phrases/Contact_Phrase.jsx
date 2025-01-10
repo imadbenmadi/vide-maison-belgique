@@ -13,7 +13,7 @@ function Contact_Phrase() {
         const fetchData = async () => {
             try {
                 const response = await axios.get(
-                    "http://localhost:3000/Admin/Phrase_Page",
+                    "http://localhost:3000/Admin/Phrase_Contact",
                     {
                         withCredentials: true,
                     }
@@ -52,7 +52,7 @@ function Contact_Phrase() {
 
         try {
             const response = await axios.put(
-                "http://localhost:3000/Admin/Phrase_Page",
+                "http://localhost:3000/Admin/Phrase_Contact",
                 data,
                 {
                     withCredentials: true,
