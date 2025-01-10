@@ -13,8 +13,7 @@ function Edit_Description() {
     const [image2, setImage2] = useState(null);
     const [imagePreview1, setImagePreview1] = useState(null);
     const [imagePreview2, setImagePreview2] = useState(null);
-    
-        
+
     useEffect(() => {
         // Fetch the existing description page data
         const fetchData = async () => {
@@ -44,11 +43,11 @@ function Edit_Description() {
                     image_link2 ? `http://localhost:3000${image_link2}` : null
                 );
             } catch (error) {
-                Swal.fire({
-                    icon: "error",
-                    title: "Error",
-                    text: "Failed to load description page data.",
-                });
+                // Swal.fire({
+                //     icon: "error",
+                //     title: "Error",
+                //     text: "Failed to load description page data.",
+                // });
             }
         };
 

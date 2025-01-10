@@ -7,11 +7,28 @@ import Logo from "../public/Logo.png";
 import Login_icon from "../public/Login.jpg";
 import { useAppContext } from "./AppContext";
 import NavBar from "./Components/NavBar/NavBar";
+
+const setupAxiosInterceptors = (navigate) => {
+    axios.interceptors.response.use(
+        (response) => response,
+        (error) => {
+            if (error.response && error.response.status === 401) {
+                navigate("/Login");
+            }
+            return Promise.reject(error);
+        }
+    );
+};
+
 function App() {
     const Navigate = useNavigate();
     const [loading, setLoading] = useState(true);
     const { set_Auth } = useAppContext();
+    const navigate = useNavigate();
 
+    useEffect(() => {
+        setupAxiosInterceptors(navigate);
+    }, [navigate]);
     useEffect(() => {
         const fetchData = async () => {
             try {

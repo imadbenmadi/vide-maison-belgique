@@ -27,11 +27,11 @@ function Contact_Phrase() {
                     button: button || "",
                 });
             } catch (error) {
-                Swal.fire({
-                    icon: "error",
-                    title: "Error",
-                    text: "Failed to load Phrase page data.",
-                });
+                // Swal.fire({
+                //     icon: "error",
+                //     title: "Error",
+                //     text: "Failed to load Phrase page data.",
+                // });
             }
         };
 

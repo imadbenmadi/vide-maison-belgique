@@ -37,11 +37,11 @@ function EditMainPage() {
                     image_link ? `http://localhost:3000${image_link}` : null
                 );
             } catch (error) {
-                Swal.fire({
-                    icon: "error",
-                    title: "Error",
-                    text: "Failed to load about page data.",
-                });
+                // Swal.fire({
+                //     icon: "error",
+                //     title: "Error",
+                //     text: "Failed to load about page data.",
+                // });
             }
         };
 

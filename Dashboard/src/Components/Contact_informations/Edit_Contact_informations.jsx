@@ -32,11 +32,11 @@ const Edit_Contact_informations = () => {
                     Swal.fire("Error", "Unauthorized access", "error");
                     Navigate("/login");
                 } else {
-                    Swal.fire(
-                        "Error",
-                        "Failed to fetch contact information",
-                        "error"
-                    );
+                    // Swal.fire(
+                    //     "Error",
+                    //     "Failed to fetch contact information",
+                    //     "error"
+                    // );
                 }
             } catch (err) {
                 setError(true);

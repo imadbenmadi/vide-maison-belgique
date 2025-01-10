@@ -36,11 +36,11 @@ function Services() {
                 );
             }
         } catch (error) {
-            Swal.fire(
-                "Error",
-                "An unexpected error occurred. Try again.",
-                "error"
-            );
+            // Swal.fire(
+            //     "Error",
+            //     "An unexpected error occurred. Try again.",
+            //     "error"
+            // );
         } finally {
             setDeleteLoading(false);
         }
