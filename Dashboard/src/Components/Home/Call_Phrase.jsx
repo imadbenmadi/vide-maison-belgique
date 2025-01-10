@@ -13,7 +13,7 @@ function Call_Phrase({ data, phone_number }) {
                 className="mx-auto py-2 px-4 rounded bg-blue-500 text-white cursor-pointer font-semibold text-sm"
                 href={`tel:${phone_number}`}
             >
-                {phone_number}
+                {data?.button}
             </a>
         </div>
     );
