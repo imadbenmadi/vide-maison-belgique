@@ -45,13 +45,13 @@ const Main_Edit = async (req, res) => {
             fs.mkdirSync(targetDir, { recursive: true });
         }
         if (
-            main_page.image_link &&
+            main_page?.image_link &&
             fs.existsSync(
-                path.join(__dirname, "../../../public", main_page.image_link)
+                path.join(__dirname, "../../../public", main_page?.image_link)
             )
         ) {
             fs.unlinkSync(
-                path.join(__dirname, "../../../public", main_page.image_link)
+                path.join(__dirname, "../../../public", main_page?.image_link)
             );
         }
         fs.copyFileSync(image.path, targetPath);
@@ -79,7 +79,7 @@ const Main_Edit = async (req, res) => {
             main_page.Description = Description || main_page.Description;
             main_page.button = button || main_page.button;
             main_page.image_link = imageLink || main_page.image_link;
-            await main_page.save();
+            await main_page?.save();
         }
 
         return res.status(200).json({ main_page });
