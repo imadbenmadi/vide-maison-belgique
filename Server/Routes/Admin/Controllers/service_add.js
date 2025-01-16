@@ -8,29 +8,46 @@ const add_service = async (req, res) => {
     if (!Title || !Description || !type) {
         return res.status(400).json({ message: "Missing required fields." });
     }
+
+    const { files } = req;
+    const image = files ? files.image : null;
     let uniqueSuffix = null;
-    const { image } = req.files;
-    if (image) {
-        const allowedTypes = [
-            "image/jpeg",
-            "image/png",
-            "image/jpg",
-            "image/heic",
-        ];
-        if (!allowedTypes.includes(image.type)) {
-            throw new Error("Only JPEG and PNG and JPG images are allowed!");
+
+    try {
+        if (image) {
+            const allowedTypes = [
+                "image/jpeg",
+                "image/png",
+                "image/jpg",
+                "image/heic",
+            ];
+            const allowedExtensions = [".jpeg", ".jpg", ".png", ".heic"];
+            const fileExtension = path.extname(image.name).toLowerCase();
+
+            if (
+                !allowedTypes.includes(image.type) ||
+                !allowedExtensions.includes(fileExtension)
+            ) {
+                throw new Error(
+                    "Only JPEG, PNG, JPG, and HEIC images are allowed!"
+                );
+            }
+
+            uniqueSuffix = `Services_Pic-${Date.now()}${fileExtension}`;
+            const targetDir = path.join(
+                __dirname,
+                "../../../public/services_images"
+            );
+            const targetPath = path.join(targetDir, uniqueSuffix);
+
+            if (!fs.existsSync(targetDir)) {
+                fs.mkdirSync(targetDir, { recursive: true });
+            }
+
+            fs.copyFileSync(image.path, targetPath);
+            fs.unlinkSync(image.path);
         }
 
-        const fileExtension = path.extname(image.name).toLocaleLowerCase();
-        if (![".jpeg", ".jpg", ".png", ".heic"].includes(fileExtension)) {
-            throw new Error("Invalid file extension");
-        }
-        uniqueSuffix = `Services_Pic-${Date.now()}${fileExtension}`;
-        const targetPath = path.join("/services_images/", uniqueSuffix);
-        fs.copyFileSync(image.path, targetPath);
-        fs.unlinkSync(image.path);
-    }
-    try {
         const service = await Services.create({
             Title,
             Description,
@@ -40,7 +57,7 @@ const add_service = async (req, res) => {
 
         return res.status(200).json({ service });
     } catch (error) {
-        console.error(error);
+        console.error("Error in add_service:", error);
         return res.status(500).json({ message: "Internal server error." });
     }
 };
