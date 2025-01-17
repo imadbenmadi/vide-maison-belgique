@@ -8,7 +8,9 @@ function NavBar() {
     const [Active_nav, setActive_nav] = useState("Home");
     const location = useLocation();
     useEffect(() => {
-        setActive_nav(location.pathname.split("/")[1]);
+        setActive_nav(
+            location.pathname.split("/")[2] || location.pathname.split("/")[1]
+        );
     }, [location.pathname]);
 
     return (
