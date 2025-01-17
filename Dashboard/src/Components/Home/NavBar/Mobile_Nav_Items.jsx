@@ -10,7 +10,7 @@ function Mobile_Nav_Items({ MobileNav_Open, Toogle_Menu_Bar, Active_nav }) {
                         ? " translate-x-[0vw]"
                         : " translate-x-[200vh] "
                 } absolute   transition-transform duration-300 select-none w-[100vw]
-                  z-50    text-black_text  bg-white `}
+                  z-30    text-black_text  bg-white `}
             >
                 <div className="  h-screen text-xl  pt-8 overflow-y-auto ">
                     <div className=" flex flex-col justify-start items-center h-[80%]  ">
