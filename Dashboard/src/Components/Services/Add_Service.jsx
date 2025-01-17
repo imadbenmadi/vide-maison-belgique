@@ -32,21 +32,21 @@ function Add_Service() {
             );
 
             if (response.status === 200) {
-                Swal.fire("Success", "Service added successfully!", "success");
+                Swal.fire("Success", "Service ajouté avec succès!", "success");
                 navigate("/Services");
                 resetForm();
                 setImagePreview(null); // Reset the image preview
             } else {
                 Swal.fire(
                     "Error",
-                    response.data.message || "Failed to add the service",
+                    response.data.message || "Impossible d'ajouter le service",
                     "error"
                 );
             }
         } catch (error) {
             Swal.fire(
                 "Error",
-                "An unexpected error occurred. Try again.",
+                "Une erreur inattendue s'est produite. Veuillez réessayer.",
                 "error"
             );
         } finally {
@@ -68,7 +68,7 @@ function Add_Service() {
         <div className="flex justify-center items-center min-h-screen bg-gray-100">
             <div className="w-full max-w-lg py-12 px-8 bg-white shadow-lg rounded-lg text-center">
                 <h2 className="text-3xl font-semibold mb-6 text-yallow_v">
-                    Add New Service
+                    Ajouter un nouveau Service{" "}
                 </h2>
 
                 <Formik
@@ -95,7 +95,7 @@ function Add_Service() {
                         <Form className="flex flex-col gap-4">
                             <div>
                                 <label className="font-semibold text-sm pb-1 text-gray-700">
-                                    Service Title
+                                    Titre de Service
                                 </label>
                                 <Field
                                     type="text"
@@ -112,7 +112,7 @@ function Add_Service() {
                             </div>
                             <div>
                                 <label className="font-semibold text-sm pb-1 text-gray-700">
-                                    Service type
+                                    type de Service
                                 </label>
                                 <Field
                                     type="text"
@@ -130,7 +130,7 @@ function Add_Service() {
 
                             <div>
                                 <label className="font-semibold text-sm pb-1 text-gray-700">
-                                    Service Description
+                                    Description de Service
                                 </label>
                                 <Field
                                     as="textarea"
@@ -148,7 +148,7 @@ function Add_Service() {
 
                             <div>
                                 <label className="font-semibold text-sm pb-1 text-gray-700">
-                                    Service Image
+                                    Image de Service
                                 </label>
                                 <input
                                     type="file"
@@ -188,7 +188,7 @@ function Add_Service() {
                                 to="/Services"
                                 className="text-blue-500 hover:underline mt-4 text-sm"
                             >
-                                Back to Services List
+                                Retour à la liste des services{" "}
                             </Link>
                         </Form>
                     )}

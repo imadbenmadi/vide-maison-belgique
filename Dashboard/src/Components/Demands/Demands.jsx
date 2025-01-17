@@ -12,7 +12,6 @@ function Demands() {
     const [Demands, setDemands] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
-    
 
     useEffect(() => {
         setLoading(true);
@@ -63,19 +62,19 @@ function Demands() {
             <div className=" py-6 px-4">
                 <div className=" text-xl font-semibold text-yallow_v">
                     {" "}
-                    quote requests
+                    Les demande
                 </div>
 
                 {!Demands || Demands?.length == 0 ? (
                     <div className="text-md font-semibold text-gray_v text-center pt-12">
-                        No quote requests yet
+                        Aucune demande pour le moment{" "}
                     </div>
                 ) : (
                     <div>
                         <div className=" w-full flex justify-center py-4">
                             <div className="max-w-[300px] overflow-auto border shadow-md py-6 px-6 flex flex-col items-center justify-start rounded-md md:min-w-[200px]">
                                 <div className=" text-xs font-semibold pb-5 text-gray_v w-full">
-                                    Total Number of quote requests:
+                                    Nombre total de demandes :{" "}
                                 </div>
                                 <div className=" flex justify-between gap-2 mx-2 w-full">
                                     <div className="  font-semibold text-2xl">

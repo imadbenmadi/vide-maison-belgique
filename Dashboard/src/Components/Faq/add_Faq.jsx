@@ -80,7 +80,7 @@ const Add_Faq = () => {
                                     name="qst"
                                     className="mt-1 p-2 border rounded-md w-full"
                                     type="text"
-                                    placeholder="Enter qst number"
+                                    placeholder="quation"
                                 />
                                 <ErrorMessage
                                     name="qst"
@@ -102,7 +102,7 @@ const Add_Faq = () => {
                                     name="sol"
                                     className="mt-1 p-2 border rounded-md w-full"
                                     type="sol"
-                                    placeholder="Enter sol address"
+                                    placeholder="reponse"
                                 />
                                 <ErrorMessage
                                     name="sol"

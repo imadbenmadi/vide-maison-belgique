@@ -95,7 +95,7 @@ function Login() {
                     <div className=" w-[80%] text-black_text">
                         <div className=" pb-4 ">
                             <div className=" text-3xl font-semibold ">
-                                Welcome Back Admin
+                                Bienvenue à nouveau administrateur{" "}
                             </div>
                             {/* <div>Sign in to get started.</div> */}
                         </div>
@@ -111,22 +111,23 @@ function Login() {
 
                                     // Validate email
                                     if (!values.email) {
-                                        errors.email = "email is Required";
+                                        errors.email =
+                                            "l'email est obligatoire";
                                     } else if (
                                         !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(
                                             values.email
                                         )
                                     ) {
-                                        errors.email = "Invalid email address";
+                                        errors.email = "Adresse email invalide";
                                     }
 
                                     // Validate password
                                     if (!values.password) {
                                         errors.password =
-                                            "password is Required";
+                                            "le mot de passe est requis";
                                     } else if (values.password.length < 8) {
                                         errors.password =
-                                            "password must be at least 8 characters long";
+                                            "le mot de passe doit comporter au moins 8 caractères";
                                     }
 
                                     return errors;

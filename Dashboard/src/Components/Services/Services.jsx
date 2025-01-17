@@ -97,18 +97,18 @@ function Services() {
     return (
         <div className="py-6 px-4">
             <div className="text-xl font-semibold text-yellow-500">
-                Services Offered
+                Nos Services
             </div>
             {Services.length === 0 ? (
                 <div className="flex flex-col gap-2 items-center justify-center">
                     <div className="text-md font-semibold text-gray-500 text-center pt-12">
-                        No Services yet
+                        Pas encore de services{" "}
                     </div>
                     <Link
                         to="/Services/Add"
                         className="mx-auto py-2 px-4 rounded bg-blue-500 text-white cursor-pointer font-semibold text-sm"
                     >
-                        Add Service
+                        Ajouter un Service
                     </Link>
                 </div>
             ) : (
@@ -118,7 +118,7 @@ function Services() {
                             to="/Services/Add"
                             className="mx-auto py-2 px-4 rounded bg-blue-500 text-white cursor-pointer font-semibold text-sm"
                         >
-                            Add Service
+                            Ajouter un Service
                         </Link>
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                             {Services.map((service) => (

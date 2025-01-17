@@ -161,7 +161,7 @@ const Edit_Contact_informations = () => {
                                     name="email"
                                     className="mt-1 p-2 border rounded-md w-full"
                                     type="email"
-                                    placeholder="Enter email address"
+                                    placeholder="email address"
                                 />
                                 <ErrorMessage
                                     name="email"

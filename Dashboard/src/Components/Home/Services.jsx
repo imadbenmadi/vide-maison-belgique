@@ -10,14 +10,14 @@ function Services({ data }) {
         return null;
     }
     return (
-        <div className="py-6 px-4 min-h-screen">
+        <div className="py-6 px-4 min-h-[90vh]">
             <div className="text-4xl font-semibold text-gray-800 text-center my-8">
-                Services Offered
+                Nos Services
             </div>
             {!data || data.length === 0 ? (
                 <div className="flex flex-col gap-2 items-center justify-center">
                     <div className="text-md font-semibold text-gray-500 text-center pt-12">
-                        No Services yet
+                        Pas encore de services{" "}
                     </div>
                 </div>
             ) : (

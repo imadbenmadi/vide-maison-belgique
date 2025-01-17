@@ -63,21 +63,18 @@ function Faqs() {
     else
         return (
             <div className=" py-6 px-4">
-                <div className=" text-xl font-semibold text-yallow_v">
-                    {" "}
-                    Faqs
-                </div>
+                <div className=" text-xl font-semibold text-yallow_v"> FAQ</div>
 
                 {!Faqs || Faqs?.length == 0 ? (
                     <div className=" flex flex-col gap-2 items-center justify-center">
                         <div className="text-md font-semibold text-gray_v text-center pt-12">
-                            No Faqs yet
+                            Pas encore de FAQ{" "}
                         </div>
                         <Link
                             to={"/Faq/Add"}
                             className="mx-auto py-2 px-4 rounded bg-blue_v text-white cursor-pointer font-semibold text-sm"
                         >
-                            Add FaQ{" "}
+                            Ajouter FaQ{" "}
                         </Link>
                     </div>
                 ) : (
@@ -86,7 +83,7 @@ function Faqs() {
                             to={"/Faq/Add"}
                             className="mx-auto py-2 px-4 rounded bg-blue_v text-white cursor-pointer font-semibold text-sm"
                         >
-                            Add FaQ{" "}
+                            Ajouter FaQ{" "}
                         </Link>
                         <div className=" flex flex-col items-center justify-center  w-[90%] pt-6">
                             {Faqs &&
