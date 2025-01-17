@@ -19,7 +19,7 @@ function Phone_Popup({ data }) {
     return (
         <a
             href={`tel:${data?.phone}`}
-            className={`bg-yellow-500 py-3 px-6 rounded-lg shadow-lg font-bold text-xl text-white inline-block ${
+            className={`bg-yallow_v py-3 px-6 rounded-lg shadow-xl font-bold text-xl text-white inline-block ${
                 rotate ? "animate-rotate" : ""
             }`}
         >
