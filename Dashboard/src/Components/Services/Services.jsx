@@ -153,8 +153,8 @@ function Service_card({ service, handle_delete, delete_loading }) {
             )}
 
             <div className="p-4">
-                <h4 className="text-lg font-semibold text-blue-700 mb-2  break-words">
-                    {service.Title}
+                <h4 className="text-lg font-semibold text-yallow_v text-center mb-2  break-words">
+                    {service?.Title}
                 </h4>
                 <p className="text-gray-700 mb-4  break-words">
                     {service.Description}
