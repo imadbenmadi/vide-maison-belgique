@@ -5,17 +5,34 @@ import customParseFormat from "dayjs/plugin/customParseFormat";
 dayjs.extend(customParseFormat);
 function Laptop_Nav_Items({ Active_nav, handleLogout, LogoutClicked }) {
     return (
-        <div className="hidden  md:flex  items-center justify-between mx-2 lg:mx-12  md:text-md lg:text-lg  font-[500] text-black_text h-full p-2 ">
+        <div
+            className="hidden  md:flex  items-center justify-between mx-2 lg:mx-12 
+         md:text-md lg:text-lg  font-[500] text-black_text h-full p-2 "
+        >
             <div>
-                <Link to={"/Home"} className="select-none">
+                <Link
+                    to={"/Home"}
+                    className="select-none"
+                >
                     <img
+                        className="select-none w-[50px] "
                         src={Logo}
                         alt="Logo"
-                        className=" w-[100px] lg:w-[135px] "
                     />
                 </Link>
             </div>
             <div className="flex gap-6 lg:gap-14">
+                <div
+                    className={` ${
+                        Active_nav == "Home"
+                            ? "text-perpol_v"
+                            : "text-black_text"
+                    } md:hover:text-perpol_v transition-all duration-150  cursor-pointer`}
+                >
+                    <Link to={"/Home"} className={" select-none"}>
+                        Home{" "}
+                    </Link>
+                </div>
                 <div
                     className={` ${
                         Active_nav == "Contact"
@@ -29,49 +46,17 @@ function Laptop_Nav_Items({ Active_nav, handleLogout, LogoutClicked }) {
                 </div>
                 <div
                     className={` ${
-                        Active_nav == "Profile"
+                        Active_nav == "Demand"
                             ? "text-perpol_v"
                             : "text-black_text"
                     } md:hover:text-perpol_v transition-all duration-150  cursor-pointer`}
                 >
-                    <Link to={"/Home/Profile"} className={" select-none"}>
-                        Profile{" "}
-                    </Link>
-                </div>
-                <div
-                    className={` ${
-                        Active_nav == "Courses"
-                            ? "text-perpol_v"
-                            : "text-black_text"
-                    } md:hover:text-perpol_v transition-all duration-150  cursor-pointer`}
-                >
-                    <Link to={"/Home/Courses"} className={" select-none"}>
-                        Courses{" "}
-                    </Link>
-                </div>
-                <div
-                    className={` ${
-                        Active_nav == "Summaries"
-                            ? "text-perpol_v"
-                            : "text-black_text"
-                    } md:hover:text-perpol_v transition-all duration-150  cursor-pointer`}
-                >
-                    <Link to={"/Home/Summaries"} className={" select-none"}>
-                        Summaries{" "}
-                    </Link>
-                </div>
-                <div
-                    className={` ${
-                        Active_nav == "Purchased"
-                            ? "text-perpol_v"
-                            : "text-black_text"
-                    } md:hover:text-perpol_v transition-all duration-150  cursor-pointer`}
-                >
-                    <Link to={"/Home/Purchased"} className={" select-none"}>
-                        Purchased{" "}
+                    <Link to={"/Home/Demand"} className={" select-none"}>
+                        Demandes{" "}
                     </Link>
                 </div>
             </div>
+            <div></div>
         </div>
     );
 }

@@ -17,6 +17,17 @@ function Mobile_Nav_Items({ MobileNav_Open, Toogle_Menu_Bar, Active_nav }) {
                         <div className="text-center flex flex-col gap-8 my-8 ">
                             <Link
                                 onClick={Toogle_Menu_Bar}
+                                to={"/Home"}
+                                className={`${
+                                    Active_nav == "Home"
+                                        ? "text-perpol_v"
+                                        : "text-black_text"
+                                } select-none   `}
+                            >
+                                Home
+                            </Link>
+                            <Link
+                                onClick={Toogle_Menu_Bar}
                                 to={"/Home/Contact"}
                                 className={`${
                                     Active_nav == "Contact"
@@ -28,69 +39,17 @@ function Mobile_Nav_Items({ MobileNav_Open, Toogle_Menu_Bar, Active_nav }) {
                             </Link>
                             <Link
                                 onClick={Toogle_Menu_Bar}
-                                to={"/Home/Profile"}
+                                to={"/Home/Demand"}
                                 className={`${
-                                    Active_nav == "Profile"
+                                    Active_nav == "Demand"
                                         ? "text-perpol_v"
                                         : "text-black_text"
                                 } select-none   `}
                             >
-                                Profile
-                            </Link>
-                            <Link
-                                onClick={Toogle_Menu_Bar}
-                                to={"/Home/Courses"}
-                                className={`${
-                                    Active_nav == "Courses"
-                                        ? "text-perpol_v"
-                                        : "text-black_text"
-                                } select-none   `}
-                            >
-                                Courses
-                            </Link>
-                            <Link
-                                onClick={Toogle_Menu_Bar}
-                                to={"/Home/Summaries"}
-                                className={`${
-                                    Active_nav == "Summaries"
-                                        ? "text-perpol_v"
-                                        : "text-black_text"
-                                } select-none   `}
-                            >
-                                Summaries
-                            </Link>
-                            <Link
-                                onClick={Toogle_Menu_Bar}
-                                to={"/Home/Purchased"}
-                                className={`${
-                                    Active_nav == "Purchased"
-                                        ? "text-perpol_v"
-                                        : "text-black_text"
-                                } select-none   `}
-                            >
-                                Purchased
+                                Demandes
                             </Link>
                         </div>
                         <div className=" w-screen h-[2px] bg-gray_white "></div>
-
-                        <div className=" pt-8">
-                            {LogoutClicked ? (
-                                <div className="w-full ">
-                                    <span className="small-loader font-bold   m-auto"></span>
-                                </div>
-                            ) : (
-                                <div
-                                    className="cursor-pointer w-full 
-                                    flex items-center gap-3 text-red-500"
-                                    onClick={() => {
-                                        handleLogout();
-                                    }}
-                                >
-                                    <TbLogout2 className="  text-xl" />
-                                    Logout
-                                </div>
-                            )}
-                        </div>
                     </div>
                 </div>
             </div>

@@ -22,11 +22,7 @@ function Mobile_Nav({ Active_nav }) {
             >
                 <div>
                     <Link to={"/"} className="select-none">
-                        <img
-                            src={Logo}
-                            alt="Logo"
-                            className=" w-[110px] lg:w-[145px] "
-                        />
+                        <img src={Logo} alt="Logo" className=" w-[50px]" />
                     </Link>
                 </div>
                 <div className=" flex items-center justify-center gap-4 md:gap-6">

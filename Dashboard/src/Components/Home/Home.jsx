@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-
+import NavBar from "./NavBar/NavBar";
 import Main from "./Main";
 import About from "./About";
 import Services from "./Services";
@@ -57,7 +57,8 @@ function Home() {
     } else {
         return (
             <div>
-                <div className=" min-h-screen relative">
+                <div className=" min-h-screen relative overflow-x-hidden">
+                    <NavBar />
                     <div className=" fixed bottom-10 right-10 z-50 ">
                         <Phone_Popup data={data.contact_informations} />
                     </div>
