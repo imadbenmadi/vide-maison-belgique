@@ -1,13 +1,7 @@
 import { Link } from "react-router-dom";
 import { TbLogout2 } from "react-icons/tb";
 
-function Mobile_Nav_Items({
-    MobileNav_Open,
-    Toogle_Menu_Bar,
-    Active_nav,
-    handleLogout,
-    LogoutClicked,
-}) {
+function Mobile_Nav_Items({ MobileNav_Open, Toogle_Menu_Bar, Active_nav }) {
     return (
         <div className="flex md:hidden">
             <div
@@ -23,7 +17,7 @@ function Mobile_Nav_Items({
                         <div className="text-center flex flex-col gap-8 my-8 ">
                             <Link
                                 onClick={Toogle_Menu_Bar}
-                                to={"/Student/Contact"}
+                                to={"/Home/Contact"}
                                 className={`${
                                     Active_nav == "Contact"
                                         ? "text-perpol_v"
@@ -34,7 +28,7 @@ function Mobile_Nav_Items({
                             </Link>
                             <Link
                                 onClick={Toogle_Menu_Bar}
-                                to={"/Student/Profile"}
+                                to={"/Home/Profile"}
                                 className={`${
                                     Active_nav == "Profile"
                                         ? "text-perpol_v"
@@ -45,7 +39,7 @@ function Mobile_Nav_Items({
                             </Link>
                             <Link
                                 onClick={Toogle_Menu_Bar}
-                                to={"/Student/Courses"}
+                                to={"/Home/Courses"}
                                 className={`${
                                     Active_nav == "Courses"
                                         ? "text-perpol_v"
@@ -56,7 +50,7 @@ function Mobile_Nav_Items({
                             </Link>
                             <Link
                                 onClick={Toogle_Menu_Bar}
-                                to={"/Student/Summaries"}
+                                to={"/Home/Summaries"}
                                 className={`${
                                     Active_nav == "Summaries"
                                         ? "text-perpol_v"
@@ -67,7 +61,7 @@ function Mobile_Nav_Items({
                             </Link>
                             <Link
                                 onClick={Toogle_Menu_Bar}
-                                to={"/Student/Purchased"}
+                                to={"/Home/Purchased"}
                                 className={`${
                                     Active_nav == "Purchased"
                                         ? "text-perpol_v"
