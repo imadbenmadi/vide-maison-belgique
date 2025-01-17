@@ -1,6 +1,13 @@
 import { Link } from "react-router-dom";
+import { TbLogout2 } from "react-icons/tb";
 
-function Mobile_Nav_Items({ MobileNav_Open, Toogle_Menu_Bar }) {
+function Mobile_Nav_Items({
+    MobileNav_Open,
+    Toogle_Menu_Bar,
+    Active_nav,
+    handleLogout,
+    LogoutClicked,
+}) {
     return (
         <div className="flex md:hidden">
             <div
@@ -9,59 +16,86 @@ function Mobile_Nav_Items({ MobileNav_Open, Toogle_Menu_Bar }) {
                         ? " translate-x-[0vw]"
                         : " translate-x-[200vh] "
                 } absolute   transition-transform duration-300 select-none w-[100vw]
-                  z-50    text-black_text   bg-white `}
+                  z-50    text-black_text  bg-white `}
             >
                 <div className="  h-screen text-xl  pt-8 overflow-y-auto ">
                     <div className=" flex flex-col justify-start items-center h-[80%]  ">
-                        <div
-                            className="flex flex-col gap-6 pb-6 justify-around 
-                        text-center font-semibold "
-                        >
+                        <div className="text-center flex flex-col gap-8 my-8 ">
                             <Link
                                 onClick={Toogle_Menu_Bar}
-                                to={"/Register"}
-                                className="select-none px-3 py-2 bg-yallow_v text-white rounded-lg"
+                                to={"/Student/Contact"}
+                                className={`${
+                                    Active_nav == "Contact"
+                                        ? "text-perpol_v"
+                                        : "text-black_text"
+                                } select-none   `}
                             >
-                                حساب جديد
+                                Contact
                             </Link>
                             <Link
                                 onClick={Toogle_Menu_Bar}
-                                to={"/Login"}
-                                className="select-none    px-3 py-2 rounded-lg "
+                                to={"/Student/Profile"}
+                                className={`${
+                                    Active_nav == "Profile"
+                                        ? "text-perpol_v"
+                                        : "text-black_text"
+                                } select-none   `}
                             >
-                                تسجبل الدخول
+                                Profile
+                            </Link>
+                            <Link
+                                onClick={Toogle_Menu_Bar}
+                                to={"/Student/Courses"}
+                                className={`${
+                                    Active_nav == "Courses"
+                                        ? "text-perpol_v"
+                                        : "text-black_text"
+                                } select-none   `}
+                            >
+                                Courses
+                            </Link>
+                            <Link
+                                onClick={Toogle_Menu_Bar}
+                                to={"/Student/Summaries"}
+                                className={`${
+                                    Active_nav == "Summaries"
+                                        ? "text-perpol_v"
+                                        : "text-black_text"
+                                } select-none   `}
+                            >
+                                Summaries
+                            </Link>
+                            <Link
+                                onClick={Toogle_Menu_Bar}
+                                to={"/Student/Purchased"}
+                                className={`${
+                                    Active_nav == "Purchased"
+                                        ? "text-perpol_v"
+                                        : "text-black_text"
+                                } select-none   `}
+                            >
+                                Purchased
                             </Link>
                         </div>
-                        <div className=" w-full h-[2px] bg-gray_white "></div>
-                        <div className="text-center flex flex-col gap-12 mt-10">
-                            <a
-                                onClick={Toogle_Menu_Bar}
-                                href={"/Home#Features"}
-                                className="select-none   "
-                            >
-                                ميزاتنا
-                            </a>
-                            <a
-                                onClick={Toogle_Menu_Bar}
-                                href={"/Home#How_we_work"}
-                                className="select-none    "
-                            >
-                                كيف نعمل
-                            </a>
-                            {/* <a
-                                onClick={Toogle_Menu_Bar}
-                                href={"/Home#Benefits"}
-                                className="select-none    "
-                            >
-                                فائدتنا
-                            </a> */}
-                            <a
-                                onClick={Toogle_Menu_Bar}
-                                href={"/Home#Contact"}
-                                className="select-none   "
-                            >
-                                اتصل بنا
-                            </a>
+                        <div className=" w-screen h-[2px] bg-gray_white "></div>
+
+                        <div className=" pt-8">
+                            {LogoutClicked ? (
+                                <div className="w-full ">
+                                    <span className="small-loader font-bold   m-auto"></span>
+                                </div>
+                            ) : (
+                                <div
+                                    className="cursor-pointer w-full 
+                                    flex items-center gap-3 text-red-500"
+                                    onClick={() => {
+                                        handleLogout();
+                                    }}
+                                >
+                                    <TbLogout2 className="  text-xl" />
+                                    Logout
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>
