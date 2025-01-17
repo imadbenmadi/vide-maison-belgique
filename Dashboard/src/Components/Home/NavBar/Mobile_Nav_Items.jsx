@@ -20,7 +20,7 @@ function Mobile_Nav_Items({ MobileNav_Open, Toogle_Menu_Bar, Active_nav }) {
                                 to={"/Home"}
                                 className={`${
                                     Active_nav == "Home"
-                                        ? "text-perpol_v"
+                                        ? "text-yallow_v"
                                         : "text-black_text"
                                 } select-none   `}
                             >
@@ -31,7 +31,7 @@ function Mobile_Nav_Items({ MobileNav_Open, Toogle_Menu_Bar, Active_nav }) {
                                 to={"/Home/Contact"}
                                 className={`${
                                     Active_nav == "Contact"
-                                        ? "text-perpol_v"
+                                        ? "text-yallow_v"
                                         : "text-black_text"
                                 } select-none   `}
                             >
@@ -42,7 +42,7 @@ function Mobile_Nav_Items({ MobileNav_Open, Toogle_Menu_Bar, Active_nav }) {
                                 to={"/Home/Demand"}
                                 className={`${
                                     Active_nav == "Demand"
-                                        ? "text-perpol_v"
+                                        ? "text-yallow_v"
                                         : "text-black_text"
                                 } select-none   `}
                             >
