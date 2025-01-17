@@ -11,10 +11,10 @@ function Faq({ data }) {
         <div className="py-12 ">
             <div className="text-center mb-8">
                 <h2 className="text-3xl font-bold text-gray-800">
-                    Frequently Asked Questions
+                    Questions fréquemment posées{" "}
                 </h2>
                 <p className="text-gray-600 mt-2">
-                    Find answers to common questions below.
+                    Trouvez ci-dessous les réponses aux questions courantes.{" "}
                 </p>
             </div>
             <div className="flex flex-col items-center justify-center gap-6 w-[90%] mx-auto">
