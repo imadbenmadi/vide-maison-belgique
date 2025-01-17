@@ -89,14 +89,14 @@ function EditMainPage() {
                 Swal.fire({
                     icon: "success",
                     title: "Success",
-                    text: "Main page updated successfully!",
+                    text: "Page principale mise à jour avec succès !",
                 });
             }
         } catch (error) {
             Swal.fire({
                 icon: "error",
                 title: "Error",
-                text: "Failed to update main page.",
+                text: "Échec de la mise à jour de la page principale.",
             });
         }
     };
@@ -104,12 +104,12 @@ function EditMainPage() {
     return (
         <div className="max-w-lg mx-auto p-6 mt-6 bg-white shadow-lg rounded-lg border border-gray-200">
             <h2 className="text-3xl font-bold text-center text-yallow_v mb-6">
-                Edit Main Page
+                Modifier la page principale{" "}
             </h2>
             <form onSubmit={handleSubmit} encType="multipart/form-data">
                 <div className="mb-4">
                     <label className="block text-gray-700 font-medium mb-2">
-                        Title
+                        Titre
                     </label>
                     <input
                         type="text"
@@ -158,7 +158,7 @@ function EditMainPage() {
                         />
                     ) : (
                         <p className="text-gray-500 text-sm text-center">
-                            No image selected
+                            Aucune image sélectionnée
                         </p>
                     )}
                     <input
@@ -173,7 +173,7 @@ function EditMainPage() {
                     type="submit"
                     className="w-full py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-200"
                 >
-                    Save
+                    Sauvegarder
                 </button>
             </form>
         </div>

@@ -28,7 +28,11 @@ function Contact() {
                     const Messages = response.data.Messages;
                     setMessages(Messages);
                 } else if (response.status == 401) {
-                    Swal.fire("Error", "you have to re-Login again", "error");
+                    Swal.fire(
+                        "Error",
+                        "vous devez vous reconnecter à nouveau",
+                        "error"
+                    );
                     Navigate("/Login");
                 } else {
                     setError(response.data);
@@ -69,14 +73,14 @@ function Contact() {
 
                 {!Messages || Messages?.length == 0 ? (
                     <div className="text-md font-semibold text-gray_v text-center pt-12">
-                        No Messages
+                        Pas des Messages
                     </div>
                 ) : (
                     <div>
                         <div className=" w-full flex justify-center py-4">
                             <div className="max-w-[300px] overflow-auto border shadow-md py-6 px-6 flex flex-col items-center justify-start rounded-md md:min-w-[200px]">
                                 <div className=" text-xs font-semibold pb-5 text-gray_v w-full">
-                                    Total Number of messages:
+                                    Nombre total de messages :{" "}
                                 </div>
                                 <div className=" flex justify-between gap-2 mx-2 w-full">
                                     <div className="  font-semibold text-2xl">

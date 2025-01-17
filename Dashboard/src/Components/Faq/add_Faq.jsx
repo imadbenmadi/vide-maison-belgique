@@ -11,7 +11,7 @@ const Add_Faq = () => {
     const [error, setError] = useState(false);
     const [contactInformations, setContactInformations] = useState({});
     const [editLoading, setEditLoading] = useState(false);
-    // Fetch contact information on load
+    // Fetch FAQ on load
 
     const handleEditSubmit = async (values) => {
         setEditLoading(true);
@@ -23,21 +23,13 @@ const Add_Faq = () => {
             );
 
             if (response.status == 200) {
-                Swal.fire(
-                    "Success",
-                    "Contact information updated successfully",
-                    "success"
-                );
+                Swal.fire("Success", "FAQ mis à jour avec succès", "success");
                 Navigate("/Faq");
             } else {
-                Swal.fire(
-                    "Error",
-                    "Failed to update contact information",
-                    "error"
-                );
+                Swal.fire("Error", "Failed to update FAQ", "error");
             }
         } catch (err) {
-            Swal.fire("Error", "Network error, please try again", "error");
+            Swal.fire("Error", "Erreur réseau, veuillez réessayer", "error");
         } finally {
             setEditLoading(false);
         }
@@ -46,7 +38,7 @@ const Add_Faq = () => {
     return (
         <div className="max-w-3xl overflow-auto mx-auto p-6 bg-white shadow-lg rounded-lg">
             <h2 className="text-2xl font-semibold mb-6 text-center  text-yallow_v">
-                Add FaQ
+                Ajouter un FaQ
             </h2>
             <Formik
                 initialValues={{
@@ -59,7 +51,7 @@ const Add_Faq = () => {
                         errors.qst = "quation is required";
                     }
                     if (!values.sol) {
-                        errors.sol = "answer is required";
+                        errors.sol = "réponse is required";
                     }
                     return errors;
                 }}
@@ -94,7 +86,7 @@ const Add_Faq = () => {
                                     htmlFor="sol"
                                     className="block text-gray-700 font-medium"
                                 >
-                                    answer
+                                    réponse
                                 </label>
 
                                 <Field
@@ -117,7 +109,9 @@ const Add_Faq = () => {
                                     disabled={editLoading}
                                     className="px-4 py-2 bg-blue-600 text-white rounded-md disabled:bg-gray-400"
                                 >
-                                    {editLoading ? "Saving..." : "Save Changes"}
+                                    {editLoading
+                                        ? "Sauvegarde..."
+                                        : "Sauvegarder"}
                                 </button>
                             </div>
                         </div>

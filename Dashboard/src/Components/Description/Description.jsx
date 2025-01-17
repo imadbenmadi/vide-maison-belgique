@@ -114,14 +114,14 @@ function Edit_Description() {
                 Swal.fire({
                     icon: "success",
                     title: "Success",
-                    text: "Description page updated successfully!",
+                    text: "Page de description mise à jour avec succès !",
                 });
             }
         } catch (error) {
             Swal.fire({
                 icon: "error",
                 title: "Error",
-                text: "Failed to update description page.",
+                text: "Échec de la mise à jour de la page de description.",
             });
         }
     };
@@ -129,12 +129,12 @@ function Edit_Description() {
     return (
         <div className="max-w-lg mx-auto p-6 mt-6 bg-white shadow-lg rounded-lg border border-gray-200">
             <h2 className="text-3xl font-bold text-center text-yallow_v mb-6">
-                Edit Description Page
+                Modifier la page de description{" "}
             </h2>
             <form onSubmit={handleSubmit} encType="multipart/form-data">
                 <div className="mb-4">
                     <label className="block text-gray-700 font-medium mb-2">
-                        Title
+                        Titre
                     </label>
                     <input
                         type="text"
@@ -170,7 +170,7 @@ function Edit_Description() {
                         />
                     ) : (
                         <p className="text-gray-500 text-sm text-center">
-                            No image selected
+                            Aucune image sélectionnée
                         </p>
                     )}
                     <input
@@ -194,7 +194,7 @@ function Edit_Description() {
                         />
                     ) : (
                         <p className="text-gray-500 text-sm text-center">
-                            No image selected
+                            Aucune image sélectionnée
                         </p>
                     )}
                     <input
@@ -209,7 +209,7 @@ function Edit_Description() {
                     type="submit"
                     className="w-full py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-200"
                 >
-                    Save
+                    Sauvegarder
                 </button>
             </form>
         </div>

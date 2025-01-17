@@ -27,7 +27,7 @@ function Faq_Card({ faq }) {
                 </button>
             </div>
 
-            {/* FAQ Answer */}
+            {/* FAQ réponse */}
             <AnimatePresence>
                 {isOpen && (
                     <motion.div

@@ -91,7 +91,7 @@ function EditMainPage() {
                 Swal.fire({
                     icon: "success",
                     title: "Success",
-                    text: "Main page updated successfully!",
+                    text: "Main page mis à jour avec succès!",
                 });
             }
         } catch (error) {
@@ -160,7 +160,7 @@ function EditMainPage() {
                         />
                     ) : (
                         <p className="text-gray-500 text-sm text-center">
-                            No image selected
+                            Aucune image sélectionnée
                         </p>
                     )}
                     <input
@@ -175,7 +175,7 @@ function EditMainPage() {
                     type="submit"
                     className="w-full py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-200"
                 >
-                    Save
+                    Sauvegarder
                 </button>
             </form>
         </div>

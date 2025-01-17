@@ -181,7 +181,9 @@ function Add_Service() {
                                 className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg font-semibold mt-4 transition duration-200"
                                 disabled={isSubmitting}
                             >
-                                {isSubmitting ? "Adding..." : "Add Service"}
+                                {isSubmitting
+                                    ? "Adding..."
+                                    : "Ajouter un Service"}
                             </button>
 
                             <Link

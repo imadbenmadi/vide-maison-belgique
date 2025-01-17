@@ -22,11 +22,7 @@ function Services() {
                 }
             );
             if (response.status === 200) {
-                Swal.fire(
-                    "Success",
-                    "Service deleted successfully!",
-                    "success"
-                );
+                Swal.fire("Success", "Service Suppression réussie!", "success");
                 setServices((prev) => prev.filter((s) => s.id !== id));
             } else {
                 Swal.fire(
@@ -61,7 +57,7 @@ function Services() {
                 if (response.status === 200) {
                     setServices(response.data.service);
                 } else if (response.status === 401) {
-                    Swal.fire("Error", "You have to re-login", "error");
+                    Swal.fire("Error", "Vous devez vous reconnecter", "error");
                     Navigate("/Login");
                 } else {
                     setError(

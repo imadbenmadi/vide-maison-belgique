@@ -61,7 +61,7 @@ function Call_Phrase() {
                 Swal.fire({
                     icon: "success",
                     title: "Success",
-                    text: "Call Phrase page updated successfully!",
+                    text: "Call Phrase page mis à jour avec succès!",
                 });
             }
         } catch (error) {
@@ -109,7 +109,7 @@ function Call_Phrase() {
                     type="submit"
                     className="w-full py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-200"
                 >
-                    Save
+                    Sauvegarder
                 </button>
             </form>
         </div>

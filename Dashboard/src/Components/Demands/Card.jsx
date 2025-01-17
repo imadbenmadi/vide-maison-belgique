@@ -30,22 +30,26 @@ function Card({ Demand, Demands, setDemands }) {
                     (item) => item?.id !== Demand?.id
                 );
                 setDemands(newDemands);
-                Swal.fire("Success", "Deleted Successfully", "success");
+                Swal.fire("Success", "Suppression réussie", "success");
             } else if (response.status === 401) {
                 Swal.fire(
                     "UnAuthorised",
-                    "you have to re-Login again",
+                    "vous devez vous reconnecter à nouveau",
                     "error"
                 );
                 Navigate("/Login");
             } else
                 Swal.fire(
                     "Error",
-                    "An Error Occured , Please Try Again",
+                    "Une erreur s'est produite, veuillez réessayer",
                     "error"
                 );
         } catch (err) {
-            Swal.fire("Error", "An Error Occured , Please Try Again", "error");
+            Swal.fire(
+                "Error",
+                "Une erreur s'est produite, veuillez réessayer",
+                "error"
+            );
         } finally {
             setDeleteLoading(false);
         }
@@ -88,7 +92,7 @@ function Card({ Demand, Demands, setDemands }) {
                                 className=" text-yallow_v cursor-pointer flex items-center gap-1  "
                             >
                                 {" "}
-                                Show Less <FaAngleUp />
+                                Afficher moins <FaAngleUp />
                             </span>
                         </div>
                     ) : (
@@ -100,7 +104,7 @@ function Card({ Demand, Demands, setDemands }) {
                                     className=" text-yallow_v cursor-pointer flex items-center gap-1  "
                                 >
                                     {" "}
-                                    Show More <FaAngleDown />
+                                    Afficher plus <FaAngleDown />
                                 </div>
                             )}
                         </div>

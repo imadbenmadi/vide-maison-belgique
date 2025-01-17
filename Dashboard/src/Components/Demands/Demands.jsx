@@ -29,7 +29,11 @@ function Demands() {
                     const Demands = response.data.demands;
                     setDemands(Demands);
                 } else if (response.status == 401) {
-                    Swal.fire("Error", "you have to re-Login again", "error");
+                    Swal.fire(
+                        "Error",
+                        "vous devez vous reconnecter à nouveau",
+                        "error"
+                    );
                     Navigate("/Login");
                     setError(response.data);
                 } else {

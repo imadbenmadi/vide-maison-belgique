@@ -30,7 +30,11 @@ function Faqs() {
                     const Faqs = response.data.faq;
                     setFaqs(Faqs);
                 } else if (response.status == 401) {
-                    Swal.fire("Error", "you have to re-Login again", "error");
+                    Swal.fire(
+                        "Error",
+                        "vous devez vous reconnecter à nouveau",
+                        "error"
+                    );
                     Navigate("/Login");
                     setError(response.data);
                 } else {

@@ -61,7 +61,7 @@ function Contact_Phrase() {
                 Swal.fire({
                     icon: "success",
                     title: "Success",
-                    text: "Contact Phrase page updated successfully!",
+                    text: "Contact Phrase page mis à jour avec succès!",
                 });
             }
         } catch (error) {
@@ -109,7 +109,7 @@ function Contact_Phrase() {
                     type="submit"
                     className="w-full py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-200"
                 >
-                    Save
+                    Sauvegarder
                 </button>
             </form>
         </div>

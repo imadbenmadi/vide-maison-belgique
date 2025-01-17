@@ -5,7 +5,7 @@ import { FaAngleDown, FaAngleUp } from "react-icons/fa";
 
 function Card({ faq, Faqs, setFaqs }) {
     const [deleteLoading, setDeleteLoading] = useState(false);
-    const [isOpen, setIsOpen] = useState(false); // To toggle FAQ visibility (question/answer)
+    const [isOpen, setIsOpen] = useState(false); // To toggle FAQ visibility (question/réponse)
 
     const handle_Delete_Faq = async () => {
         setDeleteLoading(true);
@@ -21,7 +21,7 @@ function Card({ faq, Faqs, setFaqs }) {
                 // Remove the deleted FAQ from the list
                 const newfaq = Faqs.filter((item) => item?.id !== faq?.id);
                 setFaqs(newfaq);
-                Swal.fire("Success", "Deleted Successfully", "success");
+                Swal.fire("Success", "Suppression réussie", "success");
             } else if (response.status === 401) {
                 Swal.fire(
                     "Unauthorized",
@@ -51,7 +51,7 @@ function Card({ faq, Faqs, setFaqs }) {
                 </button>
             </div>
 
-            {/* FAQ Answer */}
+            {/* FAQ réponse */}
             {isOpen && (
                 <div className="mt-4 text-gray-700">
                     <p>{faq?.sol}</p>

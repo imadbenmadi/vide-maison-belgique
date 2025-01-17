@@ -31,15 +31,20 @@ const Contact_informations = () => {
                         response.data.contact_informations[0]
                     );
                 } else if (response.status === 401) {
-                    Swal.fire("Error", "You have to re-login", "error");
+                    Swal.fire("Error", "Vous devez vous reconnecter", "error");
                     Navigate("/Login");
                     setError("Unauthorized");
                 } else {
-                    setError("Error fetching contact information");
+                    setError(
+                        "Erreur lors de la récupération de contact information"
+                    );
                 }
             } catch (error) {
-                setError("Error fetching data");
-                console.error("Error fetching contact data", error);
+                setError("Erreur lors de la récupération de data");
+                console.error(
+                    "Erreur lors de la récupération de contact data",
+                    error
+                );
             } finally {
                 setLoading(false);
             }
@@ -120,7 +125,7 @@ const Contact_informations = () => {
                         to={"/Contact_informations/Edit"}
                         className=" py-2 px-3 rounded-md mx-auto w-fit bg-green-500 text-white"
                     >
-                        Edit
+                        Modifier
                     </Link>
                 </div>
             </div>

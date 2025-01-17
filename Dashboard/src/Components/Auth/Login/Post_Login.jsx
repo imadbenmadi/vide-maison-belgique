@@ -1,5 +1,6 @@
 import Swal from "sweetalert2";
 import Axios from "axios";
+
 async function handleLogin(values, { setSubmitting }) {
     try {
         let response = await Axios.post(
@@ -15,29 +16,38 @@ async function handleLogin(values, { setSubmitting }) {
             window.location.href = `/`;
         } else if (response.status == 401) {
             setSubmitting(false);
-            Swal.fire("Error", "Email or Password is not Correct", "error");
+            Swal.fire("Erreur", "Email ou mot de passe incorrect", "error");
         } else if (response.status == 409) {
             setSubmitting(false);
-            Swal.fire("Error", `${response.data.message} `, "error");
+            Swal.fire("Erreur", `${response.data.message} `, "error");
         } else if (response.status == 500) {
             setSubmitting(false);
-            Swal.fire("Error", "Internal Server Error", "error");
+            Swal.fire("Erreur", "Erreur interne du serveur", "error");
         } else if (response.status == 429) {
             setSubmitting(false);
             Swal.fire(
-                "Error",
-                `Too Many Requests , Please Try Again Later`,
+                "Erreur",
+                `Trop de requêtes, veuillez réessayer plus tard`,
                 "error"
             );
         } else {
             setSubmitting(false);
-            Swal.fire("Error", "An Error Occured ,Please try Again", "error");
+            Swal.fire(
+                "Erreur",
+                "Une erreur s'est produite, veuillez réessayer",
+                "error"
+            );
         }
     } catch (error) {
         setSubmitting(false);
-        Swal.fire("Error", "An Error Occured , please try Again", "error");
+        Swal.fire(
+            "Erreur",
+            "Une erreur s'est produite, veuillez réessayer",
+            "error"
+        );
     }
 
     // setSubmitting(false);
 }
+
 export default handleLogin;
