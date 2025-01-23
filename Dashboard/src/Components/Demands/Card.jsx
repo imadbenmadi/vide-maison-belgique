@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 import { FiUser } from "react-icons/fi";
 import { MdOutlineMailOutline } from "react-icons/md";
 import { MdCategory } from "react-icons/md";
+import { FaPhoneAlt } from "react-icons/fa";
 
 function Card({ Demand, Demands, setDemands }) {
     const [deleteLoading, setDeleteLoading] = useState(false);
@@ -79,6 +80,16 @@ function Card({ Demand, Demands, setDemands }) {
                         </a>
                     </div>
                     <div className=" flex items-center gap-2 ">
+                        <FaPhoneAlt className=" text-xl" />
+
+                        <a
+                            href={`mailto:${Demand?.telephone}`}
+                            className="text-yallow_v"
+                        >
+                            {Demand?.telephone}
+                        </a>
+                    </div>
+                    <div className=" flex items-center gap-2 ">
                         <MdCategory className=" text-xl" />
                         <div className="text-yallow_v">{Demand?.type}</div>
                     </div>
@@ -86,7 +97,7 @@ function Card({ Demand, Demands, setDemands }) {
                 <div className=" font-semibold text-gray_v py-6 md:px-4 break-all">
                     {show_more ? (
                         <div className=" flex flex-col ">
-                            {Demand?.message}
+                            {Demand?.description}
                             <span
                                 onClick={Toogle_Show_More}
                                 className=" text-yallow_v cursor-pointer flex items-center gap-1  "
@@ -97,16 +108,22 @@ function Card({ Demand, Demands, setDemands }) {
                         </div>
                     ) : (
                         <div className=" flex flex-col ">
-                            <div>{Demand?.message.slice(0, 500)}</div>
-                            {Demand?.message.length > 500 && (
-                                <div
-                                    onClick={Toogle_Show_More}
-                                    className=" text-yallow_v cursor-pointer flex items-center gap-1  "
-                                >
-                                    {" "}
-                                    Afficher plus <FaAngleDown />
-                                </div>
-                            )}
+                            <div>
+                                {Demand?.description &&
+                                Demand?.description.length > 0
+                                    ? Demand?.description.slice(0, 500)
+                                    : null}
+                            </div>
+                            {Demand?.description &&
+                                Demand?.description.length > 500 && (
+                                    <div
+                                        onClick={Toogle_Show_More}
+                                        className=" text-yallow_v cursor-pointer flex items-center gap-1  "
+                                    >
+                                        {" "}
+                                        Afficher plus <FaAngleDown />
+                                    </div>
+                                )}
                         </div>
                     )}
                 </div>
