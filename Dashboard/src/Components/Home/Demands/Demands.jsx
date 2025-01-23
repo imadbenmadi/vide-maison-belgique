@@ -81,17 +81,28 @@ const Demands_Page = () => {
 
     const handleSubmit = async (values, { setSubmitting, resetForm }) => {
         try {
-            const response = await fetch("http://localhost:3000/Demands", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(values),
-            });
+            const response = await axios.post(
+                "http://localhost:3000/Demands",
+                values,
+                {
+                    withCredentials: true,
+                    validateStatus: () => true,
+                }
+            );
+            console.log(response);
 
-            if (response.ok) {
+            if (response.status === 200) {
                 resetForm();
                 setIsMessageSent(true);
+            } else if (response.status === 401) {
+                Swal.fire("Erreur", "Veuillez vous reconnecter", "error");
+                navigate("/Login");
             } else {
-                throw new Error("Échec de l'envoi de la demande.");
+                Swal.fire(
+                    "Erreur",
+                    "Une erreur s'est produite. Veuillez réessayer.",
+                    "error"
+                );
             }
         } catch (err) {
             Swal.fire(
