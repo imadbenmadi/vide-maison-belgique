@@ -27,7 +27,7 @@ function Mobile_Nav_Items({ MobileNav_Open, Toogle_Menu_Bar, Active_nav }) {
                             </Link>
                             <Link
                                 onClick={Toogle_Menu_Bar}
-                                to={"/Home/Contact"}
+                                to={"/Contact"}
                                 className={`${
                                     Active_nav == "Contact"
                                         ? "text-yallow_v"
@@ -38,7 +38,7 @@ function Mobile_Nav_Items({ MobileNav_Open, Toogle_Menu_Bar, Active_nav }) {
                             </Link>
                             <Link
                                 onClick={Toogle_Menu_Bar}
-                                to={"/Home/Demand"}
+                                to={"/Demand"}
                                 className={`${
                                     Active_nav == "Demand"
                                         ? "text-yallow_v"

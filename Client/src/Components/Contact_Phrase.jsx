@@ -17,7 +17,7 @@ function Call_Phrase({ data, phone_number }) {
             </div>
             <Link
                 className="mx-auto py-2 px-4 rounded bg-yellow-500 text-black cursor-pointer font-semibold text-xl"
-                to={"/Home/Contact"}
+                to={"/Contact"}
             >
                 {data?.button}
             </Link>

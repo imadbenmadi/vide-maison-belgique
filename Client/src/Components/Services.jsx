@@ -75,7 +75,7 @@ function Service_card({ service }) {
                 </p>
             </div>
             <Link
-                to={`/Home/Demand?type=${service?.type}`}
+                to={`/Demand?type=${service?.type}`}
                 className="bg-yallow_v text-md py-2 px-4 text-white font-semibold rounded-b-lg w-full block text-center"
             >
                 demande{" "}

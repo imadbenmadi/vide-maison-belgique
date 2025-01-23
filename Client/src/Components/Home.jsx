@@ -19,7 +19,7 @@ function Home() {
     }, [data]);
     useEffect(() => {
         const fetchData = async () => {
-            setLoading(true);
+            setLoading(true); 
             try {
                 const response = await axios.get("http://localhost:3000/Home", {
                     withCredentials: true,

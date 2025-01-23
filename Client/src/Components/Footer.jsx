@@ -60,15 +60,13 @@ const Footer = ({ data }) => {
                             </li>
 
                             <li>
-                                <FooterLink href="/Home/Contact">
+                                <FooterLink href="/Contact">
                                     Contact Page
                                 </FooterLink>
                             </li>
 
                             <li>
-                                <FooterLink href="/Home/Demand">
-                                    Demade
-                                </FooterLink>
+                                <FooterLink href="/Demand">Demade</FooterLink>
                             </li>
                         </ul>
                     </div>

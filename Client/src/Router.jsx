@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 
-import Home from "./Components/Home/Home.jsx";
+import Home from "./Components/Home.jsx";
 import App from "./App";
 // import Login from "./Components/Auth/Login/Login";
 // import Register from "./Components/Auth/Register/Register";

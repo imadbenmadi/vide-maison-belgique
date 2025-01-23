@@ -37,7 +37,7 @@ function Laptop_Nav_Items({ Active_nav }) {
                             : "text-black_text"
                     } md:hover:text-yallow_v transition-all duration-150  cursor-pointer`}
                 >
-                    <Link to={"/Home/Contact"} className={" select-none"}>
+                    <Link to={"/Contact"} className={" select-none"}>
                         Contact{" "}
                     </Link>
                 </div>
@@ -48,7 +48,7 @@ function Laptop_Nav_Items({ Active_nav }) {
                             : "text-black_text"
                     } md:hover:text-yallow_v transition-all duration-150  cursor-pointer`}
                 >
-                    <Link to={"/Home/Demand"} className={" select-none"}>
+                    <Link to={"/Demand"} className={" select-none"}>
                         demander un devis{" "}
                     </Link>
                 </div>
