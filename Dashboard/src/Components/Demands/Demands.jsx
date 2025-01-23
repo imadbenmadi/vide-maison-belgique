@@ -178,7 +178,7 @@ function Demands() {
                     </div>
 
                     {/* Display Demand Types */}
-                    <div className="my-6 p-4 bg-white rounded-lg shadow-md">
+                    <div className="md:my-6 p-4 bg-white rounded-lg shadow-md">
                         <h3 className="text-lg font-semibold mb-4">
                             Types de demandes
                         </h3>
