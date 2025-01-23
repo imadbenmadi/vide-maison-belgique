@@ -154,58 +154,59 @@ function Demands() {
                 <div className="text-xl font-semibold text-yallow_v">
                     Gestion des demandes
                 </div>
-
-                {/* Add New Demand Type Section */}
-                <div className="my-6 p-4 bg-white rounded-lg shadow-md">
-                    <h3 className="text-lg font-semibold mb-4">
-                        Ajouter un type de demande
-                    </h3>
-                    <div className="flex gap-2">
-                        <input
-                            type="text"
-                            value={newType}
-                            onChange={(e) => setNewType(e.target.value)}
-                            placeholder="Nouveau type"
-                            className="w-full px-4 py-2 rounded-lg border focus:ring focus:ring-blue-300"
-                        />
-                        <button
-                            onClick={handleAddType}
-                            className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
-                        >
-                            Ajouter
-                        </button>
+                <div className="w-[90%] md:w-[60%] mx-auto ">
+                    {/* Add New Demand Type Section */}
+                    <div className="my-6 p-4 bg-white rounded-lg shadow-md">
+                        <h3 className="text-lg font-semibold mb-4">
+                            Ajouter un type de demande
+                        </h3>
+                        <div className="flex gap-2">
+                            <input
+                                type="text"
+                                value={newType}
+                                onChange={(e) => setNewType(e.target.value)}
+                                placeholder="Nouveau type"
+                                className="w-full px-4 py-2 rounded-lg border focus:ring focus:ring-blue-300"
+                            />
+                            <button
+                                onClick={handleAddType}
+                                className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+                            >
+                                Ajouter
+                            </button>
+                        </div>
                     </div>
-                </div>
 
-                {/* Display Demand Types */}
-                <div className="my-6 p-4 bg-white rounded-lg shadow-md">
-                    <h3 className="text-lg font-semibold mb-4">
-                        Types de demandes
-                    </h3>
-                    {DemandTypes.length === 0 ? (
-                        <p className="text-gray-600">
-                            Aucun type de demande disponible.
-                        </p>
-                    ) : (
-                        <ul className="space-y-2">
-                            {DemandTypes.map((type) => (
-                                <li
-                                    key={type.id} // Use `id` as the key
-                                    className="flex justify-between items-center p-2 border rounded-lg"
-                                >
-                                    <span>{type.type}</span>
-                                    <button
-                                        onClick={() =>
-                                            handleDeleteType(type.id)
-                                        } // Pass `id` to the handler
-                                        className="text-red-500 hover:text-red-700"
+                    {/* Display Demand Types */}
+                    <div className="my-6 p-4 bg-white rounded-lg shadow-md">
+                        <h3 className="text-lg font-semibold mb-4">
+                            Types de demandes
+                        </h3>
+                        {DemandTypes.length === 0 ? (
+                            <p className="text-gray-600">
+                                Aucun type de demande disponible.
+                            </p>
+                        ) : (
+                            <ul className="space-y-2">
+                                {DemandTypes.map((type) => (
+                                    <li
+                                        key={type.id} // Use `id` as the key
+                                        className="flex justify-between items-center p-2 border rounded-lg"
                                     >
-                                        <BiTrash className="text-xl" />
-                                    </button>
-                                </li>
-                            ))}
-                        </ul>
-                    )}
+                                        <span>{type.type}</span>
+                                        <button
+                                            onClick={() =>
+                                                handleDeleteType(type.id)
+                                            } // Pass `id` to the handler
+                                            className="text-red-500 hover:text-red-700"
+                                        >
+                                            <BiTrash className="text-xl" />
+                                        </button>
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
+                    </div>
                 </div>
 
                 {/* Display Demands */}
