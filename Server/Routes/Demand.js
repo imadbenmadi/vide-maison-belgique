@@ -56,5 +56,5 @@ const get_demands_types = async (req, res) => {
 };
 // Define the POST route
 router.post("/", handle_create_demand, get_demands_types);
-
+router.get("/types", get_demands_types);
 module.exports = router;

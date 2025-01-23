@@ -25,7 +25,8 @@ const Demands_Page = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [isMessageSent, setIsMessageSent] = useState(false);
-    const [showCustomTypeInput, setShowCustomTypeInput] = useState(false); // New state for custom input
+    const [showCustomTypeInput, setShowCustomTypeInput] = useState(false);
+    const [typeOptions, setTypeOptions] = useState([]); // State for dynamic type options
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -33,25 +34,41 @@ const Demands_Page = () => {
     const queryParams = new URLSearchParams(location.search);
     const demandType = queryParams.get("type") || "";
 
-    // Static options for the type field
-    const typeOptions = [
-        { value: "", label: "Sélectionnez un type" },
-        { value: "General", label: "Demande Générale" },
-        { value: "Technical", label: "Problème Technique" },
-        { value: "Billing", label: "Facturation" },
-        { value: "Others", label: "Autres" }, // Add "Others" option
-    ];
-
-    // Validate if the URL type exists in the predefined options
-    const initialType = typeOptions.some(
-        (option) => option.value === demandType
-    )
-        ? demandType
-        : "";
-
+    // Fetch types from the server
     useEffect(() => {
-        const fetchContactInformations = async () => {
+        const fetchTypes = async () => {
             setLoading(true);
+            try {
+                const response = await axios.get(
+                    "http://localhost:3000/Demands/types",
+                    {
+                        withCredentials: true,
+                        validateStatus: () => true,
+                    }
+                );
+                if (
+                    response.status === 200 &&
+                    response.data?.types?.length > 0
+                ) {
+                    const types = response.data.types.map((type) => ({
+                        value: type.type,
+                        label: type.type,
+                    }));
+                    setTypeOptions([
+                        ...types,
+                        { value: "Others", label: "Autres" },
+                    ]); // Add "Others" option
+                } else {
+                    setTypeOptions([]); // If no types, set to empty array
+                }
+            } catch (err) {
+                setTypeOptions([]); // On error, set to empty array
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        const fetchContactInformations = async () => {
             try {
                 const response = await axios.get(
                     "http://localhost:3000/Contact_informations",
@@ -74,11 +91,11 @@ const Demands_Page = () => {
                 setError(
                     "Une erreur s'est produite lors de la récupération des données."
                 );
-            } finally {
-                setLoading(false);
             }
         };
+
         fetchContactInformations();
+        fetchTypes();
     }, [navigate]);
 
     const handleSubmit = async (values, { setSubmitting, resetForm }) => {
@@ -96,7 +113,6 @@ const Demands_Page = () => {
                     validateStatus: () => true,
                 }
             );
-            console.log(response);
 
             if (response.status === 200) {
                 resetForm();
@@ -171,8 +187,8 @@ const Demands_Page = () => {
                                     email: "",
                                     telephone: "",
                                     description: "",
-                                    type: initialType,
-                                    customType: "", // New field for custom input
+                                    type: demandType,
+                                    customType: "",
                                 }}
                                 validationSchema={DemandSchema}
                                 onSubmit={handleSubmit}
@@ -235,42 +251,63 @@ const Demands_Page = () => {
                                             component="div"
                                             className="text-red-600 text-sm"
                                         />
-                                        <Field
-                                            name="type"
-                                            as="select"
-                                            className="w-full px-4 py-2 rounded-lg border bg-white focus:ring focus:ring-blue-300"
-                                            onChange={(e) => {
-                                                setFieldValue(
-                                                    "type",
-                                                    e.target.value
-                                                );
-                                                setShowCustomTypeInput(
-                                                    e.target.value === "Others"
-                                                );
-                                            }}
-                                        >
-                                            {typeOptions.map((option) => (
-                                                <option
-                                                    key={option.value}
-                                                    value={option.value}
+                                        {typeOptions.length > 0 ? (
+                                            <>
+                                                <Field
+                                                    name="type"
+                                                    as="select"
+                                                    className="w-full px-4 py-2 rounded-lg border bg-white focus:ring focus:ring-blue-300"
+                                                    onChange={(e) => {
+                                                        setFieldValue(
+                                                            "type",
+                                                            e.target.value
+                                                        );
+                                                        setShowCustomTypeInput(
+                                                            e.target.value ===
+                                                                "Others"
+                                                        );
+                                                    }}
                                                 >
-                                                    {option.label}
-                                                </option>
-                                            ))}
-                                        </Field>
+                                                    <option value="" disabled>
+                                                        Sélectionnez un type
+                                                    </option>
+                                                    {typeOptions.map(
+                                                        (option) => (
+                                                            <option
+                                                                key={
+                                                                    option.value
+                                                                }
+                                                                value={
+                                                                    option.value
+                                                                }
+                                                            >
+                                                                {option.label}
+                                                            </option>
+                                                        )
+                                                    )}
+                                                </Field>
+                                                {showCustomTypeInput && (
+                                                    <Field
+                                                        name="customType"
+                                                        type="text"
+                                                        placeholder="Veuillez spécifier le type"
+                                                        className="w-full px-4 py-2 rounded-lg border focus:ring focus:ring-blue-300"
+                                                    />
+                                                )}
+                                            </>
+                                        ) : (
+                                            <Field
+                                                name="type"
+                                                type="text"
+                                                placeholder="Type de demande"
+                                                className="w-full px-4 py-2 rounded-lg border focus:ring focus:ring-blue-300"
+                                            />
+                                        )}
                                         <ErrorMessage
                                             name="type"
                                             component="div"
                                             className="text-red-600 text-sm"
                                         />
-                                        {showCustomTypeInput && (
-                                            <Field
-                                                name="customType"
-                                                type="text"
-                                                placeholder="Veuillez spécifier le type"
-                                                className="w-full px-4 py-2 rounded-lg border focus:ring focus:ring-blue-300"
-                                            />
-                                        )}
                                         <button
                                             type="submit"
                                             disabled={isSubmitting}
