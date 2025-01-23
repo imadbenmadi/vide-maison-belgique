@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Logo from "../../../../public/Logo.png";
+import Logo from "../../../public/Logo.png";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 dayjs.extend(customParseFormat);

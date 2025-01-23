@@ -2,9 +2,11 @@ import { createBrowserRouter } from "react-router-dom";
 
 import Home from "./Components/Home.jsx";
 import App from "./App";
-// import Login from "./Components/Auth/Login/Login";
-// import Register from "./Components/Auth/Register/Register";
 import Default from "./Default";
+import Login from "./Components/Auth/Login/Login";
+import Register from "./Components/Auth/Register/Register";
+import Home_Demands from "./Components/Demands/Demands.jsx";
+import Home_Contact from "./Components/Contact/Contact.jsx";
 
 import Not_Found from "./Components/Not_Found";
 import Not_Finished from "./Components/Not_Finished";
@@ -41,6 +43,17 @@ const routes = createBrowserRouter([
             },
         ],
     },
+    {
+        path: "/Login",
+        element: <Login />,
+        errorElement: <ErrorElement />,
+    },
+    {
+        path: "/Register",
+        element: <Register />,
+        errorElement: <ErrorElement />,
+    },
+
     {
         path: "*",
         element: <Not_Found />,
