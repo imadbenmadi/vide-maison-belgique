@@ -22,7 +22,6 @@ function EditMainPage() {
                         withCredentials: true,
                     }
                 );
-                console.log(response.data);
 
                 const { Title, Description, button, image_link } =
                     response.data.about_page; // Corrected to access about_page

@@ -4,9 +4,7 @@ import { motion } from "framer-motion";
 function Main({ data }) {
     const [imageSrc, setImageSrc] = useState(""); // Manage the current image source
     const fallbackImage = "/bg.jpg"; // Path to your fallback image (make sure it's correct)
-    // useEffect(() => {
-    //     console.log(data);
-    // }, [data]);
+    
 
     useEffect(() => {
         const loadImage = (src) => {

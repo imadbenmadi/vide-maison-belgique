@@ -55,7 +55,6 @@ router.post("/types", adminMiddleware, async (req, res) => {
 router.delete("/types/:id", adminMiddleware, async (req, res) => {
     try {
         const typeid = req.params.id;
-        console.log("Deleting type with ID:", typeid); // Debugging
         if (!typeid)
             return res.status(400).json({ message: "type id is required" });
         await Demands_types.destroy({ where: { id: typeid } });

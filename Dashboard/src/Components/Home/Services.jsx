@@ -2,9 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 function Services({ data }) {
-    // useEffect(() => {
-    //     console.log(data);
-    // }, [data]);
+   
 
     if (!data) {
         return null;

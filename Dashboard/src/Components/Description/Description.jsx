@@ -27,7 +27,6 @@ function Edit_Description() {
 
                 const { Title, Description, image_link1, image_link2 } =
                     response.data.description_page; // Access description_page object correctly
-                console.log(response.data.description_page);
 
                 setFormData({
                     Title: Title || "", // Ensure default empty string
@@ -99,7 +98,6 @@ function Edit_Description() {
         } else {
             data.append("image2", formData.image_link2); // Send existing link if no new image
         }
-        // console.log(data);
 
         try {
             const response = await axios.put(

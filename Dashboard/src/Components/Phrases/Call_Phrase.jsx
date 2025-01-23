@@ -18,7 +18,6 @@ function Call_Phrase() {
                         withCredentials: true,
                     }
                 );
-                console.log(response.data);
 
                 const { Text, button } = response.data.phrase_page; // Access Phrase_page object correctly
 
@@ -55,7 +54,6 @@ function Call_Phrase() {
                     withCredentials: true,
                 }
             );
-            console.log(response.data);
 
             if (response.status === 200) {
                 Swal.fire({
