@@ -2,18 +2,22 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import Swal from "sweetalert2";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import { FaEnvelope, FaPhone, FaPaperPlane } from "react-icons/fa";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { FaPaperPlane } from "react-icons/fa";
 import Footer from "../Footer";
 import NavBar from "../NavBar/NavBar";
-const ContactSchema = Yup.object().shape({
+
+// Schema for validation
+const DemandSchema = Yup.object().shape({
     firstName: Yup.string().required("Le prénom est requis"),
     lastName: Yup.string().required("Le nom est requis"),
     email: Yup.string().email("Email invalide").required("L'email est requis"),
-    message: Yup.string()
-        .required("Le message est requis")
-        .min(10, "Le message doit contenir au moins 10 caractères"),
+    telephone: Yup.string().required("Le téléphone est requis"),
+    description: Yup.string()
+        .required("La description est requise")
+        .min(10, "La description doit contenir au moins 10 caractères"),
+    type: Yup.string().required("Le type de demande est requis"),
 });
 
 const Demands_Page = () => {
@@ -21,14 +25,34 @@ const Demands_Page = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [isMessageSent, setIsMessageSent] = useState(false);
-    const Navigate = useNavigate();
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    // Extract the type from the URL query parameters
+    const queryParams = new URLSearchParams(location.search);
+    const demandType = queryParams.get("type") || "";
+
+    // Static options for the type field
+    const typeOptions = [
+        { value: "", label: "Sélectionnez un type" },
+        { value: "General", label: "Demande Générale" },
+        { value: "Technical", label: "Problème Technique" },
+        { value: "Billing", label: "Facturation" },
+    ];
+
+    // Validate if the URL type exists in the predefined options
+    const initialType = typeOptions.some(
+        (option) => option.value === demandType
+    )
+        ? demandType
+        : "";
 
     useEffect(() => {
         const fetchContactInformations = async () => {
             setLoading(true);
             try {
                 const response = await axios.get(
-                    "http://localhost:3000/Admin/Contact_informations",
+                    "http://localhost:3000/Contact_informations",
                     {
                         withCredentials: true,
                         validateStatus: () => true,
@@ -40,7 +64,7 @@ const Demands_Page = () => {
                     );
                 } else if (response.status === 401) {
                     Swal.fire("Erreur", "Veuillez vous reconnecter", "error");
-                    Navigate("/Login");
+                    navigate("/Login");
                 } else {
                     setError("Échec de la récupération des informations.");
                 }
@@ -53,11 +77,11 @@ const Demands_Page = () => {
             }
         };
         fetchContactInformations();
-    }, [Navigate]);
+    }, [navigate]);
 
     const handleSubmit = async (values, { setSubmitting, resetForm }) => {
         try {
-            const response = await fetch("http://localhost:3000/Contact", {
+            const response = await fetch("http://localhost:3000/Demands", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(values),
@@ -67,7 +91,7 @@ const Demands_Page = () => {
                 resetForm();
                 setIsMessageSent(true);
             } else {
-                throw new Error("Échec de l'envoi du message.");
+                throw new Error("Échec de l'envoi de la demande.");
             }
         } catch (err) {
             Swal.fire(
@@ -96,124 +120,134 @@ const Demands_Page = () => {
         );
     }
 
-    const email = contactInformations?.email || "";
-    const phone = contactInformations?.phone || "";
-
     return (
         <div>
-            <div className="min-h-screen relative overflow-x-hidden border">
+            <div className="min-h-screen relative bg-gray-50">
                 <NavBar />
-                <div className="  flex items-center justify-center pt-24">
-                    <div className="max-w-4xl w-full bg-white rounded-2xl shadow-xl overflow-hidden border">
-                        <div className="md:flex">
-                            <div className="md:w-1/2 bg-gray-900 text-white p-8 relative">
-                                <h2 className="text-3xl font-bold mb-6">
-                                    Contactez-nous
-                                </h2>
-                                <div className="space-y-4">
-                                    <div className="flex items-center space-x-4">
-                                        <FaEnvelope className="text-blue-500" />
-                                        <span>{email}</span>
-                                    </div>
-                                    <div className="flex items-center space-x-4">
-                                        <FaPhone className="text-green-500" />
-                                        <span>{phone}</span>
-                                    </div>
-                                </div>
+                <div className="flex items-center justify-center py-24 px-4">
+                    <div className="max-w-2xl w-full bg-white rounded-xl shadow-lg p-6">
+                        <h3 className="text-xl font-bold text-gray-800 mb-4">
+                            Envoyez une demande
+                        </h3>
+                        {isMessageSent ? (
+                            <div className="text-center py-12">
+                                <FaPaperPlane className="text-5xl text-green-500 mx-auto mb-4" />
+                                <h4 className="text-2xl font-bold mb-2">
+                                    Demande envoyée !
+                                </h4>
+                                <p className="text-gray-600">
+                                    Nous vous contacterons bientôt.
+                                </p>
+                                <button
+                                    onClick={() => setIsMessageSent(false)}
+                                    className="mt-6 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+                                >
+                                    Envoyer une autre demande
+                                </button>
                             </div>
-                            <div className="md:w-1/2 p-8">
-                                <h3 className="text-2xl font-bold mb-6">
-                                    Envoyez-nous un message
-                                </h3>
-                                {isMessageSent ? (
-                                    <div className="text-center py-16">
-                                        <FaPaperPlane className="text-6xl text-green-500 mx-auto mb-4" />
-                                        <h4 className="text-2xl font-bold mb-2">
-                                            Message envoyé !
-                                        </h4>
-                                        <p>Nous vous répondrons bientôt.</p>
-                                        <button
-                                            onClick={() =>
-                                                setIsMessageSent(false)
-                                            }
-                                            className="mt-6 px-4 py-2 bg-blue-500 text-white rounded-full hover:bg-blue-600"
+                        ) : (
+                            <Formik
+                                initialValues={{
+                                    firstName: "",
+                                    lastName: "",
+                                    email: "",
+                                    telephone: "",
+                                    description: "",
+                                    type: initialType,
+                                }}
+                                validationSchema={DemandSchema}
+                                onSubmit={handleSubmit}
+                            >
+                                {({ isSubmitting }) => (
+                                    <Form className="space-y-4">
+                                        <Field
+                                            name="firstName"
+                                            type="text"
+                                            placeholder="Prénom"
+                                            className="w-full px-4 py-2 rounded-lg border focus:ring focus:ring-blue-300"
+                                        />
+                                        <ErrorMessage
+                                            name="firstName"
+                                            component="div"
+                                            className="text-red-600 text-sm"
+                                        />
+                                        <Field
+                                            name="lastName"
+                                            type="text"
+                                            placeholder="Nom"
+                                            className="w-full px-4 py-2 rounded-lg border focus:ring focus:ring-blue-300"
+                                        />
+                                        <ErrorMessage
+                                            name="lastName"
+                                            component="div"
+                                            className="text-red-600 text-sm"
+                                        />
+                                        <Field
+                                            name="email"
+                                            type="email"
+                                            placeholder="Email"
+                                            className="w-full px-4 py-2 rounded-lg border focus:ring focus:ring-blue-300"
+                                        />
+                                        <ErrorMessage
+                                            name="email"
+                                            component="div"
+                                            className="text-red-600 text-sm"
+                                        />
+                                        <Field
+                                            name="telephone"
+                                            type="text"
+                                            placeholder="Téléphone"
+                                            className="w-full px-4 py-2 rounded-lg border focus:ring focus:ring-blue-300"
+                                        />
+                                        <ErrorMessage
+                                            name="telephone"
+                                            component="div"
+                                            className="text-red-600 text-sm"
+                                        />
+                                        <Field
+                                            name="description"
+                                            as="textarea"
+                                            rows="4"
+                                            placeholder="Description"
+                                            className="w-full px-4 py-2 rounded-lg border focus:ring focus:ring-blue-300"
+                                        />
+                                        <ErrorMessage
+                                            name="description"
+                                            component="div"
+                                            className="text-red-600 text-sm"
+                                        />
+                                        <Field
+                                            name="type"
+                                            as="select"
+                                            className="w-full px-4 py-2 rounded-lg border bg-white focus:ring focus:ring-blue-300"
                                         >
-                                            Envoyer un autre message
-                                        </button>
-                                    </div>
-                                ) : (
-                                    <Formik
-                                        initialValues={{
-                                            firstName: "",
-                                            lastName: "",
-                                            email: "",
-                                            message: "",
-                                        }}
-                                        validationSchema={ContactSchema}
-                                        onSubmit={handleSubmit}
-                                    >
-                                        {({ isSubmitting }) => (
-                                            <Form className="space-y-6">
-                                                <Field
-                                                    name="firstName"
-                                                    type="text"
-                                                    placeholder="Votre prénom"
-                                                    className="w-full px-4 py-2 rounded-full border"
-                                                />
-                                                <ErrorMessage
-                                                    name="firstName"
-                                                    component="div"
-                                                    className="text-red-600 text-sm"
-                                                />
-                                                <Field
-                                                    name="lastName"
-                                                    type="text"
-                                                    placeholder="Votre nom"
-                                                    className="w-full px-4 py-2 rounded-full border"
-                                                />
-                                                <ErrorMessage
-                                                    name="lastName"
-                                                    component="div"
-                                                    className="text-red-600 text-sm"
-                                                />
-                                                <Field
-                                                    name="email"
-                                                    type="email"
-                                                    placeholder="Votre email"
-                                                    className="w-full px-4 py-2 rounded-full border"
-                                                />
-                                                <ErrorMessage
-                                                    name="email"
-                                                    component="div"
-                                                    className="text-red-600 text-sm"
-                                                />
-                                                <Field
-                                                    name="message"
-                                                    as="textarea"
-                                                    rows="4"
-                                                    placeholder="Votre message"
-                                                    className="w-full px-4 py-2 rounded-2xl border"
-                                                />
-                                                <ErrorMessage
-                                                    name="message"
-                                                    component="div"
-                                                    className="text-red-600 text-sm"
-                                                />
-                                                <button
-                                                    type="submit"
-                                                    disabled={isSubmitting}
-                                                    className="w-full py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700"
+                                            {typeOptions.map((option) => (
+                                                <option
+                                                    key={option.value}
+                                                    value={option.value}
                                                 >
-                                                    {isSubmitting
-                                                        ? "Envoi en cours..."
-                                                        : "Envoyer le message"}
-                                                </button>
-                                            </Form>
-                                        )}
-                                    </Formik>
+                                                    {option.label}
+                                                </option>
+                                            ))}
+                                        </Field>
+                                        <ErrorMessage
+                                            name="type"
+                                            component="div"
+                                            className="text-red-600 text-sm"
+                                        />
+                                        <button
+                                            type="submit"
+                                            disabled={isSubmitting}
+                                            className="w-full py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+                                        >
+                                            {isSubmitting
+                                                ? "Envoi en cours..."
+                                                : "Envoyer la demande"}
+                                        </button>
+                                    </Form>
                                 )}
-                            </div>
-                        </div>
+                            </Formik>
+                        )}
                     </div>
                 </div>
             </div>

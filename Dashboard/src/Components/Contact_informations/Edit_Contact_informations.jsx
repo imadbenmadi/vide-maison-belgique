@@ -18,7 +18,7 @@ const Edit_Contact_informations = () => {
         const fetchContactInformations = async () => {
             try {
                 const response = await axios.get(
-                    `http://localhost:3000/Admin/Contact_informations`,
+                    `http://localhost:3000/Contact_informations`,
                     {
                         withCredentials: true,
                         validateStatus: () => true,

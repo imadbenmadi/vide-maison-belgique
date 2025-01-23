@@ -2,6 +2,8 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
+const { Contact_informations } = require("./Models/Contact_informations");
+
 const path = require("path");
 const allowedOrigins = [
     "http://localhost:5173",
@@ -53,7 +55,18 @@ app.use("/Add_Admin", require("./Routes/Auth/Admin/Admin_Add"));
 // app.use("/Admin_Logout", require("./Routes/Auth/Admin/Admin_Logout"));
 app.use("/Logout", require("./Routes/Auth/Logout"));
 app.use("/Admin_CheckAuth", require("./Routes/Auth/Admin/Admin_CheckAuth"));
-
+router.get("/Contact_informations", async (req, res) => {
+    try {
+        const contact_informations = await Contact_informations.findAll({
+            where: {},
+            order: [["createdAt", "DESC"]],
+        });
+        res.status(200).json({ contact_informations });
+    } catch (err) {
+        console.error("Error fetching Messages:", err);
+        res.status(500).json({ message: "Internal Server Error" });
+    }
+});
 app.listen(3000);
 
 module.exports = app;
