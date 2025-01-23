@@ -21,37 +21,13 @@ const setupAxiosInterceptors = (navigate) => {
 };
 
 function App() {
-    const Navigate = useNavigate();
     const [loading, setLoading] = useState(true);
-    const { set_Auth } = useAppContext();
     const navigate = useNavigate();
 
     useEffect(() => {
         setupAxiosInterceptors(navigate);
     }, [navigate]);
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get(
-                    "http://localhost:3000/CheckAuth",
-                    {
-                        withCredentials: true,
-                        // validateStatus: () => true,
-                    }
-                );
-
-                if (response.status == 200) {
-                    set_Auth(true);
-                    // Navigate("/Home");
-                } else {
-                    set_Auth(false);
-                    Navigate("/Login");
-                }
-            } catch (error) {
-                set_Auth(false);
-                Navigate("/Login");
-            }
-        };
         const fetch_images = () => {
             return new Promise((resolve, reject) => {
                 const images = [Logo, Login_icon];
@@ -107,7 +83,7 @@ function App() {
             });
         };
         // Promise.all([fetchData()]);
-        Promise.all([fetch_fonts(), fetch_images(), fetchData()])
+        Promise.all([fetch_fonts(), fetch_images()])
             .then(() => {
                 setLoading(false);
             })

@@ -56,7 +56,7 @@ const Footer = ({ data }) => {
                         </h3>
                         <ul className="space-y-2">
                             <li>
-                                <FooterLink href="/Home">Home</FooterLink>
+                                <FooterLink href="/">Home</FooterLink>
                             </li>
 
                             <li>
