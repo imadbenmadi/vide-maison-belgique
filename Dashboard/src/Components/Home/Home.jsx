@@ -59,7 +59,7 @@ function Home() {
             <div>
                 <div className=" min-h-screen relative overflow-x-hidden">
                     <NavBar />
-                    <div className=" fixed bottom-10 right-10 z-20 ">
+                    <div className=" fixed bottom-5 right-10 z-20 ">
                         <Phone_Popup data={data.contact_informations} />
                     </div>
                     <Main data={data?.Main_page} />
