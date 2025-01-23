@@ -25,6 +25,7 @@ const Demands_Page = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [isMessageSent, setIsMessageSent] = useState(false);
+    const [showCustomTypeInput, setShowCustomTypeInput] = useState(false); // New state for custom input
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -38,6 +39,7 @@ const Demands_Page = () => {
         { value: "General", label: "Demande Générale" },
         { value: "Technical", label: "Problème Technique" },
         { value: "Billing", label: "Facturation" },
+        { value: "Others", label: "Autres" }, // Add "Others" option
     ];
 
     // Validate if the URL type exists in the predefined options
@@ -81,6 +83,11 @@ const Demands_Page = () => {
 
     const handleSubmit = async (values, { setSubmitting, resetForm }) => {
         try {
+            // If "Others" is selected, use the custom input value
+            if (values.type === "Others" && values.customType) {
+                values.type = values.customType;
+            }
+
             const response = await axios.post(
                 "http://localhost:3000/Demands",
                 values,
@@ -165,11 +172,12 @@ const Demands_Page = () => {
                                     telephone: "",
                                     description: "",
                                     type: initialType,
+                                    customType: "", // New field for custom input
                                 }}
                                 validationSchema={DemandSchema}
                                 onSubmit={handleSubmit}
                             >
-                                {({ isSubmitting }) => (
+                                {({ isSubmitting, values, setFieldValue }) => (
                                     <Form className="space-y-4">
                                         <Field
                                             name="firstName"
@@ -231,6 +239,15 @@ const Demands_Page = () => {
                                             name="type"
                                             as="select"
                                             className="w-full px-4 py-2 rounded-lg border bg-white focus:ring focus:ring-blue-300"
+                                            onChange={(e) => {
+                                                setFieldValue(
+                                                    "type",
+                                                    e.target.value
+                                                );
+                                                setShowCustomTypeInput(
+                                                    e.target.value === "Others"
+                                                );
+                                            }}
                                         >
                                             {typeOptions.map((option) => (
                                                 <option
@@ -246,6 +263,14 @@ const Demands_Page = () => {
                                             component="div"
                                             className="text-red-600 text-sm"
                                         />
+                                        {showCustomTypeInput && (
+                                            <Field
+                                                name="customType"
+                                                type="text"
+                                                placeholder="Veuillez spécifier le type"
+                                                className="w-full px-4 py-2 rounded-lg border focus:ring focus:ring-blue-300"
+                                            />
+                                        )}
                                         <button
                                             type="submit"
                                             disabled={isSubmitting}

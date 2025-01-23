@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const adminMiddleware = require("../../Middlewares/Admin_middleware_New");
 const { Demands } = require("../../Models/Demands");
+const { Demands_types } = require("../../Models/Demands_types");
 
 router.get("/", adminMiddleware, async (req, res) => {
     try {
@@ -35,6 +36,30 @@ router.delete("/:id", adminMiddleware, async (req, res) => {
     } catch (err) {
         console.error("Error fetching deleting Messages:", err);
         res.status(500).json({ message: "Internal Server Error" });
+    }
+});
+router.post("/types", adminMiddleware, async (req, res) => {
+    try {
+        const type = req.body.type;
+        if (!type) return res.status(400).json({ message: "type is required" });
+        await Demands_types.create({
+            type,
+        });
+        return res.status(200);
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: "Internal Server Error" });
+    }
+});
+router.delete("/type", adminMiddleware, async (req, res) => {
+    try {
+        const type = req.body.type;
+        if (!type) return res.status(400).json({ message: "type is required" });
+        await Demands_types.destroy({ where: { type } });
+        return res.status(200);
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: "Internal Server Error" });
     }
 });
 module.exports = router;

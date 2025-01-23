@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { Demands } = require("../Models/Demands");
+const { Demands_types } = require("../Models/Demands_types");
 
 const handle_create_demand = async (req, res) => {
     try {
@@ -42,8 +43,18 @@ const handle_create_demand = async (req, res) => {
         return res.status(500).json({ message: "Internal Server Error" });
     }
 };
-
+const get_demands_types = async (req, res) => {
+    try {
+        const types = await Demands_types.findAll({
+            attributes: ["type"],
+        });
+        return res.status(200).json({ types });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: "Internal Server Error" });
+    }
+};
 // Define the POST route
-router.post("/", handle_create_demand);
+router.post("/", handle_create_demand, get_demands_types);
 
 module.exports = router;
