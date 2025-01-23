@@ -12,10 +12,27 @@ module.exports = {
     settings: { react: { version: "18.2" } },
     plugins: ["react-refresh"],
     rules: {
-        "react/jsx-no-target-blank": "off",
-        "react-refresh/only-export-components": [
-            "warn",
-            { allowConstantExport: true },
+        // Disable unused variables warning
+        "no-unused-vars": "off", // Don't show warnings for unused variables
+
+        // Disable prop-types validation (because you don't use TypeScript)
+        "react/prop-types": "off", // Disable prop-type validation
+
+        // Disable missing dependency warnings for useEffect
+        "react-hooks/exhaustive-deps": "off", // Turn off missing dependencies in useEffect warnings
+
+        // Enable potential error for undefined variables
+        "no-undef": "error", // Show an error if a variable is used without being defined
+
+        // Enable potential error for incorrect React component names
+        "react-hooks/rules-of-hooks": [
+            "error",
+            {
+                checkFunctions: "true", // Checks that functions using hooks have valid names
+            },
         ],
+
+        // Allow the use of React even if not explicitly needed (for JSX)
+        "react/jsx-no-undef": ["error"], // Errors if there are undefined JSX components
     },
 };

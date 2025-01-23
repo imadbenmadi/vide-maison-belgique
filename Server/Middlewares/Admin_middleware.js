@@ -2,8 +2,10 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config();
 const { Refresh_tokens } = require("../Models/RefreshTokens");
 const { Admins } = require("../Models/Admin");
-const cookieParser = require("cookie-parser");
-app.use(cookieParser());
+// const cookieParser = require("cookie-parser");
+// // const express = require("express");
+// // const app = express();
+// // app.use(cookieParser());
 const verifyAdmin = async (req, res, next) => {
     const accessToken = req.cookies.accessToken;
     const refreshToken = req.cookies.refreshToken;
