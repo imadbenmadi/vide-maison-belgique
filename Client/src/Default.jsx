@@ -4,7 +4,7 @@ import { useEffect } from "react";
 function Default() {
     const Navigate = useNavigate();
     useEffect(() => {
-        Navigate("/");
+        Navigate("/Home");
     }, []);
     return null;
 }

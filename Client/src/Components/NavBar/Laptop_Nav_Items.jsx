@@ -10,7 +10,7 @@ function Laptop_Nav_Items({ Active_nav }) {
          md:text-md lg:text-lg  font-[500] text-black_text h-full p-2 "
         >
             <div>
-                <Link to={"/"} className="select-none">
+                <Link to={"/Home"} className="select-none">
                     <img
                         className="select-none w-[50px] "
                         src={Logo}
@@ -26,7 +26,7 @@ function Laptop_Nav_Items({ Active_nav }) {
                             : "text-black_text"
                     } md:hover:text-yallow_v transition-all duration-150  cursor-pointer`}
                 >
-                    <Link to={"/"} className={" select-none"}>
+                    <Link to={"/Home"} className={" select-none"}>
                         Home{" "}
                     </Link>
                 </div>

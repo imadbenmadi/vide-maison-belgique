@@ -22,7 +22,7 @@ const routes = createBrowserRouter([
                 errorElement: <ErrorElement />,
             },
             {
-                path: "/",
+                path: "/Home",
                 element: <Home />,
                 errorElement: <ErrorElement />,
             },
@@ -41,7 +41,6 @@ const routes = createBrowserRouter([
             },
         ],
     },
-   
 
     {
         path: "*",

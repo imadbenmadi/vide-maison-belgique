@@ -16,7 +16,7 @@ function Mobile_Nav_Items({ MobileNav_Open, Toogle_Menu_Bar, Active_nav }) {
                         <div className="text-center flex flex-col gap-8 my-8 ">
                             <Link
                                 onClick={Toogle_Menu_Bar}
-                                to={"/"}
+                                to={"/Home"}
                                 className={`${
                                     Active_nav == "Home"
                                         ? "text-yallow_v"
