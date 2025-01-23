@@ -16,8 +16,12 @@ const Demands = sequelize.define("Demands", {
             isEmail: true,
         },
     },
-    message: {
+    description: {
         type: DataTypes.TEXT,
+        allowNull: false,
+    },
+    telephone: {
+        type: DataTypes.STRING,
         allowNull: false,
     },
     type: {

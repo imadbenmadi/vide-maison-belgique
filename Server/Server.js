@@ -44,7 +44,7 @@ app.get("/", (req, res) => {
     res.send("Hello from vide-maison-belgique");
 });
 app.get("/Home", require("./Routes/Home"));
-
+app.use("/Demand", require("./Routes/Demand"));
 app.use("/Contact", require("./Routes/Contact"));
 const adminMiddleware = require("./Middlewares/Admin_middleware_New");
 app.use("/Admin", adminMiddleware, require("./Routes/Admin/Admin"));
