@@ -55,7 +55,7 @@ app.use("/Add_Admin", require("./Routes/Auth/Admin/Admin_Add"));
 // app.use("/Admin_Logout", require("./Routes/Auth/Admin/Admin_Logout"));
 app.use("/Logout", require("./Routes/Auth/Logout"));
 app.use("/Admin_CheckAuth", require("./Routes/Auth/Admin/Admin_CheckAuth"));
-router.get("/Contact_informations", async (req, res) => {
+app.get("/Contact_informations", async (req, res) => {
     try {
         const contact_informations = await Contact_informations.findAll({
             where: {},
