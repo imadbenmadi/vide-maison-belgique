@@ -104,7 +104,7 @@ function App() {
                 <div className="  h-screen overflow-y-auto custom-overflow shrink-0 ">
                     <NavBar />
                 </div>
-                <div className=" pt-[60px] md:pt-0 w-screen md:w-[calc(100vw-210px)] h-screen overflow-y-auto custom-overflow">
+                <div className=" pt-[60px] md:pt-0 w-screen h-screen overflow-y-auto custom-overflow">
                     <Outlet />
                 </div>
             </div>
