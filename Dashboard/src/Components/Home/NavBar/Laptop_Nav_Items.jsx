@@ -49,7 +49,7 @@ function Laptop_Nav_Items({ Active_nav }) {
                     } md:hover:text-yallow_v transition-all duration-150  cursor-pointer`}
                 >
                     <Link to={"/Home/Demand"} className={" select-none"}>
-                        Demandes{" "}
+                        demander un devis{" "}
                     </Link>
                 </div>
             </div>

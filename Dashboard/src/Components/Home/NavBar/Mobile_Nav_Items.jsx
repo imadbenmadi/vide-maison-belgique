@@ -45,7 +45,7 @@ function Mobile_Nav_Items({ MobileNav_Open, Toogle_Menu_Bar, Active_nav }) {
                                         : "text-black_text"
                                 } select-none   `}
                             >
-                                Demandes
+                                demander un devis
                             </Link>
                         </div>
                         <div className=" w-screen h-[2px] bg-gray_white "></div>
