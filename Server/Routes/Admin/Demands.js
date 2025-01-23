@@ -3,7 +3,7 @@ const router = express.Router();
 const adminMiddleware = require("../../Middlewares/Admin_middleware_New");
 const { Demands } = require("../../Models/Demands");
 const { Demands_types } = require("../../Models/Demands_types");
-
+const { sequelize } = require("../../config/db_connection");
 router.get("/", adminMiddleware, async (req, res) => {
     try {
         const demands = await Demands.findAll({
@@ -42,21 +42,24 @@ router.post("/types", adminMiddleware, async (req, res) => {
     try {
         const type = req.body.type;
         if (!type) return res.status(400).json({ message: "type is required" });
-        await Demands_types.create({
-            type,
-        });
-        return res.status(200);
+
+        const newType = await Demands_types.create({ type });
+        return res
+            .status(200)
+            .json({ message: "type added successfully", type: newType });
     } catch (err) {
         console.error(err);
         return res.status(500).json({ message: "Internal Server Error" });
     }
 });
-router.delete("/type", adminMiddleware, async (req, res) => {
+router.delete("/types/:id", adminMiddleware, async (req, res) => {
     try {
-        const type = req.body.type;
-        if (!type) return res.status(400).json({ message: "type is required" });
-        await Demands_types.destroy({ where: { type } });
-        return res.status(200);
+        const typeid = req.params.id;
+        console.log("Deleting type with ID:", typeid); // Debugging
+        if (!typeid)
+            return res.status(400).json({ message: "type id is required" });
+        await Demands_types.destroy({ where: { id: typeid } });
+        return res.status(200).json({ message: "type deleted successfully" });
     } catch (err) {
         console.error(err);
         return res.status(500).json({ message: "Internal Server Error" });

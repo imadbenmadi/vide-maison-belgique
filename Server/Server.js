@@ -3,6 +3,7 @@ const app = express();
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const { Contact_informations } = require("./Models/Contact_informations");
+const { Demands_types } = require("./Models/Demands_types");
 
 const path = require("path");
 const allowedOrigins = [

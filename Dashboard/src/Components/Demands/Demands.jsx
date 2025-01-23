@@ -59,7 +59,7 @@ function Demands() {
                     );
                     Navigate("/Login");
                 } else {
-                    setError(typesResponse.data);
+                    setDemandTypes([]);
                 }
             } catch (error) {
                 setError(error);
@@ -89,7 +89,7 @@ function Demands() {
             );
 
             if (response.status === 200) {
-                setDemandTypes([...DemandTypes, { type: newType }]);
+                setDemandTypes([...DemandTypes, response.data.type]); // Assuming the response includes the new type with `id`
                 setNewType("");
                 Swal.fire("Succès", "Type ajouté avec succès", "success");
             } else if (response.status === 401) {
@@ -108,11 +108,10 @@ function Demands() {
     };
 
     // Delete a demand type
-    const handleDeleteType = async (type) => {
+    const handleDeleteType = async (id) => {
         try {
             const response = await axios.delete(
-                `http://localhost:3000/Admin/Demands/types`,
-                { type: type },
+                `http://localhost:3000/Admin/Demands/types/${id}`,
                 {
                     withCredentials: true,
                     validateStatus: () => true,
@@ -120,7 +119,7 @@ function Demands() {
             );
 
             if (response.status === 200) {
-                setDemandTypes(DemandTypes.filter((t) => t.type !== type));
+                setDemandTypes(DemandTypes.filter((t) => t.id !== id)); // Use `id` for filtering
                 Swal.fire("Succès", "Type supprimé avec succès", "success");
             } else if (response.status === 401) {
                 Swal.fire(
@@ -189,16 +188,16 @@ function Demands() {
                         </p>
                     ) : (
                         <ul className="space-y-2">
-                            {DemandTypes.map((type, index) => (
+                            {DemandTypes.map((type) => (
                                 <li
-                                    key={index}
+                                    key={type.id} // Use `id` as the key
                                     className="flex justify-between items-center p-2 border rounded-lg"
                                 >
                                     <span>{type.type}</span>
                                     <button
                                         onClick={() =>
-                                            handleDeleteType(type.type)
-                                        }
+                                            handleDeleteType(type.id)
+                                        } // Pass `id` to the handler
                                         className="text-red-500 hover:text-red-700"
                                     >
                                         <BiTrash className="text-xl" />
