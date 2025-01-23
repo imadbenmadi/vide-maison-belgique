@@ -7,8 +7,9 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { FiUser } from "react-icons/fi";
 import { MdOutlineMailOutline } from "react-icons/md";
-
+import { useNavigate } from "react-router";
 function Card({ Message, Messages, setMessages }) {
+    const Navigate = useNavigate();
     const [deleteLoading, setDeleteLoading] = useState(false);
     const [add_to_home_Loading, setadd_to_home_Loading] = useState(false);
     const [show_more, setShow_more] = useState(false);

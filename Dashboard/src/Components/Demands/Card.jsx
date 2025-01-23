@@ -9,8 +9,10 @@ import { FiUser } from "react-icons/fi";
 import { MdOutlineMailOutline } from "react-icons/md";
 import { MdCategory } from "react-icons/md";
 import { FaPhoneAlt } from "react-icons/fa";
+import { useNavigate } from "react-router";
 
 function Card({ Demand, Demands, setDemands }) {
+    const Navigate = useNavigate();
     const [deleteLoading, setDeleteLoading] = useState(false);
     const [show_more, setShow_more] = useState(false);
     const Toogle_Show_More = () => {
