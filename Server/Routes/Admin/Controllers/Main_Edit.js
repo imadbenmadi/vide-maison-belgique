@@ -22,11 +22,11 @@ const Main_Edit = async (req, res) => {
             "image/jpg",
             "image/heic",
         ];
-        const allowedExtensions = [".jpeg", ".jpg", ".png", ".heic"];
+        const allowedExtensions = [".jpeg", ".jpg", ".png", ".heic", ".webp"];
         const fileExtension = path.extname(image.name).toLowerCase();
 
         if (!allowedTypes.includes(image.type)) {
-            throw new Error("Only JPEG, PNG, and JPG images are allowed!");
+            throw new Error("Only JPEG, PNG, and JPG and heic and webp images are allowed!");
         }
 
         if (!allowedExtensions.includes(fileExtension)) {

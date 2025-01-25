@@ -21,7 +21,13 @@ const add_service = async (req, res) => {
                 "image/jpg",
                 "image/heic",
             ];
-            const allowedExtensions = [".jpeg", ".jpg", ".png", ".heic"];
+            const allowedExtensions = [
+                ".jpeg",
+                ".jpg",
+                ".png",
+                ".heic",
+                ".webp",
+            ];
             const fileExtension = path.extname(image.name).toLowerCase();
 
             if (
@@ -29,7 +35,7 @@ const add_service = async (req, res) => {
                 !allowedExtensions.includes(fileExtension)
             ) {
                 throw new Error(
-                    "Only JPEG, PNG, JPG, and HEIC images are allowed!"
+                    "Only JPEG, PNG, JPG, and HEIC and webp images are allowed!"
                 );
             }
 

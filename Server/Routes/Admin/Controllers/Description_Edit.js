@@ -4,7 +4,7 @@ const { v4: uuidv4 } = require("uuid");
 const { Description_page } = require("../../../Models/Content/Description");
 
 const allowedTypes = ["image/jpeg", "image/png", "image/jpg", "image/heic"];
-const allowedExtensions = [".jpeg", ".jpg", ".png", ".heic"];
+const allowedExtensions = [".jpeg", ".jpg", ".png", ".heic", ".webp"];
 const targetDir = path.join(
     __dirname,
     "../../../public/Description_page_images"
