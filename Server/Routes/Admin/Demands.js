@@ -12,7 +12,7 @@ router.get("/", adminMiddleware, async (req, res) => {
         });
         res.status(200).json({ demands });
     } catch (err) {
-        console.error("Error fetching Messages:", err);
+        console.error("Error fetching Demandes:", err);
         res.status(500).json({ message: "Internal Server Error" });
     }
 });
@@ -22,7 +22,7 @@ router.delete("/:id", adminMiddleware, async (req, res) => {
     }
     const messageId = req.params.id;
     if (!messageId)
-        return res.status(409).json({ message: "message id is required" });
+        return res.status(409).json({ message: "Demande id is required" });
     try {
         const message = await Demands.findOne({
             where: { id: messageId },
@@ -34,7 +34,7 @@ router.delete("/:id", adminMiddleware, async (req, res) => {
         await Demands.destroy({ where: { id: messageId } });
         res.status(200).json({ message: "message deleted successfully" });
     } catch (err) {
-        console.error("Error fetching deleting Messages:", err);
+        console.error("Error fetching deleting Demands:", err);
         res.status(500).json({ message: "Internal Server Error" });
     }
 });
@@ -55,7 +55,7 @@ router.post("/types", adminMiddleware, async (req, res) => {
 router.delete("/types/:id", adminMiddleware, async (req, res) => {
     try {
         const typeid = req.params.id;
-        if (!typeid)
+        if (!typeid || typeid < 1 || isNaN(typeid))
             return res.status(400).json({ message: "type id is required" });
         await Demands_types.destroy({ where: { id: typeid } });
         return res.status(200).json({ message: "type deleted successfully" });
