@@ -48,13 +48,14 @@ const About_Edit = async (req, res) => {
             fs.mkdirSync(targetDir, { recursive: true });
         }
         if (
-            about_page.image_link &&
+
+            about_page?.image_link &&
             fs.existsSync(
-                path.join(__dirname, "../../../public", about_page.image_link)
+                path.join(__dirname, "../../../public", about_page?.image_link)
             )
         ) {
             fs.unlinkSync(
-                path.join(__dirname, "../../../public", about_page.image_link)
+                path.join(__dirname, "../../../public", about_page?.image_link)
             );
         }
         fs.copyFileSync(image.path, targetPath);
@@ -81,7 +82,7 @@ const About_Edit = async (req, res) => {
             about_page.Title = Title || about_page.Title;
             about_page.Description = Description || about_page.Description;
             about_page.button = button || about_page.button;
-            about_page.image_link = imageLink || about_page.image_link;
+            about_page.image_link = imageLink || about_page?.image_link;
             await about_page.save();
         }
 

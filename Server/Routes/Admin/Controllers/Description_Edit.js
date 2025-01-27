@@ -39,11 +39,11 @@ const processImage = (image, descriptionPage) => {
 
     ensureDirectoryExists(targetDir);
 
-    if (descriptionPage.image_link1) {
-        deleteExistingImage(descriptionPage.image_link1);
+    if (descriptionPage?.image_link1) {
+        deleteExistingImage(descriptionPage?.image_link1);
     }
-    if (descriptionPage.image_link2) {
-        deleteExistingImage(descriptionPage.image_link2);
+    if (descriptionPage?.image_link2) {
+        deleteExistingImage(descriptionPage?.image_link2);
     }
 
     fs.copyFileSync(image.path, targetPath);

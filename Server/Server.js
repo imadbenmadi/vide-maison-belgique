@@ -16,6 +16,8 @@ const path = require("path");
 const allowedOrigins = [
     "http://localhost:5173",
     "http://localhost:5174",
+    "http://localhost:5175",
+
     // "https://scs-tawassolsihi.com/",
     // "https://scs-tawassolsihi.com",
     // "https://www.scs-tawassolsihi.com/",
